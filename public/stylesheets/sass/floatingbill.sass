@@ -1,0 +1,44 @@
+!font_color= #222222
+!body_bg_color= #FFFFFF
+!content_bg_color= #EFEFEF
+!font_size= 16px
+!link_color= #00aeff
+!light_color = !font_color + #555555
+
+body
+  :background-color= !body_bg_color
+  :color= !font_color
+  :font-family verdana
+  :font-size= !font_size
+
+a
+  :color= !link_color
+  :text-decoration none
+
+a:hover
+  :text-decoration underline
+
+#container
+  :margin 0 auto
+  :width 800px
+  :padding 20px
+
+#content
+  :padding 5px
+  :background-color= !content_bg_color
+  h1
+    :font-size= !font_size + 10px
+    :font-weight bold
+
+
+#header
+  :padding-bottom 10px
+  :background-color= !content_bg_color
+  #title
+    :color #000000
+    :font-size= !font_size + 20px
+    :font-weight bold
+
+#footer
+  :color= !light_color
+  :font-size= !font_size - 4px

@@ -1,0 +1,2 @@
+module FloatingbillHelper
+end

@@ -1,0 +1,6 @@
+*~
+tmp/**/*
+log/*
+index/*
+config/database.yml
+nbproject
