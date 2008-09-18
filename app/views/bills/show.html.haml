@@ -3,15 +3,28 @@
   =h @bill.name
 
 %p
-  Amount:
-  = @bill.amount
+  = @bill.description
+
+%br
 
 #users
   %strong
     Users:
-  - for payment in @bill.payments
-    #div.user
-      = payment.payer.login
-      = payment.amount
-
+  %table
+    - for payment in @bill.payments
+      %tr
+        %td
+          = link_to payment.payer.login, user_path(payment.payer)
+        %td
+          = payment.amount
+          = currency_sign payment.bill.currency
+    %tr
+      %td
+        %strong
+          total
+      %td
+        %strong
+          = @bill.amount
+          = currency_sign @bill.currency
+%br
 = link_to 'Back', bills_path

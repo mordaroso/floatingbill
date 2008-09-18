@@ -9,15 +9,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080917094320) do
+ActiveRecord::Schema.define(:version => 20080918125710) do
 
   create_table "bills", :force => true do |t|
-    t.integer  "category_id",  :limit => 11
-    t.decimal  "total_amount",               :precision => 10, :scale => 2
+    t.integer  "category_id", :limit => 11
+    t.decimal  "amount",                    :precision => 10, :scale => 2
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.integer  "creator_id",  :limit => 11
+    t.string   "currency",    :limit => 3
   end
 
   create_table "categories", :force => true do |t|
@@ -56,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20080917094320) do
     t.boolean  "verified",                                                :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "currency",   :limit => 3
   end
 
   create_table "users", :force => true do |t|

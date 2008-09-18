@@ -5,10 +5,11 @@ class User < ActiveRecord::Base
   include Authentication::ByPassword
   include Authentication::ByCookieToken
 
-  has_many :bills
+  has_many :bills, :class_name => 'bill', :foreign_key => 'creator_id'
   has_many :memberships
   has_many :groups, :through => :memberships
   has_many :payments
+
   has_many :credits, :class_name => "Debt", :foreign_key => "creditor_id"
   has_many :debts, :class_name => "Debt", :foreign_key => "debitor_id"
   has_many :creditors, :class_name => "User", :through => :debts

@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
   map.register '/register', :controller => 'users', :action => 'create'
   map.signup '/signup', :controller => 'users', :action => 'new'
 
-  map.resources :bills, :collection => {'categories' => :get}
+  map.resources :bills, :collection => {'categories' => :get}, :member => { :accept => :post}
 
   map.resources :groups, :member => { :leave => :post}
 

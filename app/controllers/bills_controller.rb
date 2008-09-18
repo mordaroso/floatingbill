@@ -34,11 +34,17 @@ class BillsController < ApplicationController
     end
   end
 
+  # POST /bills/1/accept
+  def accept
+    @bill = Bill.find(params[:id])
+
+  end
+
   # POST /bills
   # POST /bills.xml
   def create
     @bill = Bill.new(params[:bill])
-
+    @bill.creator = current_user
     respond_to do |format|
       if @bill.save
         flash[:notice] = 'bill was successfully created.'

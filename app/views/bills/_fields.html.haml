@@ -17,6 +17,7 @@
   = f.label :amount
   %br
   = f.text_field :amount
+  = f.select(:currency, $currencies.invert)
 %p
   #payers
     %strong

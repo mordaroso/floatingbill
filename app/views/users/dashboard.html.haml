@@ -1,1 +1,32 @@
 %h1 Dashboard
+
+%p
+  %strong
+    Open Payments
+  - for payment in current_user.payments.open
+    #div.payment
+      = payment.bill.creator.login
+      requests
+      = payment.amount
+      = currency_sign payment.bill.currency
+      for
+      = payment.bill.name
+      |
+      = link_to 'accept', accept_bill_path(payment.bill)
+      |
+      = link_to 'show bill', bill_path(payment.bill)
+%br
+
+%p
+  %strong
+    Open debts
+  #no_depts
+    No open debts
+%br
+
+%p
+  %strong
+    Open credits
+  #no_credits
+    No open credits
+%br
