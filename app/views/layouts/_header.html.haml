@@ -1,9 +1,22 @@
 #title
-  The Floating Bill
-#menu
-  = link_to "index", :controller => 'floatingbill'
-  \-
-  %strong
-    = link_to "signup", signup_url
-  \-
-  = link_to "login", login_url
+  = link_to(image_tag("/images/logo2.png"), :controller => 'floatingbill')
+#user
+  = render "users/_user_bar"
+
+-if logged_in?
+  #menu
+    = link_to 'Dashboard', dashboard_user_path(current_user)
+    |
+    = link_to 'Bills', bills_path
+    |
+    = link_to 'Groups', groups_path
+    |
+    Account
+
+-unless flash[:error].blank?
+  #error
+    = flash[:error]
+
+-unless flash[:notice].blank?
+  #notice
+    = flash[:notice]

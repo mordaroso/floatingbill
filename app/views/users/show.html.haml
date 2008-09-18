@@ -1,0 +1,7 @@
+%h1
+  = @user.login
+
+= render '/users/_membership'
+%br
+- if @user.id = current_user.id
+  =link_to 'Change Settings', edit_user_path(@user)

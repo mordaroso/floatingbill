@@ -1,0 +1,8 @@
+%div{:id => 'Group_' + group.id.to_s, :class => 'group'}
+  #name
+    = link_to h(group.name), group
+  =pluralize(group.members.count, "member")
+  -if is_member(:group => group)
+    |
+
+    =link_to 'leave', leave_group_path(group), :confirm => 'Are you sure?', :method => :post

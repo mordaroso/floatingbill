@@ -1,19 +1,38 @@
 class UsersController < ApplicationController
-  # Be sure to include AuthenticationSystem in Application Controller instead
-  include AuthenticatedSystem
-  
+  before_filter :login_required, :except => [:new, :create, :activate]
+  before_filter :owner_required, :only => [:edit]
 
   # render new.rhtml
   def new
     @user = User.new
   end
- 
+
+  def dashboard
+
+  end
+
+  def show
+    @user = User.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+    end
+  end
+
+  def edit
+    @user = User.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+    end
+  end
+
   def create
     logout_keeping_session!
     @user = User.new(params[:user])
     success = @user && @user.save
     if success && @user.errors.empty?
-            redirect_back_or_default('/')
+      redirect_back_or_default('/')
       flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
     else
       flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
@@ -32,9 +51,14 @@ class UsersController < ApplicationController
     when params[:activation_code].blank?
       flash[:error] = "The activation code was missing.  Please follow the URL from your email."
       redirect_back_or_default('/')
-    else 
+    else
       flash[:error]  = "We couldn't find a user with that activation code -- check your email? Or maybe you've already activated -- try signing in."
       redirect_back_or_default('/')
     end
+  end
+
+  private
+  def owner_required
+       redirect_to user_path(params[:id]) unless current_user.id.to_s == params[:id]
   end
 end

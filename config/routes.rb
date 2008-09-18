@@ -1,9 +1,15 @@
 ActionController::Routing::Routes.draw do |map|
+
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'users', :action => 'create'
   map.signup '/signup', :controller => 'users', :action => 'new'
-  map.resources :users
+
+  map.resources :bills, :collection => {'categories' => :get}
+
+  map.resources :groups, :member => { :leave => :post}
+
+  map.resources :users, :has_many => [ :groups ], :member => { :dashboard => :get}
 
   map.resource :session
 

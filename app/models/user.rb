@@ -6,9 +6,17 @@ class User < ActiveRecord::Base
   include Authentication::ByCookieToken
 
   has_many :bills
-  has_and_belongs_to_many :groups
+  has_many :memberships
+  has_many :groups, :through => :memberships
+  has_many :payments
+  has_many :credits, :class_name => "Debt", :foreign_key => "creditor_id"
+  has_many :debts, :class_name => "Debt", :foreign_key => "debitor_id"
+  has_many :creditors, :class_name => "User", :through => :debts
+  has_many :debitors, :class_name => "User", :through => :credits
+
 
   validates_presence_of     :login
+  validates_format_of       :login,    :with => /^\w+$/
   validates_length_of       :login,    :within => 3..40
   validates_uniqueness_of   :login,    :case_sensitive => false
   validates_format_of       :login,    :with => RE_LOGIN_OK, :message => MSG_LOGIN_BAD

@@ -11,26 +11,50 @@ a {
 a:hover {
   text-decoration: underline; }
 
+img {
+  border: 0px; }
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table; }
+
 #container {
   margin: 0 auto;
   width: 800px;
   padding: 20px; }
 
 #content {
-  padding: 5px;
-  background-color: #efefef; }
+  padding: 10px;
+  background-color: #efefef;
+  -moz-border-radius-bottomright: 30px;
+  -moz-border-radius-bottomleft: 30px; }
   #content h1 {
     font-size: 26px;
     font-weight: bold; }
 
 #header {
-  padding-bottom: 10px;
-  background-color: #efefef; }
+  padding: 10px;
+  background-color: #efefef;
+  -moz-border-radius-topright: 30px;
+  -moz-border-radius-topleft: 30px; }
+  #header #user {
+    height: 103px; }
   #header #title {
-    color: #000000;
-    font-size: 36px;
+    float: left; }
+  #header #error {
+    border: 2px solid #FFBBBB;
     font-weight: bold; }
+  #header #notice {
+    border: 2px solid #11FF11; }
 
 #footer {
+  padding-left: 30px;
   color: #777777;
   font-size: 12px; }
+
+.group {
+  margin-bottom: 5px;
+  border-bottom: 1px solid; }
+  .group #name {
+    font-weight: bold; }

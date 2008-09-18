@@ -1,0 +1,12 @@
+%h1
+  New bill
+
+- form_for(@bill) do |f|
+  = f.error_messages
+
+  = render :partial => 'fields', :locals => {:f => f}
+
+  %p
+    = f.submit "Create"
+
+= link_to 'Back', bills_path

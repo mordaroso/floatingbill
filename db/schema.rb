@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080912130112) do
+ActiveRecord::Schema.define(:version => 20080917094320) do
 
   create_table "bills", :force => true do |t|
     t.integer  "category_id",  :limit => 11
@@ -17,10 +17,19 @@ ActiveRecord::Schema.define(:version => 20080912130112) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
   end
 
   create_table "categories", :force => true do |t|
     t.string   "name",       :limit => 40
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "debts", :force => true do |t|
+    t.integer  "creditor_id", :limit => 11
+    t.integer  "debitor_id",  :limit => 11
+    t.decimal  "amount",                    :precision => 10, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -30,19 +39,20 @@ ActiveRecord::Schema.define(:version => 20080912130112) do
     t.string   "description",               :default => ""
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "deleted"
   end
 
   create_table "memberships", :force => true do |t|
     t.integer  "group_id",   :limit => 11
     t.integer  "user_id",    :limit => 11
     t.datetime "created_at"
+    t.boolean  "admin"
   end
 
   create_table "payments", :force => true do |t|
     t.integer  "bill_id",    :limit => 11
     t.integer  "user_id",    :limit => 11
     t.decimal  "amount",                   :precision => 10, :scale => 2
-    t.boolean  "payed",                                                   :default => false
     t.boolean  "verified",                                                :default => false
     t.datetime "created_at"
     t.datetime "updated_at"

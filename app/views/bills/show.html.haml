@@ -1,0 +1,17 @@
+%h1
+  = '#' + @bill.id.to_s + ':'
+  =h @bill.name
+
+%p
+  Amount:
+  = @bill.amount
+
+#users
+  %strong
+    Users:
+  - for payment in @bill.payments
+    #div.user
+      = payment.payer.login
+      = payment.amount
+
+= link_to 'Back', bills_path

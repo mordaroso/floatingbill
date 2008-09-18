@@ -18,27 +18,50 @@ a
 a:hover
   :text-decoration underline
 
+img
+  :border 0px
+
+.fieldWithErrors
+  :padding 2px
+  :background-color red
+  :display table
+
 #container
   :margin 0 auto
   :width 800px
   :padding 20px
 
 #content
-  :padding 5px
+  :padding 10px
   :background-color= !content_bg_color
+  :-moz-border-radius-bottomright 30px
+  :-moz-border-radius-bottomleft 30px
   h1
     :font-size= !font_size + 10px
     :font-weight bold
 
-
 #header
-  :padding-bottom 10px
+  :padding 10px
   :background-color= !content_bg_color
+  :-moz-border-radius-topright 30px
+  :-moz-border-radius-topleft 30px
+  #user
+    :height 103px
   #title
-    :color #000000
-    :font-size= !font_size + 20px
+    :float left
+  #error
+    :border 2px solid #FFBBBB
     :font-weight bold
+  #notice
+    :border 2px solid #11FF11
 
 #footer
+  :padding-left 30px
   :color= !light_color
   :font-size= !font_size - 4px
+
+.group
+  :margin-bottom 5px
+  :border-bottom 1px solid
+  #name
+    :font-weight bold

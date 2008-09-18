@@ -1,0 +1,15 @@
+%h1
+  Group
+  =h @group.name
+
+Users:
+%ul
+  - for member in @group.members
+    %li
+      = link_to member.login, user_path(member)
+      - if is_admin :user => member
+        (A)
+- if is_admin
+  = link_to 'Edit', edit_group_path(@group)
+  |
+= link_to 'Back', groups_path

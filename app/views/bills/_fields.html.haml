@@ -1,0 +1,30 @@
+%p
+  = f.label :category_name, 'Category'
+  %br
+  = f.text_field :category_name
+
+%p
+  = f.label :name
+  %br
+  = f.text_field :name
+
+%p
+  = f.label :description
+  %br
+  = f.text_area :description
+
+%p
+  = f.label :amount
+  %br
+  = f.text_field :amount
+%p
+  #payers
+    %strong
+      = f.label :payers
+    - unless @bill.payer_names.blank?
+      - for payer_name in @bill.payer_names
+        #div.payers
+          = text_field_tag 'bill[payer_names][]', payer_name
+          =link_to_function "remove", "$(this).up('.payers').remove()"
+
+  = add_payment_link "Add"
