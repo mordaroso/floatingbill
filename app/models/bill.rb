@@ -59,6 +59,7 @@ class Bill < ActiveRecord::Base
       user = User.find_by_login(payer_name)
       payment = Payment.find_or_initialize_by_user_id_and_bill_id(user.id, id)
       payment.amount = self.amount / (payer_names.length)
+      payment.accepted = true if user.id == creator_id
       payments << payment
     end
   end

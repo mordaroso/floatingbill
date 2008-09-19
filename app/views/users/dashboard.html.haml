@@ -3,18 +3,22 @@
 %p
   %strong
     Open Payments
-  - for payment in current_user.payments.open
-    #div.payment
-      = link_to payment.bill.creator.login, user_path(payment.bill.creator)
-      requests
-      = payment.amount
-      = currency_sign payment.bill.currency
-      for
-      = payment.bill.name
-      |
-      = link_to 'accept', accept_bill_path(payment.bill), :method => 'post'
-      |
-      = link_to 'show bill', bill_path(payment.bill)
+  -if current_user.payments.open.count > 0
+    - for payment in current_user.payments.open
+      #div.payment
+        = link_to payment.bill.creator.login, user_path(payment.bill.creator)
+        requests
+        = payment.amount
+        = currency_sign payment.bill.currency
+        for
+        = payment.bill.name
+        |
+        = link_to 'accept', accept_bill_path(payment.bill), :method => 'post'
+        |
+        = link_to 'show bill', bill_path(payment.bill)
+  - else
+    #no_payments
+      No open payments
 %br
 
 %p

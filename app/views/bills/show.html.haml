@@ -20,6 +20,8 @@ at
       %tr
         %td
           = link_to payment.payer.login, user_path(payment.payer)
+          - if payment.accepted
+            (ok)
         %td
           = payment.amount
           = currency_sign payment.bill.currency

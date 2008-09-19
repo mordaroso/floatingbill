@@ -3,15 +3,15 @@ class Debt < ActiveRecord::Base
   belongs_to :debitor, :class_name => "User" , :foreign_key => "debitor_id"
 
   def self.save_with_params(options = {})
-    debt_old = Debt.find_by_debitor_id_and_creditor_id_and_currency(options[:creditor].id, options[:debitor].id, options[:currency])
+    credit = Debt.find_by_debitor_id_and_creditor_id_and_currency(options[:creditor].id, options[:debitor].id, options[:currency])
     difference = options[:amount]
-    unless debt_old.blank?
-      difference -= debt_old.amount
+    unless credit.blank?
+      difference -= credit.amount
       if difference < 0
-        debt_old.amount = - difference
-        debt_old.save
+        credit.amount = - difference
+        credit.save
       else
-        debt_old.destroy
+        credit.destroy
       end
     end
     if difference > 0
