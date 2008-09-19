@@ -5,14 +5,14 @@
     Open Payments
   - for payment in current_user.payments.open
     #div.payment
-      = payment.bill.creator.login
+      = link_to payment.bill.creator.login, user_path(payment.bill.creator)
       requests
       = payment.amount
       = currency_sign payment.bill.currency
       for
       = payment.bill.name
       |
-      = link_to 'accept', accept_bill_path(payment.bill)
+      = link_to 'accept', accept_bill_path(payment.bill), :method => 'post'
       |
       = link_to 'show bill', bill_path(payment.bill)
 %br
@@ -20,13 +20,29 @@
 %p
   %strong
     Open debts
-  #no_depts
-    No open debts
+  -if current_user.debts.count > 0
+    -for debt in current_user.debts
+      #div.dept
+        You own
+        = link_to debt.creditor.login, user_path(debt.creditor)
+        = debt.amount
+        = currency_sign debt.currency
+  -else
+    #no_depts
+      No open debts
 %br
 
 %p
   %strong
     Open credits
-  #no_credits
-    No open credits
+  -if current_user.credits.count > 0
+    -for debt in current_user.credits
+      #div.dept
+        = link_to debt.debitor.login, user_path(debt.debitor)
+        owns you
+        = debt.amount
+        = currency_sign debt.currency
+  -else
+    #no_depts
+      No open credits
 %br

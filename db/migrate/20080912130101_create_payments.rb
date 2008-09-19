@@ -4,7 +4,7 @@ class CreatePayments < ActiveRecord::Migration
       t.column :bill_id,            :integer
       t.column :user_id,            :integer
       t.column :amount,             :decimal, :precision => 10, :scale => 2
-      t.column :verified,           :boolean, :default => false
+      t.column :accepted,           :boolean, :default => false
       t.timestamps
     end
   end

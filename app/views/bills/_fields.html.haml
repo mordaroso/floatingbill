@@ -27,5 +27,7 @@
         #div.payers
           = text_field_tag 'bill[payer_names][]', payer_name
           =link_to_function "remove", "$(this).up('.payers').remove()"
+    -else
+      = render :partial => 'payment'
 
   = add_payment_link "Add"

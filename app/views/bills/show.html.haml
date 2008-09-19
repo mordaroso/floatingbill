@@ -2,14 +2,19 @@
   = '#' + @bill.id.to_s + ':'
   =h @bill.name
 
+created by
+= link_to @bill.creator.login, user_path(@bill.creator)
+at
+= @bill.created_at
+
 %p
   = @bill.description
 
 %br
 
-#users
+#payers
   %strong
-    Users:
+    Payers:
   %table
     - for payment in @bill.payments
       %tr

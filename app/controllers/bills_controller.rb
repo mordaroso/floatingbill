@@ -1,5 +1,6 @@
 class BillsController < ApplicationController
   before_filter :login_required
+  before_filter :permission_required, :except => [:index, :new, :create]
 
   # GET /bills
   # GET /bills.xml
@@ -36,8 +37,11 @@ class BillsController < ApplicationController
 
   # POST /bills/1/accept
   def accept
-    @bill = Bill.find(params[:id])
-
+    bill = Bill.find(params[:id])
+    payment = Payment.find_by_user_id_and_bill_id(current_user.id, bill.id)
+    payment.accept
+    flash[:notice] = 'bill successfully accepted.'
+    redirect_to(bill)
   end
 
   # POST /bills
@@ -66,6 +70,14 @@ class BillsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(bills_url) }
       format.xml  { head :ok }
+    end
+  end
+
+  private
+  def permission_required
+    bill = Bill.find(params[:id])
+    if !(bill.payers.include? current_user) && bill.creator != current_user
+      redirect_to bills_path
     end
   end
 end
