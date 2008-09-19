@@ -4,11 +4,23 @@ class Payment < ActiveRecord::Base
 
   named_scope :open, :conditions => { :accepted => false }
 
+  before_destroy :reset_debt
 
   def accept
     return if accepted
-    self.accepted = true
     Debt.save_with_params(:debitor => payer, :creditor => bill.creator, :currency => bill.currency, :amount => amount)
-    self.save
+    puts 'count: ' + bill.payments.open.count.to_s
+    if bill.payments.open.count == 1
+      bill.closed = true
+      bill.save!
+    end
+    self.accepted = true
+    self.save!
+  end
+
+  def reset_debt
+    if self.accepted and bill.creator != payer
+      Debt.save_with_params(:debitor => bill.creator, :creditor => payer, :currency => bill.currency, :amount => amount)
+    end
   end
 end

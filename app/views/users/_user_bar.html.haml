@@ -2,7 +2,8 @@
   #user-bar
     Logged in as
     %br
-    = link_to_current_user :content_method => :login
+    %span.user
+      = link_to_current_user :content_method => :login
     %br
     = link_to "&raquo; Log out", logout_path, { :title => "Log out" }
 - else

@@ -4,18 +4,19 @@
   %strong
     Open Payments
   -if current_user.payments.open.count > 0
-    - for payment in current_user.payments.open
-      #div.payment
-        = link_to payment.bill.creator.login, user_path(payment.bill.creator)
-        requests
-        = payment.amount
-        = currency_sign payment.bill.currency
-        for
-        = payment.bill.name
-        |
-        = link_to 'accept', accept_bill_path(payment.bill), :method => 'post'
-        |
-        = link_to 'show bill', bill_path(payment.bill)
+    %ul.payments
+      - for payment in current_user.payments.open
+        %li
+          = link_to payment.bill.creator.login, user_path(payment.bill.creator)
+          requests
+          = payment.amount
+          = currency_sign payment.bill.currency
+          for
+          = payment.bill.name
+          |
+          = link_to 'accept', accept_bill_path(payment.bill), :method => 'post'
+          |
+          = link_to 'show bill', bill_path(payment.bill)
   - else
     #no_payments
       No open payments
@@ -25,12 +26,13 @@
   %strong
     Open debts
   -if current_user.debts.count > 0
-    -for debt in current_user.debts
-      #div.dept
-        You own
-        = link_to debt.creditor.login, user_path(debt.creditor)
-        = debt.amount
-        = currency_sign debt.currency
+    %ul.depts
+      -for debt in current_user.debts
+        %li
+          You own
+          = link_to debt.creditor.login, user_path(debt.creditor)
+          = debt.amount
+          = currency_sign debt.currency
   -else
     #no_depts
       No open debts
@@ -40,12 +42,13 @@
   %strong
     Open credits
   -if current_user.credits.count > 0
-    -for debt in current_user.credits
-      #div.dept
-        = link_to debt.debitor.login, user_path(debt.debitor)
-        owns you
-        = debt.amount
-        = currency_sign debt.currency
+    %ul.credits
+      -for debt in current_user.credits
+        %li
+          = link_to debt.debitor.login, user_path(debt.debitor)
+          owns you
+          = debt.amount
+          = currency_sign debt.currency
   -else
     #no_depts
       No open credits

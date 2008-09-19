@@ -1,4 +1,4 @@
-%div{:id => 'Group_' + group.id.to_s, :class => 'group'}
+%div.group{:id => 'Group_' + group.id.to_s}
   #name
     = link_to h(group.name), group
   =pluralize(group.members.count, "member")

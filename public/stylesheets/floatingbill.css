@@ -19,6 +19,46 @@ img {
   background-color: red;
   display: table; }
 
+.no_icon {
+  padding-left: 20px; }
+
+.user {
+  background-repeat: no-repeat;
+  padding-left: 20px;
+  background-image: url('/images/icons/user.png'); }
+
+.user_add {
+  background-repeat: no-repeat;
+  padding-left: 20px;
+  background-image: url('/images/icons/user_add.png'); }
+
+.accepted {
+  background-repeat: no-repeat;
+  padding-left: 20px;
+  background-image: url('/images/icons/tick.png'); }
+
+.total {
+  border-top: 1px solid;
+  border-bottom: 3px double; }
+
+ul.payments {
+  margin: 0px;
+  padding: 0px;
+  list-style: none; }
+  ul.payments li {
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    background-image: url('/images/icons/coins.png'); }
+
+ul.depts, ul.credits {
+  margin: 0px;
+  padding: 0px;
+  list-style: none; }
+  ul.depts li,   ul.credits li {
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    background-image: url('/images/icons/money.png'); }
+
 #container {
   margin: 0 auto;
   width: 800px;
@@ -43,10 +83,27 @@ img {
   #header #title {
     float: left; }
   #header #error {
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    background-image: url('/images/icons/exclamation.png');
     border: 2px solid #FFBBBB;
-    font-weight: bold; }
+    font-weight: bold;
+    clear: both; }
   #header #notice {
-    border: 2px solid #11FF11; }
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    background-image: url('/images/icons/information.png');
+    border: 2px solid #CCCCFF;
+    clear: both; }
+  #header #menu {
+    margin: 0px;
+    padding: 0px;
+    list-style: none; }
+    #header #menu li {
+      float: left;
+      margin-right: 10px;
+      padding-right: 10px;
+      border-right: 2px solid #DDDDDD; }
 
 #footer {
   padding-left: 30px;

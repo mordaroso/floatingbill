@@ -5,6 +5,23 @@
 !link_color= #00aeff
 !light_color = !font_color + #555555
 
+=with_icon
+  :background-repeat no-repeat
+  :padding-left 20px
+
+=with_error
+  +with_icon
+  :background-image url('/images/icons/exclamation.png')
+
+=with_info
+  +with_icon
+  :background-image url('/images/icons/information.png')
+
+=no_list
+  :margin 0px
+  :padding 0px
+  :list-style none
+
 body
   :background-color= !body_bg_color
   :color= !font_color
@@ -25,6 +42,37 @@ img
   :padding 2px
   :background-color red
   :display table
+
+.no_icon
+  :padding-left 20px
+
+.user
+  +with_icon
+  :background-image url('/images/icons/user.png')
+
+.user_add
+  +with_icon
+  :background-image url('/images/icons/user_add.png')
+
+.accepted
+  +with_icon
+  :background-image url('/images/icons/tick.png')
+
+.total
+  :border-top 1px solid
+  :border-bottom 3px double
+
+ul.payments
+  +no_list
+  li
+    +with_icon
+    :background-image url('/images/icons/coins.png')
+
+ul.depts, ul.credits
+  +no_list
+  li
+    +with_icon
+    :background-image url('/images/icons/money.png')
 
 #container
   :margin 0 auto
@@ -50,10 +98,21 @@ img
   #title
     :float left
   #error
+    +with_error
     :border 2px solid #FFBBBB
     :font-weight bold
+    :clear both
   #notice
-    :border 2px solid #11FF11
+    +with_info
+    :border 2px solid #CCCCFF
+    :clear both
+  #menu
+    +no_list
+    li
+      :float left
+      :margin-right 10px
+      :padding-right 10px
+      :border-right 2px solid #DDDDDD
 
 #footer
   :padding-left 30px

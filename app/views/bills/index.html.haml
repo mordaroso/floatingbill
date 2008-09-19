@@ -1,10 +1,23 @@
 %h1
   Listing bills
 
--for bill in @bills
+%h3 open
+-for bill in @bills_open
   =h bill.name
   = link_to 'Show', bill
   = link_to 'Destroy', bill, :confirm => 'Are you sure?', :method => :delete
   %br
+
+%br
+%hr
+
+%h3 closed
+-for bill in @bills_closed
+  =h bill.name
+  = link_to 'Show', bill
+  = link_to 'Destroy', bill, :confirm => 'Are you sure?', :method => :delete
+  %br
+
+%br
 %hr
 = link_to 'New bill', new_bill_path
