@@ -14,7 +14,8 @@ class User < ActiveRecord::Base
   has_many :debts, :class_name => "Debt", :foreign_key => "debitor_id"
   has_many :creditors, :class_name => "User", :through => :debts
   has_many :debitors, :class_name => "User", :through => :credits
-
+  has_many :transfers_to, :class_name => 'Transfer', :foreign_key => 'creditor_id'
+  has_many :transfers_from, :class_name => 'Transfer', :foreign_key => 'debitor_id'
 
   validates_presence_of     :login
   validates_format_of       :login,    :with => /^\w+$/
@@ -66,6 +67,10 @@ class User < ActiveRecord::Base
     u && u.authenticated?(password) ? u : nil
   end
 
+  def self.find_by_login_like(login)
+    self.find(:all, :conditions => ['users.login LIKE ?', "#{login}%" ])
+  end
+
   protected
 
   def make_activation_code
@@ -74,3 +79,4 @@ class User < ActiveRecord::Base
 
 
 end
+

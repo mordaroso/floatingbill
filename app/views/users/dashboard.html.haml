@@ -2,7 +2,7 @@
 
 %p
   %strong
-    Open Payments
+    Open payments
   -if current_user.payments.open.count > 0
     %ul.payments
       - for payment in current_user.payments.open
@@ -20,6 +20,26 @@
   - else
     #no_payments
       No open payments
+%br
+
+%p
+  %strong
+    Open transfers
+  -if current_user.transfers_to.open.count > 0
+    %ul.payments
+      - for transfer in current_user.transfers_to.open
+        %li
+          = link_to transfer.debitor.login, user_path(transfer.debitor.login)
+          has sent you
+          = transfer.amount
+          = currency_sign transfer.currency
+          |
+          = link_to 'verify', verify_transfer_path(transfer), :method => 'post'
+          |
+          = link_to 'show transfer', transfer_path(transfer)
+  - else
+    #no_payments
+      No open transfers
 %br
 
 %p

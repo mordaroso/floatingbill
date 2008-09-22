@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080919134145) do
+ActiveRecord::Schema.define(:version => 20080922154104) do
 
   create_table "bills", :force => true do |t|
     t.integer  "category_id", :limit => 11
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(:version => 20080919134145) do
     t.string   "name"
     t.integer  "creator_id",  :limit => 11
     t.string   "currency",    :limit => 3
-    t.boolean  "closed"
+    t.boolean  "closed",                                                   :default => false
   end
 
   create_table "categories", :force => true do |t|
@@ -58,6 +58,16 @@ ActiveRecord::Schema.define(:version => 20080919134145) do
     t.integer  "user_id",    :limit => 11
     t.decimal  "amount",                   :precision => 10, :scale => 2
     t.boolean  "accepted",                                                :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transfers", :force => true do |t|
+    t.integer  "debitor_id",  :limit => 11
+    t.integer  "creditor_id", :limit => 11
+    t.decimal  "amount",                    :precision => 10, :scale => 2
+    t.string   "currency",    :limit => 3
+    t.boolean  "verified",                                                 :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

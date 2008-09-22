@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_filter :login_required, :except => [:new, :create, :activate]
   before_filter :owner_required, :only => [:edit]
+  protect_from_forgery :except => [:autocomplete]
 
   # render new.rhtml
   def new
@@ -8,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def dashboard
-
+    
   end
 
   def show
@@ -57,8 +58,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def autocomplete
+    @users = User.find_by_login_like(params[:transfer][:creditor_name])
+    render :inline => "<%= auto_complete_result(@users, 'login') %>"
+  end
+
   private
   def owner_required
-       redirect_to user_path(params[:id]) unless current_user.id.to_s == params[:id]
+    redirect_to user_path(params[:id]) unless current_user.id.to_s == params[:id]
   end
 end
+

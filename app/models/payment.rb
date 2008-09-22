@@ -9,7 +9,6 @@ class Payment < ActiveRecord::Base
   def accept
     return if accepted
     Debt.save_with_params(:debitor => payer, :creditor => bill.creator, :currency => bill.currency, :amount => amount)
-    puts 'count: ' + bill.payments.open.count.to_s
     if bill.payments.open.count == 1
       bill.closed = true
       bill.save!

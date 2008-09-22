@@ -1,15 +1,22 @@
 ActionController::Routing::Routes.draw do |map|
-
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'users', :action => 'create'
   map.signup '/signup', :controller => 'users', :action => 'new'
+
+  map.connect 'categories/autocomplete', :controller => 'categories', :action => 'autocomplete'
+
+  map.categories_ac 'users/autocomplete', :controller => 'users', :action => 'autocomplete'
+
+  map.connect 'bills/autocomplete_payer', :controller => 'bills', :action => 'autocomplete_payer'
 
   map.resources :bills, :collection => {'categories' => :get}, :member => { :accept => :post}
 
   map.resources :groups, :member => { :leave => :post}
 
   map.resources :users, :has_many => [ :groups ], :member => { :dashboard => :get}
+
+  map.resources :transfers, :member => { :verify => :post}
 
   map.resource :session
 

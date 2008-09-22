@@ -2,7 +2,8 @@
   = f.label :category_name, 'Category'
   %br
   = f.text_field :category_name
-
+  #bill_category_name_auto_complete.auto_complete
+  = auto_complete_field :bill_category_name, :url=>{:controller=>'categories', :action=>'autocomplete'}
 %p
   = f.label :name
   %br
@@ -18,16 +19,22 @@
   %br
   = f.text_field :amount
   = f.select(:currency, $currencies.invert)
-%p
-  #payers
-    %strong
-      = f.label :payers
+
+#select_payer
+  = f.label :payers
+  %br
+  = hidden_field_tag 'payer_type'
+  = text_field_tag 'payer'
+  %a{:href=> 'javascript: void(0);', :onclick=>'javascript:add_payer();'} Add
+  #payer_auto_complete.auto_complete
+  = auto_complete_field :payer, :url=>{:action=>'autocomplete_payer'}
+  %br
+  %br
+  %ul#payers
     - unless @bill.payer_names.blank?
       - for payer_name in @bill.payer_names
-        #div.payers
-          = text_field_tag 'bill[payer_names][]', payer_name
-          =link_to_function "remove", "$(this).up('.payers').remove()"
-    -else
-      = render :partial => 'payment'
-
-  = add_payment_link "Add"
+        %li
+          %input{:type=>'hidden', :name=>'bill[payer_names][]', :value=>payer_name}
+          = payer_name
+          %a{:href=>'javascript:void(0)', :onclick=>'remove_payer(this)'}
+            x

@@ -24,17 +24,22 @@ img {
 
 .user {
   background-repeat: no-repeat;
-  padding-left: 20px;
+  padding-left: 20px !important;
   background-image: url('/images/icons/user.png'); }
+
+.group {
+  background-repeat: no-repeat;
+  padding-left: 20px !important;
+  background-image: url('/images/icons/group.png'); }
 
 .user_add {
   background-repeat: no-repeat;
-  padding-left: 20px;
+  padding-left: 20px !important;
   background-image: url('/images/icons/user_add.png'); }
 
 .accepted {
   background-repeat: no-repeat;
-  padding-left: 20px;
+  padding-left: 20px !important;
   background-image: url('/images/icons/tick.png'); }
 
 .total {
@@ -47,7 +52,7 @@ ul.payments {
   list-style: none; }
   ul.payments li {
     background-repeat: no-repeat;
-    padding-left: 20px;
+    padding-left: 20px !important;
     background-image: url('/images/icons/coins.png'); }
 
 ul.depts, ul.credits {
@@ -56,7 +61,7 @@ ul.depts, ul.credits {
   list-style: none; }
   ul.depts li,   ul.credits li {
     background-repeat: no-repeat;
-    padding-left: 20px;
+    padding-left: 20px !important;
     background-image: url('/images/icons/money.png'); }
 
 #container {
@@ -84,14 +89,14 @@ ul.depts, ul.credits {
     float: left; }
   #header #error {
     background-repeat: no-repeat;
-    padding-left: 20px;
+    padding-left: 20px !important;
     background-image: url('/images/icons/exclamation.png');
     border: 2px solid #FFBBBB;
     font-weight: bold;
     clear: both; }
   #header #notice {
     background-repeat: no-repeat;
-    padding-left: 20px;
+    padding-left: 20px !important;
     background-image: url('/images/icons/information.png');
     border: 2px solid #CCCCFF;
     clear: both; }
@@ -115,3 +120,38 @@ ul.depts, ul.credits {
   border-bottom: 1px solid; }
   .group #name {
     font-weight: bold; }
+
+div.auto_complete {
+  width: 350px;
+  background: #FFFFFF; }
+
+div.auto_complete ul {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  border: 1px solid #888;
+  width: 100%; }
+
+div.auto_complete ul li {
+  margin: 0;
+  padding: 3px; }
+
+div.auto_complete ul li.selected {
+  background-color: #FFFF99;
+  color: #4D4D4D; }
+
+div.auto_complete ul strong.highlight {
+  color: #800;
+  margin: 0;
+  padding: 0; }
+
+ul#payers {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  display: inline-block; }
+  ul#payers li {
+    padding: 2px;
+    margin-bottom: 2px;
+    border: 1px solid #888;
+    background-color: #FFFF99; }

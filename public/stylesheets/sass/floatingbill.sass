@@ -7,7 +7,7 @@
 
 =with_icon
   :background-repeat no-repeat
-  :padding-left 20px
+  :padding-left 20px !important
 
 =with_error
   +with_icon
@@ -49,6 +49,10 @@ img
 .user
   +with_icon
   :background-image url('/images/icons/user.png')
+
+.group
+  +with_icon
+  :background-image url('/images/icons/group.png')
 
 .user_add
   +with_icon
@@ -124,3 +128,34 @@ ul.depts, ul.credits
   :border-bottom 1px solid
   #name
     :font-weight bold
+
+div.auto_complete
+  :width 350px
+  :background #FFFFFF
+
+div.auto_complete ul 
+  +no_list
+  :border 1px solid #888
+  :width 100%
+
+div.auto_complete ul li 
+  :margin 0
+  :padding 3px
+
+div.auto_complete ul li.selected 
+  :background-color  #FFFF99
+  :color  #4D4D4D
+
+div.auto_complete ul strong.highlight 
+  :color  #800
+  :margin 0
+  :padding 0
+
+ul#payers
+  +no_list
+  li
+    :padding 2px
+    :margin-bottom 2px
+    :border 1px solid #888
+    :background-color  #FFFF99
+  :display inline-block

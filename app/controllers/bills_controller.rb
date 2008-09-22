@@ -1,6 +1,7 @@
 class BillsController < ApplicationController
   before_filter :login_required
-  before_filter :permission_required, :except => [:index, :new, :create]
+  before_filter :permission_required, :except => [:index, :new, :create, :autocomplete_payer]
+  protect_from_forgery :except => [:autocomplete_payer]
 
   # GET /bills
   # GET /bills.xml
@@ -74,6 +75,11 @@ class BillsController < ApplicationController
     end
   end
 
+  def autocomplete_payer
+    @users = User.find_by_login_like(params[:payer])
+    @groups = Group.find_by_name_like(params[:payer])
+  end
+
   private
   def permission_required
     bill = Bill.find(params[:id])
@@ -82,3 +88,4 @@ class BillsController < ApplicationController
     end
   end
 end
+

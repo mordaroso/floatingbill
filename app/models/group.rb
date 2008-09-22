@@ -43,6 +43,10 @@ class Group < ActiveRecord::Base
     end
   end
 
+  def self.find_by_name_like(name)
+    self.find(:all, :conditions => ['groups.name LIKE ?', "#{name}%" ])
+  end
+
   private
   def is_not_deleted()
 
