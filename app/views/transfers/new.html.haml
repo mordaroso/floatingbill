@@ -1,0 +1,22 @@
+%h1 New transfer
+
+- form_for(@transfer) do |f|
+  = f.error_messages
+
+  %p
+    = f.label :creditor_name, 'Send to:'
+    %br
+    = f.text_field :creditor_name
+    #transfer_creditor_name_auto_complete.auto_complete
+    = auto_complete_field :transfer_creditor_name, :url=>{:controller=>'users', :action=>'autocomplete'}
+
+  %p
+    = f.label :amount
+    %br
+    = f.text_field :amount
+    = f.select(:currency, $currencies.invert)
+
+  %p
+    = f.submit "Create"
+
+= link_to 'Back', transfers_path

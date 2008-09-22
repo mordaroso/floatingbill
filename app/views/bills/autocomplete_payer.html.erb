@@ -1,0 +1,4 @@
+<ul>
+<% for group in @groups -%><li class="group" onclick="$('payer_type').value = 'group'"><%= group.name%></li><% end -%>
+<% for user in @users -%><li class="user" onclick="$('payer_type').value = 'user'"><%= user.login%></li><% end -%>
+</ul>
