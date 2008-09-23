@@ -11,7 +11,7 @@ class Bill < ActiveRecord::Base
   validates_presence_of :creator
   validates_presence_of :currency
 
-  attr_accessor :payer_names, :group_names
+  attr_accessor :user_ids, :group_ids
 
   named_scope :by_payer, lambda { |*args| {:include => :payments, :conditions => ['payments.user_id = ?', args.first]} }
 
@@ -27,42 +27,28 @@ class Bill < ActiveRecord::Base
 
     #check payer_names
     if payments.count == 0
-      if payer_names.blank? and group_names.blank?
+      if user_ids.blank? and group_ids.blank?
         errors.add(:payers, "are not set" )
       else
         payer_error = false
 
-        unless payer_names.blank?
-          payer_names.sort!
-          payer_names.each_index do |i|
-            payer_name = payer_names.at(i)
+        unless user_ids.blank?
+          for user_id in user_ids
             #check if user exists
-            user = User.find_by_login(payer_name)
+            user = User.find(user_id)
             if user.blank?
-              errors.add(payer_name, "is not a user" )
-              payer_error = true
-
-              #check if user is twice in list
-            elsif payer_names.at(i+1) == payer_name
-              errors.add(payer_name, "is twice in list" )
+              errors.add(user_id, "is not a valid user id" )
               payer_error = true
             end
           end
         end
 
-        unless group_names.blank?
-          group_names.sort!
-          group_names.each_index do |i|
-            group_name = group_names.at(i)
+        unless group_ids.blank?
+          for group_id in group_ids
             #check if user exists
-            group = Group.find_by_name(group_name)
+            group = Group.find(group_id)
             if group.blank?
-              errors.add(group_name, "is not a group" )
-              payer_error = true
-
-              #check if user is twice in list
-            elsif group_names.at(i+1) == group_name
-              errors.add(group_name, "is twice in list" )
+              errors.add(group_id, "is not a valid group id" )
               payer_error = true
             end
           end
@@ -84,8 +70,8 @@ class Bill < ActiveRecord::Base
   private
 
   def set_payments
-    payer_names = Array.new if payer_names.blank?
-    group_names = Array.new if group_names.blank?
+    user_ids = Array.new if user_ids.blank?
+    group_ids = Array.new if group_ids.blank?
     users = get_all_payers
     for user in users
       payment = Payment.find_or_initialize_by_user_id_and_bill_id(user.id, id)
@@ -100,14 +86,14 @@ class Bill < ActiveRecord::Base
 
   def get_all_payers
     payers = Array.new
-    unless payer_names.blank?
-      for payer_name in payer_names
-        payers << User.find_by_login(payer_name)
+    unless user_ids.blank?
+      for user_id in user_ids
+        payers << User.find(user_id)
       end
     end
-    unless group_names.blank?
-      for group_name in group_names
-        payers.concat Group.find_by_name(group_name).members
+    unless group_ids.blank?
+      for group_id in group_ids
+        payers.concat Group.find(group_id).members
       end
     end
     payers.uniq
@@ -120,4 +106,3 @@ class Bill < ActiveRecord::Base
     end
   end
 end
-

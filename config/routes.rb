@@ -8,7 +8,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.categories_ac 'users/autocomplete', :controller => 'users', :action => 'autocomplete'
 
-  map.connect 'bills/autocomplete_payer', :controller => 'bills', :action => 'autocomplete_payer'
+  map.connect 'bills/autocomplete_payer', :controller => 'bills', :action => 'get_payers'
 
   map.resources :bills, :collection => {'categories' => :get}, :member => { :accept => :post}
 

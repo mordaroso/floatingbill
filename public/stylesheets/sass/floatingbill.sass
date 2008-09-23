@@ -58,13 +58,21 @@ img
   +with_icon
   :background-image url('/images/icons/user_add.png')
 
-.accepted
+.tick
   +with_icon
   :background-image url('/images/icons/tick.png')
 
+.cross
+  +with_icon
+  :background-image url('/images/icons/cross.png')
+
 .total
+  :padding-left 10px
   :border-top 1px solid
   :border-bottom 3px double
+
+.right
+  :text-align right
 
 ul.payments
   +no_list
@@ -129,29 +137,32 @@ ul.depts, ul.credits
   #name
     :font-weight bold
 
+.hidden
+  :display none
+
 div.auto_complete
   :width 350px
   :background #FFFFFF
 
-div.auto_complete ul 
+div.auto_complete ul
   +no_list
   :border 1px solid #888
   :width 100%
 
-div.auto_complete ul li 
+div.auto_complete ul li
   :margin 0
   :padding 3px
 
-div.auto_complete ul li.selected 
+div.auto_complete ul li.selected
   :background-color  #FFFF99
   :color  #4D4D4D
 
-div.auto_complete ul strong.highlight 
+div.auto_complete ul strong.highlight
   :color  #800
   :margin 0
   :padding 0
 
-ul#payers
+ul.payers
   +no_list
   li
     :padding 2px

@@ -4,15 +4,16 @@
 
 = link_to @transfer.debitor.login, user_path(@transfer.debitor)
 has sent
-= @transfer.amount 
+= @transfer.amount
 = currency_sign @transfer.currency
 to
 = link_to @transfer.creditor.login, user_path(@transfer.creditor)
 
-%p
-  - if @transfer.verified
+- if @transfer.verified
+  #verified.tick
     Verified
-  - else
-    NOT verified
-
-= link_to 'Back', transfers_path 
+- else
+  #verified.cross
+  NOT verified
+%br
+= link_to 'Back', transfers_path

@@ -1,0 +1,8 @@
+<% if @users.blank? and @groups.blank? -%>
+Nothing found
+<% else -%>
+<ul class='payers'>
+<% for group in @groups -%><li class="group"><%= group.name%> <span class='id hidden'><%= group.id%></span></li><% end -%>
+<% for user in @users -%><li class="user"><%= user.login%> <span class='id hidden'><%=user.id%></span></li><% end -%>
+</ul>
+<% end -%>

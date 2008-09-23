@@ -18,16 +18,16 @@ at
   %table
     - for payment in @bill.payments
       %tr
-        %td{:class => (payment.accepted? ? "accepted" : "no_icon")}
+        %td{:class => (payment.accepted? ? "tick" : "no_icon")}
           = link_to payment.payer.login, user_path(payment.payer)
-        %td
+        %td.right
           = payment.amount
           = currency_sign payment.bill.currency
     %tr
       %td
         %strong
           total
-      %td.total
+      %td.total.right
         %strong
           = @bill.amount
           = currency_sign @bill.currency

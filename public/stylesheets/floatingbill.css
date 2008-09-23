@@ -37,14 +37,23 @@ img {
   padding-left: 20px !important;
   background-image: url('/images/icons/user_add.png'); }
 
-.accepted {
+.tick {
   background-repeat: no-repeat;
   padding-left: 20px !important;
   background-image: url('/images/icons/tick.png'); }
 
+.cross {
+  background-repeat: no-repeat;
+  padding-left: 20px !important;
+  background-image: url('/images/icons/cross.png'); }
+
 .total {
+  padding-left: 10px;
   border-top: 1px solid;
   border-bottom: 3px double; }
+
+.right {
+  text-align: right; }
 
 ul.payments {
   margin: 0px;
@@ -121,6 +130,9 @@ ul.depts, ul.credits {
   .group #name {
     font-weight: bold; }
 
+.hidden {
+  display: none; }
+
 div.auto_complete {
   width: 350px;
   background: #FFFFFF; }
@@ -145,12 +157,12 @@ div.auto_complete ul strong.highlight {
   margin: 0;
   padding: 0; }
 
-ul#payers {
+ul.payers {
   margin: 0px;
   padding: 0px;
   list-style: none;
   display: inline-block; }
-  ul#payers li {
+  ul.payers li {
     padding: 2px;
     margin-bottom: 2px;
     border: 1px solid #888;

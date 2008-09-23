@@ -23,18 +23,24 @@
 #select_payer
   = f.label :payers
   %br
-  = hidden_field_tag 'payer_type'
   = text_field_tag 'payer'
-  %a{:href=> 'javascript: void(0);', :onclick=>'javascript:add_payer();'} Add
   #payer_auto_complete.auto_complete
-  = auto_complete_field :payer, :url=>{:action=>'autocomplete_payer'}
+  = auto_complete_field :payer, :url=>{:action=>'get_payers'}, :after_update_element => 'add_element'
+
   %br
   %br
-  %ul#payers
-    - unless @bill.payer_names.blank?
-      - for payer_name in @bill.payer_names
-        %li
-          %input{:type=>'hidden', :name=>'bill[payer_names][]', :value=>payer_name}
-          = payer_name
-          %a{:href=>'javascript:void(0)', :onclick=>'remove_payer(this)'}
+  %ul#payers.payers
+    - unless @bill.group_ids.blank?
+      - for group_id in @bill.group_ids
+        %li.group
+          %input{ :type=>'hidden', :name=>'bill[group_ids][]', :value=> group_id}
+          = Group.find(group_id).name
+          %a{ :href=>'javascript:void(0)', :onclick=>'remove_payer(this)'}
+            x
+    - unless @bill.user_ids.blank?
+      - for user_id in @bill.user_ids
+        %li.user
+          %input{ :type=>'hidden', :name=>'bill[user_ids][]', :value=> user_id}
+          = User.find(user_id).login
+          %a{ :href=>'javascript:void(0)', :onclick=>'remove_payer(this)'}
             x
