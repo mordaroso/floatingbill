@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def dashboard
-    
+
   end
 
   def show
@@ -59,7 +59,9 @@ class UsersController < ApplicationController
   end
 
   def autocomplete
-    @users = User.find_by_login_like(params[:transfer][:creditor_name])
+    login = params[:transfer][:creditor_name] unless params[:transfer].blank?
+    login = params[:user][:login] unless params[:user].blank?
+    @users = User.find_by_login_like(login)
     render :inline => "<%= auto_complete_result(@users, 'login') %>"
   end
 
@@ -68,4 +70,3 @@ class UsersController < ApplicationController
     redirect_to user_path(params[:id]) unless current_user.id.to_s == params[:id]
   end
 end
-

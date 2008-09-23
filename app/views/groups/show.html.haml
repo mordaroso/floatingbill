@@ -3,18 +3,20 @@
   =h @group.name
 
 Users:
-%ul
+%ul.no_list
   - for member in @group.members
-    %li
+    %li.user
       = link_to member.login, user_path(member)
       - if is_admin :user => member
         (A)
 - if is_admin
   %br
-  - form_for :user, :url => { :action => :add } do |form|
-    = form.text_field :login
-    = form.submit "Add user"
-  %br
+  #add_user.user_add
+    - form_for :user, :url => { :action => :add } do |form|
+      = form.text_field :login
+      #user_login_auto_complete.auto_complete
+      = auto_complete_field :user_login, :url=>{:controller=>'users', :action=>'autocomplete'}
+      = form.submit "Add user"
   %br
   = link_to 'Edit', edit_group_path(@group)
   |

@@ -27,6 +27,11 @@ img {
   padding-left: 20px !important;
   background-image: url('/images/icons/user.png'); }
 
+.user_add {
+  background-repeat: no-repeat;
+  padding-left: 20px !important;
+  background-image: url('/images/icons/user_add.png'); }
+
 .group {
   background-repeat: no-repeat;
   padding-left: 20px !important;
@@ -54,6 +59,11 @@ img {
 
 .right {
   text-align: right; }
+
+ul.no_list {
+  margin: 0px;
+  padding: 0px;
+  list-style: none; }
 
 ul.payments {
   margin: 0px;
