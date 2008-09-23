@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_filter :login_required
   before_filter :member_required, :except => [:show, :index, :new, :create]
-  before_filter :admin_required, :only => [:edit, :update]
+  before_filter :admin_required, :only => [:edit, :update, :add]
 
   # GET /groups
   # GET /groups.xml
@@ -66,6 +66,20 @@ class GroupsController < ApplicationController
       @group.save
     else
       flash[:error] = 'You are the last admin and can not leave!'
+    end
+    redirect_to(@group)
+  end
+
+  # POST /groups/1/add
+  def add
+    @group = Group.find(params[:id])
+    @user = User.find_by_login(params[:user][:login])
+    unless @user.blank? or @group.members.include? @user
+      @group.members << @user
+      @group.save!
+      flash[:notice] = @user.login + ' joined the group.'
+    else
+      flash[:error] = "User '#{params[:user][:login]}' not found or is already in group!"
     end
     redirect_to(@group)
   end

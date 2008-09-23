@@ -25,6 +25,7 @@ class Group < ActiveRecord::Base
       false
     else
       members.delete(user)
+      save!
       true
     end
   end

@@ -10,6 +10,12 @@ Users:
       - if is_admin :user => member
         (A)
 - if is_admin
+  %br
+  - form_for :user, :url => { :action => :add } do |form|
+    = form.text_field :login
+    = form.submit "Add user"
+  %br
+  %br
   = link_to 'Edit', edit_group_path(@group)
   |
 = link_to 'Back', groups_path
