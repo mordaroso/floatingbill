@@ -2,6 +2,7 @@ class Group < ActiveRecord::Base
   has_many :memberships
   has_many :members, :through => :memberships, :source => :user
   has_many :admins, :through => :memberships, :source => :user, :conditions => 'memberships.admin is not null'
+  has_and_belongs_to_many :bills
 
   validates_presence_of :name
   validates_uniqueness_of :name, :case_sensitive => false, :scope => :deleted, :if => Proc.new { |u| !u.deleted? }
@@ -25,7 +26,7 @@ class Group < ActiveRecord::Base
       false
     else
       members.delete(user)
-      save!
+      save
       true
     end
   end
@@ -45,7 +46,7 @@ class Group < ActiveRecord::Base
   end
 
   def self.find_by_name_like(name)
-    self.find(:all, :conditions => ['groups.name LIKE ?', "#{name}%" ])
+    self.find(:all, :conditions => ['groups.name LIKE ? and deleted is null', "#{name}%" ])
   end
 
   private

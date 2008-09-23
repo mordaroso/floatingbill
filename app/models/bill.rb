@@ -3,6 +3,7 @@ class Bill < ActiveRecord::Base
   has_many :payers, :through => :payments, :class_name => 'User'
   belongs_to :category
   belongs_to :creator, :class_name => 'User'
+  has_and_belongs_to_many :groups
 
   validates_presence_of :amount
   validates_numericality_of :amount
@@ -72,7 +73,7 @@ class Bill < ActiveRecord::Base
   def set_payments
     user_ids = Array.new if user_ids.blank?
     group_ids = Array.new if group_ids.blank?
-    users = get_all_payers
+    users, groups = get_all_payers
     for user in users
       payment = Payment.find_or_initialize_by_user_id_and_bill_id(user.id, id)
       payment.amount = self.amount / (users.length)
@@ -82,10 +83,14 @@ class Bill < ActiveRecord::Base
       end
       payments << payment
     end
+    for group in groups
+      self.groups << group
+    end
   end
 
   def get_all_payers
     payers = Array.new
+    groups = Array.new
     unless user_ids.blank?
       for user_id in user_ids
         payers << User.find(user_id)
@@ -93,10 +98,12 @@ class Bill < ActiveRecord::Base
     end
     unless group_ids.blank?
       for group_id in group_ids
-        payers.concat Group.find(group_id).members
+        group = Group.find(group_id)
+        groups << group
+        payers.concat group.members
       end
     end
-    payers.uniq
+    [payers.uniq, groups.uniq]
   end
 
 
