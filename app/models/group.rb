@@ -34,7 +34,7 @@ class Group < ActiveRecord::Base
   def delete_group
     self.deleted = true
     self.members = []
-    self.save
+    self.save!
   end
 
   def self.find_all_with_filter(params = {})
@@ -49,8 +49,4 @@ class Group < ActiveRecord::Base
     self.find(:all, :conditions => ['groups.name LIKE ? and deleted is null', "#{name}%" ])
   end
 
-  private
-  def is_not_deleted()
-
-  end
 end

@@ -5,9 +5,6 @@ require 'sessions_controller'
 class SessionsController; def rescue_action(e) raise e end; end
 
 class SessionsControllerTest < ActionController::TestCase
-  # Be sure to include AuthenticatedTestHelper in test/test_helper.rb instead
-  # Then, you can remove it from this and the units test.
-  include AuthenticatedTestHelper
 
   fixtures :users
 
@@ -42,7 +39,7 @@ class SessionsControllerTest < ActionController::TestCase
     puts @response.cookies["auth_token"]
     assert @response.cookies["auth_token"].blank?
   end
-  
+
   def test_should_delete_token_on_logout
     login_as :quentin
     get :destroy
@@ -75,7 +72,7 @@ class SessionsControllerTest < ActionController::TestCase
     def auth_token(token)
       CGI::Cookie.new('name' => 'auth_token', 'value' => token)
     end
-    
+
     def cookie_for(user)
       auth_token users(user).remember_token
     end

@@ -1,0 +1,7 @@
+Hi <%=h @user.login %>
+
+<%=h @transfer.debitor.login %> has sent <%=h @transfer.amount %> <%=h @transfer.currency %>.
+Please verify this transfer.
+
+Visit this url for more information:
+<%=h @url %>

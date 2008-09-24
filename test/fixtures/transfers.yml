@@ -1,13 +1,12 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
   debitor_id: 1
-  creditor_id: 1
-  amount: 
+  creditor_id: 2
+  amount: 543.21
   verified: false
 
 two:
-  debitor_id: 1
+  debitor_id: 2
   creditor_id: 1
-  amount: 
+  amount: 123.45
   verified: false

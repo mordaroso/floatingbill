@@ -1,75 +1,73 @@
 %h1 Dashboard
 
-%p
-  %strong
-    Open payments
-  -if current_user.payments.open.count > 0
-    %ul.payments
-      - for payment in current_user.payments.open
-        %li
-          = link_to payment.bill.creator.login, user_path(payment.bill.creator)
-          requests
-          = payment.amount
-          = currency_sign payment.bill.currency
-          for
-          = payment.bill.name
-          |
-          = link_to 'accept', accept_bill_path(payment.bill), :method => 'post'
-          |
-          = link_to 'show bill', bill_path(payment.bill)
-  - else
-    #no_payments
-      No open payments
+
+%h3
+  Open payments
+-if current_user.payments.open.count > 0
+  %ul.payments
+    - for payment in current_user.payments.open
+      %li
+        = link_to payment.bill.creator.login, user_path(payment.bill.creator)
+        requests
+        = payment.amount
+        = currency_sign payment.bill.currency
+        for
+        = payment.bill.name
+        |
+        = link_to 'accept', accept_bill_path(payment.bill), :method => 'post'
+        |
+        = link_to 'show bill', bill_path(payment.bill)
+- else
+  #no_payments
+    No open payments
 %br
 
-%p
-  %strong
-    Open transfers
-  -if current_user.transfers_to.open.count > 0
-    %ul.payments
-      - for transfer in current_user.transfers_to.open
-        %li
-          = link_to transfer.debitor.login, user_path(transfer.debitor.login)
-          has sent you
-          = transfer.amount
-          = currency_sign transfer.currency
-          |
-          = link_to 'verify', verify_transfer_path(transfer), :method => 'post'
-          |
-          = link_to 'show transfer', transfer_path(transfer)
-  - else
-    #no_payments
-      No open transfers
+%h3
+  Open transfers
+-if current_user.transfers_to.open.count > 0
+  %ul.payments
+    - for transfer in current_user.transfers_to.open
+      %li
+        = link_to transfer.debitor.login, user_path(transfer.debitor.login)
+        has sent you
+        = transfer.amount
+        = currency_sign transfer.currency
+        |
+        = link_to 'verify', verify_transfer_path(transfer), :method => 'post'
+        |
+        = link_to 'show transfer', transfer_path(transfer)
+- else
+  #no_payments
+    No open transfers
 %br
 
-%p
-  %strong
-    Open debts
-  -if current_user.debts.count > 0
-    %ul.depts
-      -for debt in current_user.debts
-        %li
-          You own
-          = link_to debt.creditor.login, user_path(debt.creditor)
-          = debt.amount
-          = currency_sign debt.currency
-  -else
-    #no_depts
-      No open debts
+
+%h3
+  Open debts
+-if current_user.debts.count > 0
+  %ul.depts
+    -for debt in current_user.debts
+      %li
+        You own
+        = link_to debt.creditor.login, user_path(debt.creditor)
+        = debt.amount
+        = currency_sign debt.currency
+-else
+  #no_depts
+    No open debts
 %br
 
-%p
-  %strong
-    Open credits
-  -if current_user.credits.count > 0
-    %ul.credits
-      -for debt in current_user.credits
-        %li
-          = link_to debt.debitor.login, user_path(debt.debitor)
-          owns you
-          = debt.amount
-          = currency_sign debt.currency
-  -else
-    #no_depts
-      No open credits
+%h3
+  Open credits
+-if current_user.credits.count > 0
+  %ul.credits
+    -for debt in current_user.credits
+      %li
+        = link_to debt.debitor.login, user_path(debt.debitor)
+        owns you
+        = debt.amount
+        = currency_sign debt.currency
+-else
+  #no_depts
+    No open credits
 %br
