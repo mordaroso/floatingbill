@@ -87,14 +87,25 @@ hr
   +with_icon
   :background-image url('/images/icons/script.png')
 
+.bill_add
+  +with_icon
+  :background-image url('/images/icons/script_add.png')
+
 .transfer
   +with_icon
   :background-image url('/images/icons/arrow_refresh.png')
+
+.transfer_add
+  +with_icon
+  :background-image url('/images/icons/transfer_add.png')
 
 .total
   :padding-left 10px
   :border-top 1px solid
   :border-bottom 3px double
+
+.hidden
+  :display none
 
 .right
   :text-align right
@@ -178,9 +189,6 @@ ul.depts, ul.credits
   :font-size= !font_size - 4px
   :-moz-border-radius-bottomright 30px
   :-moz-border-radius-bottomleft 30px
-
-.hidden
-  :display none
 
 div.auto_complete
   :width 350px

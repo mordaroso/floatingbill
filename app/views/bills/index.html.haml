@@ -1,5 +1,8 @@
 %h1
-  Listing bills
+  Bills
+
+= link_to 'New bill', new_bill_path, :class => 'bill_add'
+%br
 
 %h3 open
 -for bill in @bills_open
@@ -9,7 +12,6 @@
   %br
 
 %br
-%hr
 
 %h3 closed
 -for bill in @bills_closed
@@ -17,7 +19,3 @@
   = link_to 'Show', bill
   = link_to 'Destroy', bill, :confirm => 'Are you sure?', :method => :delete
   %br
-
-%br
-%hr
-= link_to 'New bill', new_bill_path

@@ -10,10 +10,11 @@
         = link_to 'Dashboard', dashboard_user_path(current_user)
       %li.bill
         = link_to 'Bills', bills_path
-      %li.group
-        = link_to 'Groups', groups_path
       %li.transfer
         = link_to 'Transfers', transfers_path
+      %li.group
+        = link_to 'Groups', groups_path
+
 
 -unless flash[:error].blank?
   #error

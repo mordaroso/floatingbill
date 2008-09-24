@@ -1,11 +1,14 @@
 %h1
-  Listing transfers
+  Transfers
+
+= link_to 'New transfer', new_transfer_path, :class => 'transfer_add'
+%br
 
 %h3 open
 - for transfer in @open_transfers
   =transfer.debitor.login
   sent
-  = transfer.amount 
+  = transfer.amount
   = currency_sign transfer.currency
   to
   =transfer.creditor.login
@@ -17,12 +20,10 @@
 - for transfer in @closed_transfers
   =transfer.debitor.login
   sent
-  = transfer.amount 
+  = transfer.amount
   = currency_sign transfer.currency
   to
   = transfer.creditor.login
   |
   = link_to 'Show', transfer
   %br
-%br
-= link_to 'New transfer', new_transfer_path
