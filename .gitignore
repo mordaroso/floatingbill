@@ -4,5 +4,3 @@ log/*
 index/*
 config/database.yml
 nbproject
-Capfile
-config/deploy.rb
