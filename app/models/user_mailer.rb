@@ -14,9 +14,9 @@ class UserMailer < ActionMailer::Base
     @body[:url]  = $url
   end
 
-  def payment_notification(payment)
+  def payment_notification(payment, bill)
     setup_email(payment.payer)
-    @subject += payment.bill.creator.login
+    @subject += bill.creator.login
     @subject += ' has created a new bill.'
     @body[:url] = $url + '/bills/#{payment.bill.id}'
     @body[:payment] = payment
