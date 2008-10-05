@@ -22,3 +22,15 @@ config.action_view.cache_template_loading            = true
 # config.action_mailer.raise_delivery_errors = false
 
 config.active_record.observers = :user_observer, :bill_observer, :transfer_observer
+
+config.action_mailer.delivery_method = :smtp
+
+config.action_mailer.smtp_settings = {
+  :address => "mail.mordaroso.net" ,
+  :port       => 25,
+  :domain => "mail.mordaroso.net" ,
+  :authentication => :login,
+  :user_name => 'web15p1' ,
+  :password  => "sudoasli"
+}
+
