@@ -17,4 +17,4 @@ config.action_controller.perform_caching             = false
 config.action_mailer.default_charset = "utf-8"
 config.action_mailer.delivery_method = :test
 #config.action_mailer.raise_delivery_errors = false
-config.active_record.observers = :user_observer
+config.active_record.observers = :user_observer, :bill_observer, :transfer_observer
