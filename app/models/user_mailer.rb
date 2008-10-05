@@ -20,6 +20,7 @@ class UserMailer < ActionMailer::Base
     @subject += ' has created a new bill.'
     @body[:url] = $url + '/bills/#{payment.bill.id}'
     @body[:payment] = payment
+    @body[:bill] = bill
   end
 
 
