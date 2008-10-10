@@ -1,7 +1,7 @@
 Hi <%=h @user.login %>
 
 <%=h @bill.creator.login %> has created a new bill for <%=h @bill.name %>.
-He requests <%=h @payment.amount %> <%=h @payment.currency %>.
+He requests <%=h @payment.amount %> <%=h @bill.currency %>.
 
 Visit this url for more information:
 <%=h @url %>
