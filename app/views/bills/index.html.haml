@@ -5,19 +5,9 @@
 %br
 
 %h3 open
--for bill in @bills_open
-  =h bill.name
-  = link_to 'Show', bill
-  -if bill.creator == current_user
-    = link_to 'Destroy', bill, :confirm => 'Are you sure?', :method => :delete
-  %br
+= render :partial => 'bill', :collection => @bills_open
 
 %br
 
 %h3 closed
--for bill in @bills_closed
-  =h bill.name
-  = link_to 'Show', bill
-  -if bill.creator == current_user
-    = link_to 'Destroy', bill, :confirm => 'Are you sure?', :method => :delete
-  %br
+= render :partial => 'bill', :collection => @bills_closed

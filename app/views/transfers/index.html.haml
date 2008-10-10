@@ -5,25 +5,7 @@
 %br
 
 %h3 open
-- for transfer in @open_transfers
-  =transfer.debitor.login
-  sent
-  = transfer.amount
-  = currency_sign transfer.currency
-  to
-  =transfer.creditor.login
-  |
-  = link_to 'Show', transfer
-  %br
+= render :partial => 'transfer', :collection => @open_transfers
 
 %h3 closed
-- for transfer in @closed_transfers
-  =transfer.debitor.login
-  sent
-  = transfer.amount
-  = currency_sign transfer.currency
-  to
-  = transfer.creditor.login
-  |
-  = link_to 'Show', transfer
-  %br
+= render :partial => 'transfer', :collection => @closed_transfers

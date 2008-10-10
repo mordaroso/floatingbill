@@ -1,0 +1,5 @@
+=h bill.name
+= link_to 'Show', bill
+-if bill.creator == current_user
+  = link_to 'Destroy', bill, :confirm => 'Are you sure?', :method => :delete
+%br
