@@ -49,8 +49,34 @@ hr
 
 .fieldWithErrors
   :padding 2px
-  :background-color red
+  :background-color #d02020
   :display table
+
+#errorExplanation
+  :width 400px
+  :border 2px solid #d02020
+  :padding 7px
+  :padding-bottom 12px
+  :margin-bottom 20px
+  :background-color #c0b686
+
+#errorExplanation h2
+  :text-align left
+  :font-weight bold
+  :padding 5px 5px 5px 15px
+  :font-size 12px
+  :margin -7px
+  :background-color= #c09186
+  :color #fff
+
+#errorExplanation p
+  :color #333
+  :margin-bottom 0
+  :padding 5px
+
+#errorExplanation ul li
+  :font-size 12px
+  :list-style square
 
 .no_icon
   :padding-left 20px
@@ -146,7 +172,7 @@ ul.depts, ul.credits
 
 #error
   +with_error
-  :background-color= #c0b686
+  :background-color #c0b686
   :font-weight bold
   :background-position 10px
   :padding-left 40px !important
