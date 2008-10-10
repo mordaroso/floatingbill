@@ -134,6 +134,28 @@ ul.depts, ul.credits {
     font-weight: bold;
     margin-bottom: 5px; }
 
+#error {
+  background-repeat: no-repeat;
+  padding-left: 20px !important;
+  background-image: url('/images/icons/exclamation.png');
+  background-color: #c0b686;
+  font-weight: bold;
+  background-position: 10px;
+  padding-left: 40px !important;
+  border-left: 2px solid #9cb16a;
+  border-right: 2px solid #9cb16a; }
+
+#notice {
+  background-repeat: no-repeat;
+  padding-left: 20px !important;
+  background-image: url('/images/icons/information.png');
+  background-color: #b1c086;
+  font-weight: bold;
+  background-position: 10px;
+  padding-left: 40px !important;
+  border-left: 2px solid #9cb16a;
+  border-right: 2px solid #9cb16a; }
+
 #header {
   padding: 10px;
   background-color: #9cb16a;
@@ -147,19 +169,6 @@ ul.depts, ul.credits {
     left: -31px;
     height: 87px;
     width: 629px; }
-  #header #error {
-    background-repeat: no-repeat;
-    padding-left: 20px !important;
-    background-image: url('/images/icons/exclamation.png');
-    border: 2px solid #FFBBBB;
-    font-weight: bold;
-    clear: both; }
-  #header #notice {
-    background-repeat: no-repeat;
-    padding-left: 20px !important;
-    background-image: url('/images/icons/information.png');
-    border: 2px solid #CCCCFF;
-    clear: both; }
   #header #menu {
     height: 21px; }
     #header #menu ul {

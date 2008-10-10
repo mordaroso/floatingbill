@@ -144,6 +144,24 @@ ul.depts, ul.credits
     :font-weight bold
     :margin-bottom 5px
 
+#error
+  +with_error
+  :background-color= #c0b686
+  :font-weight bold
+  :background-position 10px
+  :padding-left 40px !important
+  :border-left 2px solid #9cb16a
+  :border-right 2px solid #9cb16a
+
+#notice
+  +with_info
+  :background-color= !content_bg_color - #111111
+  :font-weight bold
+  :background-position 10px
+  :padding-left 40px !important
+  :border-left 2px solid #9cb16a
+  :border-right 2px solid #9cb16a
+
 #header
   :padding 10px
   :background-color= !middle_green
@@ -157,15 +175,6 @@ ul.depts, ul.credits
     :left -31px
     :height 87px
     :width 629px
-  #error
-    +with_error
-    :border 2px solid #FFBBBB
-    :font-weight bold
-    :clear both
-  #notice
-    +with_info
-    :border 2px solid #CCCCFF
-    :clear both
   #menu
     :height 21px
     ul

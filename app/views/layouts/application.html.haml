@@ -11,5 +11,12 @@
     = javascript_include_tag :defaults
     #container
       #header= render 'layouts/_header'
+      -unless flash[:error].blank?
+        #error
+          = flash[:error]
+
+      -unless flash[:notice].blank?
+        #notice
+          = flash[:notice]
       #content= yield
       #footer= render 'layouts/_footer'
