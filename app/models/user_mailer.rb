@@ -26,10 +26,11 @@ class UserMailer < ActionMailer::Base
 
   def transfer_notification(transfer)
     setup_email(transfer.creditor)
-    @subject += transfer.debitor
+    @subject += transfer.debitor.login
     @subject += ' has sent you money.'
     @body[:url] = $url + '/transfers/#{transfer.id}'
     @body[:transfer] = transfer
+    @body[:debitor] = transfer.debitor
   end
 
 

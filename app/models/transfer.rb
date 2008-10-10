@@ -14,6 +14,8 @@ class Transfer < ActiveRecord::Base
   def validate
     #check amount
     errors.add(:amount, "is negative" ) if amount < 0 unless amount.blank?
+    #check self
+    errors.add(:creditor, "cant be yourself") if debitor == creditor
   end
 
   def verfiy
@@ -31,4 +33,3 @@ class Transfer < ActiveRecord::Base
     self.creditor = User.find_by_login(name)
   end
 end
-
