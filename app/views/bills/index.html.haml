@@ -8,7 +8,8 @@
 -for bill in @bills_open
   =h bill.name
   = link_to 'Show', bill
-  = link_to 'Destroy', bill, :confirm => 'Are you sure?', :method => :delete
+  -if bill.creator == current_user
+    = link_to 'Destroy', bill, :confirm => 'Are you sure?', :method => :delete
   %br
 
 %br
@@ -17,5 +18,6 @@
 -for bill in @bills_closed
   =h bill.name
   = link_to 'Show', bill
-  = link_to 'Destroy', bill, :confirm => 'Are you sure?', :method => :delete
+  -if bill.creator == current_user
+    = link_to 'Destroy', bill, :confirm => 'Are you sure?', :method => :delete
   %br

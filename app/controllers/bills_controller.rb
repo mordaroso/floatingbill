@@ -1,6 +1,7 @@
 class BillsController < ApplicationController
   before_filter :login_required
-  before_filter :permission_required, :except => [:index, :new, :create, :get_payers]
+  before_filter :member_required, :only => [:show, :accept]
+  before_filter :creator_required, :only => [:destroy]
   protect_from_forgery :except => [:get_payers]
 
   # GET /bills
@@ -83,10 +84,15 @@ class BillsController < ApplicationController
   end
 
   private
-  def permission_required
+  def member_required
     bill = Bill.find(params[:id])
     if !(bill.payers.include? current_user) && bill.creator != current_user
       redirect_to bills_path
     end
+  end
+
+  def creator_required
+    bill = Bill.find(params[:id])
+    redirect_to bills_path if bill.creator != current_user
   end
 end
