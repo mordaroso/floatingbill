@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  $url = 'http://floatingbill.net'
+  $url = 'http://fb.mordaroso.net'
 
   def signup_notification(user)
     setup_email(user)
@@ -18,7 +18,7 @@ class UserMailer < ActionMailer::Base
     setup_email(payment.payer)
     @subject += bill.creator.login
     @subject += ' has created a new bill.'
-    @body[:url] = $url + '/bills/#{payment.bill.id}'
+    @body[:url] = $url + '/bills/' + bill.id.to_s
     @body[:payment] = payment
     @body[:bill] = bill
   end
@@ -28,7 +28,7 @@ class UserMailer < ActionMailer::Base
     setup_email(transfer.creditor)
     @subject += transfer.debitor.login
     @subject += ' has sent you money.'
-    @body[:url] = $url + '/transfers/#{transfer.id}'
+    @body[:url] = $url + '/transfers/' + transfer.id.to_s
     @body[:transfer] = transfer
     @body[:debitor] = transfer.debitor
   end
