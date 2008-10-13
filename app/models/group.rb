@@ -2,11 +2,11 @@ class Group < ActiveRecord::Base
   has_many :memberships
   has_many :members, :through => :memberships, :source => :user
   has_many :admins, :through => :memberships, :source => :user, :conditions => 'memberships.admin is not null'
-  has_and_belongs_to_many :bills
+  has_many :bills
 
   validates_presence_of :name
   validates_uniqueness_of :name, :case_sensitive => false, :scope => :deleted, :if => Proc.new { |u| !u.deleted? }
-  validates_format_of :name, :with => /^\w+$/
+  validates_format_of :name, :with => /^[\w\s]+$/
 
   def add_admin(user)
     membership = Membership.find_or_initialize_by_user_id_and_group_id(user.id, id)

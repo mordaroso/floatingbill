@@ -3,7 +3,7 @@ class Bill < ActiveRecord::Base
   has_many :payers, :through => :payments, :class_name => 'User'
   belongs_to :category
   belongs_to :creator, :class_name => 'User'
-  has_and_belongs_to_many :groups
+  has_many :groups
 
   validates_presence_of :amount
   validates_numericality_of :amount

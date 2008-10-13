@@ -2,6 +2,28 @@
   = @user.login
 
 = render '/users/_membership'
+
 %br
 - if @user.id = current_user.id
   =link_to 'Change Settings', edit_user_path(@user)
+  %br
+  %h1
+    Statistics
+  %h2
+    Overall
+  - @user.costs_by_category.each do |key, value|
+    %h3
+      = key
+    = value
+  %h2
+    Last Week
+  - @user.costs_by_category(:from => 1.weeks.ago).each do |key, value|
+    %h3
+      = key
+    = value
+  %h2
+    Last Month
+  - @user.costs_by_category(:from => 1.months.ago).each do |key, value|
+    %h3
+      = key
+    = value

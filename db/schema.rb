@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(:version => 20080923140949) do
 
   create_table "bills_groups", :force => true do |t|
     t.integer "bill_id",  :limit => 11
-    t.integer "integer",  :limit => 11
     t.integer "group_id", :limit => 11
   end
 
