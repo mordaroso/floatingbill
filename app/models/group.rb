@@ -2,7 +2,7 @@ class Group < ActiveRecord::Base
   has_many :memberships
   has_many :members, :through => :memberships, :source => :user
   has_many :admins, :through => :memberships, :source => :user, :conditions => 'memberships.admin is not null'
-  has_many :bills
+  has_and_belongs_to_many :bills
 
   validates_presence_of :name
   validates_uniqueness_of :name, :case_sensitive => false, :scope => :deleted, :if => Proc.new { |u| !u.deleted? }
@@ -47,6 +47,21 @@ class Group < ActiveRecord::Base
 
   def self.find_by_name_like(name)
     self.find(:all, :conditions => ['groups.name LIKE ? and deleted is null', "#{name}%" ])
+  end
+
+  def costs_by_category(params = {})
+    costs = Hash.new
+    options = Hash.new
+    params[:from] = self.created_at if params[:from].blank?
+    params[:to] = Time.now if params[:to].blank?
+
+    bills.between(params[:from], params[:to]).closed.each do |bill|
+      for payment in bill.payments
+        costs[bill.category.name] = 0 if costs[bill.category.name].blank?
+        costs[bill.category.name] += payment.amount
+      end
+    end
+    costs
   end
 
 end

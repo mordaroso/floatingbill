@@ -3,7 +3,7 @@ class Bill < ActiveRecord::Base
   has_many :payers, :through => :payments, :class_name => 'User'
   belongs_to :category
   belongs_to :creator, :class_name => 'User'
-  has_many :groups
+  has_and_belongs_to_many :groups
 
   validates_presence_of :amount
   validates_numericality_of :amount
@@ -15,6 +15,7 @@ class Bill < ActiveRecord::Base
   attr_accessor :user_ids, :group_ids
 
   named_scope :by_payer, lambda { |*args| {:include => :payments, :conditions => ['payments.user_id = ?', args.first]} }
+  named_scope :between, lambda { |*args| {:conditions => ['bills.created_at between ? and ?', args.first, args.last] } }
 
   named_scope :open, :conditions => { :closed => false }
   named_scope :closed, :conditions => { :closed => true }

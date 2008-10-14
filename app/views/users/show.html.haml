@@ -1,7 +1,10 @@
 %h1
+  User
   = @user.login
 - if @user.id == current_user.id
   =link_to 'Change Settings', edit_user_path(@user)
+
+  %hr
 
 %h2
   Memberships
@@ -9,15 +12,9 @@
 
 %br
 - if @user.id == current_user.id
+  %hr
   %h2
     Statistics
-  %h3
-    Overall
-  - @user.costs_by_category.each do |key, value|
-    %strong
-      = key
-    = value
-    %br
   %h3
     Last Week
   - @user.costs_by_category(:from => 1.weeks.ago).each do |key, value|
@@ -28,6 +25,13 @@
   %h3
     Last Month
   - @user.costs_by_category(:from => 1.months.ago).each do |key, value|
+    %strong
+      = key
+    = value
+    %br
+  %h3
+    Overall
+  - @user.costs_by_category.each do |key, value|
     %strong
       = key
     = value

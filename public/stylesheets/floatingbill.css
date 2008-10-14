@@ -155,10 +155,16 @@ ul.depts, ul.credits {
     font-size: 26px;
     font-weight: bold;
     margin-top: 0; }
+  #content h2 {
+    font-size: 23px;
+    font-weight: bold;
+    margin-top: 0; }
   #content h3 {
     font-size: 17px;
     font-weight: bold;
     margin-bottom: 5px; }
+  #content hr {
+    border: 1px solid #9cb16a; }
 
 #error {
   background-repeat: no-repeat;
