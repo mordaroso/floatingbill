@@ -212,14 +212,25 @@ ul.depts, ul.credits {
           border-bottom: 1px solid; }
 
 #footer {
-  text-align: center;
   padding: 5px;
+  height: 90px;
   color: #777777;
   padding-left: 10px;
   background-color: #9cb16a;
   font-size: 12px;
   -moz-border-radius-bottomright: 30px;
   -moz-border-radius-bottomleft: 30px; }
+  #footer ul {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    float: left;
+    width: 33%; }
+    #footer ul li.title {
+      font-weight: bold;
+      color: #666666; }
+  #footer a {
+    color: #777777; }
 
 div.auto_complete {
   width: 350px;

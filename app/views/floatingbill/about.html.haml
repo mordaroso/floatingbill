@@ -1,0 +1,12 @@
+%h1
+  About
+
+%p
+  The floating bill is a product of
+  = link_to 'mordaroso programming', 'http://mordaroso.net'
+
+%div
+  If you need help checkout the following pages:
+  %ul
+    %li= link_to 'How To', :controller => 'floatingbill', :action => 'howto'
+    %li= link_to 'FAQ', :controller => 'floatingbill', :action => 'faq'
