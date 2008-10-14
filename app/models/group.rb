@@ -6,7 +6,7 @@ class Group < ActiveRecord::Base
 
   validates_presence_of :name
   validates_uniqueness_of :name, :case_sensitive => false, :scope => :deleted, :if => Proc.new { |u| !u.deleted? }
-  validates_format_of :name, :with => /^\w+$/
+  validates_format_of :name, :with => /^[\w\s]+$/
 
   def add_admin(user)
     membership = Membership.find_or_initialize_by_user_id_and_group_id(user.id, id)
@@ -47,6 +47,21 @@ class Group < ActiveRecord::Base
 
   def self.find_by_name_like(name)
     self.find(:all, :conditions => ['groups.name LIKE ? and deleted is null', "#{name}%" ])
+  end
+
+  def costs_by_category(params = {})
+    costs = Hash.new
+    options = Hash.new
+    params[:from] = self.created_at if params[:from].blank?
+    params[:to] = Time.now if params[:to].blank?
+
+    bills.between(params[:from], params[:to]).closed.each do |bill|
+      for payment in bill.payments
+        costs[bill.category.name] = 0 if costs[bill.category.name].blank?
+        costs[bill.category.name] += payment.amount
+      end
+    end
+    costs
   end
 
 end

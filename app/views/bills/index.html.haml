@@ -3,11 +3,13 @@
 
 = link_to 'New bill', new_bill_path, :class => 'bill_add'
 %br
+%hr
 
 %h3 open
 = render :partial => 'bill', :collection => @bills_open
 
 %br
+%hr
 
 %h3 closed
 = render :partial => 'bill', :collection => @bills_closed

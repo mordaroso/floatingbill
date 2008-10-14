@@ -12,8 +12,6 @@ class User < ActiveRecord::Base
 
   has_many :credits, :class_name => "Debt", :foreign_key => "creditor_id"
   has_many :debts, :class_name => "Debt", :foreign_key => "debitor_id"
-  has_many :creditors, :class_name => "User", :through => :debts
-  has_many :debitors, :class_name => "User", :through => :credits
   has_many :transfers_to, :class_name => 'Transfer', :foreign_key => 'creditor_id'
   has_many :transfers_from, :class_name => 'Transfer', :foreign_key => 'debitor_id'
 
@@ -71,6 +69,19 @@ class User < ActiveRecord::Base
     self.find(:all, :conditions => ['users.login LIKE ?', "#{login}%" ])
   end
 
+  def costs_by_category(params = {})
+    costs = Hash.new
+    options = Hash.new
+    params[:from] = self.created_at if params[:from].blank?
+    params[:to] = Time.now if params[:to].blank?
+
+    payments.between(params[:from], params[:to]).closed.each do |payment|
+      costs[payment.bill.category.name] = 0 if costs[payment.bill.category.name].blank?
+      costs[payment.bill.category.name] += payment.amount
+    end
+    costs
+  end
+
   protected
 
   def make_activation_code
@@ -79,4 +90,3 @@ class User < ActiveRecord::Base
 
 
 end
-

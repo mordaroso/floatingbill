@@ -15,6 +15,7 @@ class Bill < ActiveRecord::Base
   attr_accessor :user_ids, :group_ids
 
   named_scope :by_payer, lambda { |*args| {:include => :payments, :conditions => ['payments.user_id = ?', args.first]} }
+  named_scope :between, lambda { |*args| {:conditions => ['bills.created_at between ? and ?', args.first, args.last] } }
 
   named_scope :open, :conditions => { :closed => false }
   named_scope :closed, :conditions => { :closed => true }

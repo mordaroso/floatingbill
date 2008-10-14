@@ -3,9 +3,13 @@
 
 = link_to 'New transfer', new_transfer_path, :class => 'transfer_add'
 %br
+%hr
 
 %h3 open
 = render :partial => 'transfer', :collection => @open_transfers
+
+%br
+%hr
 
 %h3 closed
 = render :partial => 'transfer', :collection => @closed_transfers

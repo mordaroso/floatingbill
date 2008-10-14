@@ -1,0 +1,23 @@
+%h1
+  About
+
+%p
+  The floating bill is a product of
+  %strong
+    = link_to 'mordaroso programming', 'http://mordaroso.net'
+
+%p
+  Be aware that this program is still in
+  %strong
+    beta.
+  This means that the program is not finished and still in
+  a developing progress. So the program could change every day.
+
+%div
+  If you need
+  %strong
+    help
+  checkout the following pages:
+  %ul
+    %li= link_to 'How To', :controller => 'floatingbill', :action => 'howto'
+    %li= link_to 'FAQ', :controller => 'floatingbill', :action => 'faq'

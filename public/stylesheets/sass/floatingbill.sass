@@ -165,10 +165,16 @@ ul.depts, ul.credits
     :font-size= !font_size + 10px
     :font-weight bold
     :margin-top 0
+  h2
+    :font-size= !font_size + 7px
+    :font-weight bold
+    :margin-top 0
   h3
     :font-size= !font_size + 1px
     :font-weight bold
     :margin-bottom 5px
+  hr
+    :border= 1px solid !middle_green
 
 #error
   +with_error
@@ -216,8 +222,17 @@ ul.depts, ul.credits
           :border-bottom 1px solid
 
 #footer
-  :text-align center
+  ul
+    +no_list
+    :float left
+    :width 33%
+    li.title
+      :font-weight bold
+      :color= !light_color - #111111
+  a
+    :color= !light_color
   :padding 5px
+  :height 90px
   :color= !light_color
   :padding-left 10px
   :background-color= !middle_green

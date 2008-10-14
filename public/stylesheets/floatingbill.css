@@ -155,10 +155,16 @@ ul.depts, ul.credits {
     font-size: 26px;
     font-weight: bold;
     margin-top: 0; }
+  #content h2 {
+    font-size: 23px;
+    font-weight: bold;
+    margin-top: 0; }
   #content h3 {
     font-size: 17px;
     font-weight: bold;
     margin-bottom: 5px; }
+  #content hr {
+    border: 1px solid #9cb16a; }
 
 #error {
   background-repeat: no-repeat;
@@ -212,14 +218,25 @@ ul.depts, ul.credits {
           border-bottom: 1px solid; }
 
 #footer {
-  text-align: center;
   padding: 5px;
+  height: 90px;
   color: #777777;
   padding-left: 10px;
   background-color: #9cb16a;
   font-size: 12px;
   -moz-border-radius-bottomright: 30px;
   -moz-border-radius-bottomleft: 30px; }
+  #footer ul {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    float: left;
+    width: 33%; }
+    #footer ul li.title {
+      font-weight: bold;
+      color: #666666; }
+  #footer a {
+    color: #777777; }
 
 div.auto_complete {
   width: 350px;

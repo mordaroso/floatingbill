@@ -2,7 +2,7 @@
   Group
   =h @group.name
 
-Users:
+%h2 Users
 %ul.no_list
   - for member in @group.members
     %li.user
@@ -17,7 +17,35 @@ Users:
       #user_login_auto_complete.auto_complete
       = auto_complete_field :user_login, :url=>{:controller=>'users', :action=>'autocomplete'}
       = form.submit "Add user"
+%br
+
+- if is_member
+  %hr
+  %h2
+    Statistics
+  %h3
+    Last Week
+  - @group.costs_by_category(:from => 1.weeks.ago).each do |key, value|
+    %strong
+      = key
+    = value
+    %br
+  %h3
+    Last Month
+  - @group.costs_by_category(:from => 1.months.ago).each do |key, value|
+    %strong
+      = key
+    = value
+    %br
+  %h3
+    Overall
+  - @group.costs_by_category.each do |key, value|
+    %strong
+      = key
+    = value
+    %br
   %br
-  = link_to 'Edit', edit_group_path(@group)
+- if is_admin
+  = link_to 'Edit group', edit_group_path(@group)
   |
 = link_to 'Back', groups_path

@@ -1,4 +1,12 @@
-The Floating Bill is brought to you by
-= link_to 'mordaroso.net', 'http://www.mordaroso.net'
-%br
-(c) 2008 All rights reserved
+%ul.footer
+  %li.title the floating bill
+  %li= link_to 'about', :controller => 'floatingbill', :action => 'about'
+  %li= link_to 'contact', :controller => 'floatingbill', :action => 'contact'
+%ul.footer
+  %li.title Legal
+  %li= link_to 'Privacy Policy', :controller => 'floatingbill', :action => 'privacy'
+  %li= link_to 'Terms of Use', :controller => 'floatingbill', :action => 'terms'
+%ul.footer
+  %li.title Help
+  %li= link_to 'How To', :controller => 'floatingbill', :action => 'howto'
+  %li= link_to 'FAQ', :controller => 'floatingbill', :action => 'faq'

@@ -3,6 +3,8 @@ class Payment < ActiveRecord::Base
   belongs_to :payer, :class_name => "User" ,:foreign_key => "user_id"
 
   named_scope :open, :conditions => { :accepted => false }
+  named_scope :closed, :conditions => { :accepted => true }
+  named_scope :between, lambda { |*args| {:conditions => ['payments.created_at between ? and ?', args.first, args.last] } }
 
   before_destroy :reset_debt
 
