@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :login_required, :except => [:new, :create, :activate]
-  before_filter :owner_required, :only => [:edit]
+  before_filter :owner_required, :only => [:edit, :statistics]
   protect_from_forgery :except => [:autocomplete]
 
   # render new.rhtml
@@ -65,8 +65,30 @@ class UsersController < ApplicationController
     render :inline => "<%= auto_complete_result(@users, 'login') %>"
   end
 
+  def statistics
+    @user = User.find(params[:id])
+    options = Hash.new
+    if params.has_key? 'last_week'
+      options[:from] = 1.week.ago
+    elsif params.has_key? 'last_month'
+      options[:from] = 1.month.ago
+    end
+    respond_to do |format|
+      format.html {
+        graph = Scruffy::Graph.new
+        graph.title = "Statistics"
+        graph.renderer = Scruffy::Renderers::Pie.new
+
+        graph.add :pie, '', @user.costs_by_category(options)
+
+        send_data  (graph.render :width => 300, :height => 200, :as => 'png')
+      }
+    end
+  end
+
   private
   def owner_required
     redirect_to user_path(params[:id]) unless current_user.id.to_s == params[:id]
   end
 end
+

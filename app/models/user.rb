@@ -72,7 +72,7 @@ class User < ActiveRecord::Base
   def costs_by_category(params = {})
     costs = Hash.new
     options = Hash.new
-    params[:from] = self.created_at if params[:from].blank?
+    params[:from] = self.activated_at if params[:from].blank?
     params[:to] = Time.now if params[:to].blank?
 
     payments.between(params[:from], params[:to]).closed.each do |payment|

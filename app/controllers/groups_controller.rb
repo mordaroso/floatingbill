@@ -113,6 +113,27 @@ class GroupsController < ApplicationController
     end
   end
 
+  def statistics
+    @group = Group.find(params[:id])
+    options = Hash.new
+    if params.has_key? 'last_week'
+      options[:from] = 1.week.ago
+    elsif params.has_key? 'last_month'
+      options[:from] = 1.month.ago
+    end
+    respond_to do |format|
+      format.html {
+        graph = Scruffy::Graph.new
+        graph.title = "Statistics"
+        graph.renderer = Scruffy::Renderers::Pie.new
+
+        graph.add :pie, '', @group.costs_by_category(options)
+
+        send_data  (graph.render :width => 300, :height => 200, :as => 'png')
+      }
+    end
+  end
+
   private
   def admin_required
     redirect_to group_path(params[:id]) unless Group.find(params[:id]).admins.include? current_user

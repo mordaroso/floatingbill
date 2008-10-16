@@ -17,22 +17,14 @@
     Statistics
   %h3
     Last Week
-  - @user.costs_by_category(:from => 1.weeks.ago).each do |key, value|
-    %strong
-      = key
-    = value
-    %br
+  = image_tag "/users/"+@user.id.to_s+"/statistics?last_week"
+  %br
   %h3
     Last Month
-  - @user.costs_by_category(:from => 1.months.ago).each do |key, value|
-    %strong
-      = key
-    = value
-    %br
+  = image_tag "/users/"+@user.id.to_s+"/statistics?last_month"
+  %br
   %h3
     Overall
-  - @user.costs_by_category.each do |key, value|
-    %strong
-      = key
-    = value
-    %br
+  = image_tag "/users/"+@user.id.to_s+"/statistics"
+  %br
+

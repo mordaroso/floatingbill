@@ -25,25 +25,15 @@
     Statistics
   %h3
     Last Week
-  - @group.costs_by_category(:from => 1.weeks.ago).each do |key, value|
-    %strong
-      = key
-    = value
-    %br
+  = image_tag "/groups/"+@group.id.to_s+"/statistics?last_week"
+  %br
   %h3
     Last Month
-  - @group.costs_by_category(:from => 1.months.ago).each do |key, value|
-    %strong
-      = key
-    = value
-    %br
+  = image_tag "/groups/"+@group.id.to_s+"/statistics?last_month"
+  %br
   %h3
     Overall
-  - @group.costs_by_category.each do |key, value|
-    %strong
-      = key
-    = value
-    %br
+  = image_tag "/groups/"+@group.id.to_s+"/statistics"
   %br
 - if is_admin
   = link_to 'Edit group', edit_group_path(@group)

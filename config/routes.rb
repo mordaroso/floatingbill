@@ -13,9 +13,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :bills, :collection => {'categories' => :get}, :member => { :accept => :post}
 
-  map.resources :groups, :member => { :leave => :post, :add => :post}
+  map.resources :groups, :member => { :leave => :post, :add => :post, :statistics => :get}
 
-  map.resources :users, :has_many => [ :groups ], :member => { :dashboard => :get}
+  map.resources :users, :has_many => [ :groups ], :member => { :dashboard => :get, :statistics => :get}
 
   map.resources :transfers, :member => { :verify => :post}
 
