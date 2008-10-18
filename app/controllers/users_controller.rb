@@ -68,15 +68,20 @@ class UsersController < ApplicationController
   def statistics
     @user = User.find(params[:id])
     options = Hash.new
+    title = String.new
     if params.has_key? 'last_week'
       options[:from] = 1.week.ago
+      title = 'Last Week'
     elsif params.has_key? 'last_month'
       options[:from] = 1.month.ago
+      title = 'Last Month'
+    else
+      title = 'Overall'
     end
     respond_to do |format|
       format.html {
-        graph = Scruffy::Graph.new
-        graph.title = "Statistics"
+        graph = Scruffy::Graph.new(:theme => FloatingBillTheme.new)
+        graph.title = "Statistics for " + @user.login + " - " + title
         graph.renderer = Scruffy::Renderers::Pie.new
 
         graph.add :pie, '', @user.costs_by_category(options)
