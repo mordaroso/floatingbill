@@ -66,7 +66,7 @@
     -for debt in current_user.credits
       %li
         = link_to debt.debitor.login, user_path(debt.debitor)
-        owns you
+        owes you
         = debt.amount
         = currency_sign debt.currency
 -else
