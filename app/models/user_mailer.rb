@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  $url = 'http://fb.mordaroso.net'
+  $url = 'http://floatingbill.com'
 
   def signup_notification(user)
     setup_email(user)
