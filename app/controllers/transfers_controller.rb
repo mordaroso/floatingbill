@@ -5,8 +5,8 @@ class TransfersController < ApplicationController
   # GET /transfers
   # GET /transfers.xml
   def index
-    @open_transfers = Transfer.find(:all, :conditions => ["(creditor_id = ? or debitor_id = ?) and (verified = 0 or verified is null)" , current_user.id, current_user.id])
-    @closed_transfers = Transfer.find(:all, :conditions => ["(creditor_id = ? or debitor_id = ?) and (verified > 0)" , current_user.id, current_user.id])
+    @open_transfers = Transfer.find_all_by_user_id(current_user.id).open
+    @closed_transfers = Transfer.find_all_by_user_id(current_user.id).closed
 
     respond_to do |format|
       format.html # index.html.erb

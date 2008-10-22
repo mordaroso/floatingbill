@@ -9,8 +9,4 @@ module ApplicationHelper
     "bill, payment, money, organize, floating, bill, the floating bill"
   end
 
-  def currency_sign(key)
-    $currencies[key]
-  end
-
 end

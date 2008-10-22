@@ -8,11 +8,11 @@ at
 = @bill.created_at
 
 %hr
-%p
-  =h @bill.description
 
-%br
-%hr
+- unless @bill.description.blank?
+  %p
+    =simple_format(h @bill.description)
+  %hr
 
 #payers
   %h2
@@ -25,6 +25,12 @@ at
         %td.right
           = payment.amount
           = currency_sign payment.bill.currency
+        - if payment.payer == current_user and not payment.accepted?
+          %td.accept
+            = link_to 'accept this payment', accept_bill_path(@bill), :method => 'post'
+        - else
+          %td
+            &nbsp;
     %tr
       %td
         %strong
@@ -33,5 +39,7 @@ at
         %strong
           = @bill.amount
           = currency_sign @bill.currency
+      %td
+        &nbsp;
 %br
 = link_to 'Back', bills_path
