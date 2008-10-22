@@ -9,11 +9,15 @@ has sent
 to
 = link_to @transfer.creditor.login, user_path(@transfer.creditor)
 
-- if @transfer.verified
+- if @transfer.verified?
   #verified.tick
-    Verified
+    Verified at
+    = @transfer.verified_at.to_s
 - else
   #verified.cross
     not verified
+    - if @transfer.creditor == current_user
+      %span.verify
+      = link_to 'verify this transfer', verify_transfer_path(@transfer), :method => 'post'
 %br
 = link_to 'Back', transfers_path

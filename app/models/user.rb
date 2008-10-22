@@ -29,12 +29,15 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :email,    :case_sensitive => false
   validates_format_of       :email,    :with => RE_EMAIL_OK, :message => MSG_EMAIL_BAD
 
+  validates_presence_of     :default_currency
+  validates_inclusion_of    :default_currency, :in => CurrencySystem::CURRENCIES.keys
+
   before_create :make_activation_code
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :name, :password, :password_confirmation
+  attr_accessible :login, :email, :name, :password, :password_confirmation, :default_currency
 
   # Activates the user in the database.
   def activate!

@@ -55,56 +55,67 @@ hr {
 .user {
   background-repeat: no-repeat;
   padding-left: 20px !important;
+  background-position: 0 50%;
   background-image: url('/images/icons/user.png'); }
 
 .user_add {
   background-repeat: no-repeat;
   padding-left: 20px !important;
+  background-position: 0 50%;
   background-image: url('/images/icons/user_add.png'); }
 
 .group {
   background-repeat: no-repeat;
   padding-left: 20px !important;
+  background-position: 0 50%;
   background-image: url('/images/icons/group.png'); }
 
 .user_add {
   background-repeat: no-repeat;
   padding-left: 20px !important;
+  background-position: 0 50%;
   background-image: url('/images/icons/user_add.png'); }
 
 .tick {
   background-repeat: no-repeat;
   padding-left: 20px !important;
+  background-position: 0 50%;
   background-image: url('/images/icons/tick.png'); }
 
 .cross {
   background-repeat: no-repeat;
   padding-left: 20px !important;
+  background-position: 0 50%;
   background-image: url('/images/icons/cross.png'); }
 
 .home {
   background-repeat: no-repeat;
   padding-left: 20px !important;
+  background-position: 0 50%;
   background-image: url('/images/icons/house.png'); }
 
 .bill {
   background-repeat: no-repeat;
   padding-left: 20px !important;
+  background-position: 0 50%;
   background-image: url('/images/icons/script.png'); }
 
 .bill_add {
   background-repeat: no-repeat;
   padding-left: 20px !important;
+  background-position: 0 50%;
   background-image: url('/images/icons/script_add.png'); }
 
 .transfer {
   background-repeat: no-repeat;
   padding-left: 20px !important;
+  background-position: 0 50%;
   background-image: url('/images/icons/arrow_refresh.png'); }
 
 .transfer_add {
   background-repeat: no-repeat;
   padding-left: 20px !important;
+  background-position: 0 50%;
   background-image: url('/images/icons/transfer_add.png'); }
 
 .total {
@@ -118,6 +129,12 @@ hr {
 .right {
   text-align: right; }
 
+.accept, .verify {
+  background-repeat: no-repeat;
+  padding-left: 20px !important;
+  background-position: 0 50%;
+  background-image: url('/images/icons/arrow_right.png'); }
+
 ul.no_list {
   margin: 0px;
   padding: 0px;
@@ -130,6 +147,7 @@ ul.payments {
   ul.payments li {
     background-repeat: no-repeat;
     padding-left: 20px !important;
+    background-position: 0 50%;
     background-image: url('/images/icons/coins.png'); }
 
 ul.depts, ul.credits {
@@ -139,6 +157,7 @@ ul.depts, ul.credits {
   ul.depts li,   ul.credits li {
     background-repeat: no-repeat;
     padding-left: 20px !important;
+    background-position: 0 50%;
     background-image: url('/images/icons/money.png'); }
 
 #container {
@@ -169,6 +188,7 @@ ul.depts, ul.credits {
 #error {
   background-repeat: no-repeat;
   padding-left: 20px !important;
+  background-position: 0 50%;
   background-image: url('/images/icons/exclamation.png');
   background-color: #c0b686;
   font-weight: bold;
@@ -180,6 +200,7 @@ ul.depts, ul.credits {
 #notice {
   background-repeat: no-repeat;
   padding-left: 20px !important;
+  background-position: 0 50%;
   background-image: url('/images/icons/information.png');
   background-color: #b1c086;
   font-weight: bold;

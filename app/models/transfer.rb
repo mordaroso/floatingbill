@@ -7,9 +7,15 @@ class Transfer < ActiveRecord::Base
   validates_presence_of :debitor
   validates_presence_of :creditor
   validates_presence_of :currency
+  validates_inclusion_of :currency, :in => CurrencySystem::CURRENCIES.keys
 
-  named_scope :open, :conditions => { :verified => false }
-  named_scope :closed, :conditions => { :verified => true }
+  named_scope :open, :conditions => { :verified_at => nil }
+  named_scope :closed, :conditions => [ "transfers.verified_at is not null" ]
+  named_scope :find_all_by_user_id, lambda { |*args| {:conditions => ["creditor_id = :user_id or debitor_id = :user_id" , {:user_id => args.first}] } }
+
+  # prevents a user from submitting a crafted form that bypasses activation
+  # anything else you want your user to change should be added here.
+  attr_accessible :amount, :creditor_name, :currency
 
   def validate
     #check amount
@@ -18,10 +24,14 @@ class Transfer < ActiveRecord::Base
     errors.add(:creditor, "cant be yourself") if debitor == creditor
   end
 
+  def verified?
+    verified_at != nil
+  end
+
   def verfiy
-    return if verified
+    return if verified?
     Debt.save_with_params(:debitor => creditor, :creditor => debitor, :currency => currency, :amount => amount)
-    self.verified = true
+    self.verified_at = Time.now
     self.save!
   end
 

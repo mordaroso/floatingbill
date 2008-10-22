@@ -44,23 +44,23 @@
 %hr
 
 %h3
-  Open debts
+  Debts
 -if current_user.debts.count > 0
   %ul.depts
     -for debt in current_user.debts
       %li
-        You own
+        You owe
         = link_to debt.creditor.login, user_path(debt.creditor)
         = debt.amount
         = currency_sign debt.currency
 -else
   #no_depts
-    No open debts
+    No debts
 %br
 %hr
 
 %h3
-  Open credits
+  Credits
 -if current_user.credits.count > 0
   %ul.credits
     -for debt in current_user.credits
@@ -71,5 +71,5 @@
         = currency_sign debt.currency
 -else
   #no_depts
-    No open credits
+    No credits
 %br

@@ -11,6 +11,7 @@ class Bill < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :creator
   validates_presence_of :currency
+  validates_inclusion_of :currency, :in => CurrencySystem::CURRENCIES.keys
 
   attr_accessor :user_ids, :group_ids
 
@@ -22,6 +23,10 @@ class Bill < ActiveRecord::Base
 
   before_save :set_payments
   before_destroy :reset_payments
+
+  # prevents a user from submitting a crafted form that bypasses activation
+  # anything else you want your user to change should be added here.
+  attr_accessible :amount, :name, :category_name, :user_ids, :group_ids, :currency
 
   def validate
     #check amount
@@ -79,7 +84,7 @@ class Bill < ActiveRecord::Base
       payment = Payment.find_or_initialize_by_user_id_and_bill_id(user.id, id)
       payment.amount = self.amount / (users.length)
       if user.id == creator_id
-        payment.accepted = true
+        payment.accepted_at = Time.now
         self.closed = true if users.length == 1
       end
       payments << payment

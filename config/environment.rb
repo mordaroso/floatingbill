@@ -67,14 +67,6 @@ Rails::Initializer.run do |config|
 
 end
 
-$currencies = {
-  'chf'    => 'CHF',
-  'eur'    => '€',
-  'usd'    => '$',
-  'gbp'    => '£'
-}
-
-
 require 'scruffy'
 class FloatingBillTheme < Scruffy::Themes::Base
   def initialize
@@ -84,7 +76,6 @@ class FloatingBillTheme < Scruffy::Themes::Base
       :colors => %w(#6886B4 #FDD84E #72AE6E #D1695E #8A6EAF #EFAA43 white)
     })
   end
+
 end
-
-
 
