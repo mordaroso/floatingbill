@@ -50,8 +50,8 @@ class BillsController < ApplicationController
   # POST /bills
   # POST /bills.xml
   def create
-    params[:bill][:creator_id] = current_user.id
     @bill = Bill.new(params[:bill])
+    @bill.creator = current_user
     respond_to do |format|
       if @bill.save
         flash[:notice] = 'bill was successfully created.'
