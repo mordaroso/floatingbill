@@ -10,7 +10,7 @@ module ApplicationHelper
   end
 
   def rss_url(user)
-    user_url(user, :format => 'rss', :rss_hash => user.rss_hash)
+    formatted_feed_user_url(user, :rss, :rss_hash => user.rss_hash)
   end
 
 end

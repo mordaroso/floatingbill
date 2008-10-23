@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :login_required, :except => [:new, :create, :activate]
+  before_filter :login_required, :except => [:new, :create, :activate, :feed]
   before_filter :owner_required, :only => [:edit, :statistics]
   protect_from_forgery :except => [:autocomplete]
 
@@ -19,6 +19,13 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
+
+    end
+  end
+
+  def feed
+    @user = User.find(params[:id])
+    respond_to do |format|
       format.rss do # show.rss.builder
         redirect_back_or_default('/') unless @user.rss_hash == params[:rss_hash]
       end
@@ -116,3 +123,4 @@ class UsersController < ApplicationController
     redirect_to user_path(params[:id]) unless current_user.id.to_s == params[:id]
   end
 end
+
