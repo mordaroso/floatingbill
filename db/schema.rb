@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081020092750) do
+ActiveRecord::Schema.define(:version => 20081023122009) do
 
   create_table "bills", :force => true do |t|
     t.integer  "category_id", :limit => 11
@@ -62,7 +62,6 @@ ActiveRecord::Schema.define(:version => 20081020092750) do
     t.integer  "bill_id",     :limit => 11
     t.integer  "user_id",     :limit => 11
     t.decimal  "amount",                    :precision => 10, :scale => 2
-    t.boolean  "accepted",                                                 :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "accepted_at"
@@ -73,7 +72,6 @@ ActiveRecord::Schema.define(:version => 20081020092750) do
     t.integer  "creditor_id", :limit => 11
     t.decimal  "amount",                    :precision => 10, :scale => 2
     t.string   "currency",    :limit => 3
-    t.boolean  "verified",                                                 :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "verified_at"
@@ -91,6 +89,8 @@ ActiveRecord::Schema.define(:version => 20081020092750) do
     t.datetime "activated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "default_currency",          :limit => 3
+    t.string   "rss_hash",                  :limit => 40
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

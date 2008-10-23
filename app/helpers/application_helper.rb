@@ -9,4 +9,8 @@ module ApplicationHelper
     "bill, payment, money, organize, floating, bill, the floating bill"
   end
 
+  def rss_url(user)
+    user_url(user, :format => 'rss', :rss_hash => user.rss_hash)
+  end
+
 end

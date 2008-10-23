@@ -74,6 +74,13 @@ class Bill < ActiveRecord::Base
     self.category = Category.find_or_initialize_by_name(name)
   end
 
+  def closed_at
+    return nil unless self.payments.count == self.payments.closed.count
+    last_payment = Payment.find(:first,
+                   :order      => "accepted_at DESC" )
+    return last_payment.accepted_at
+  end
+
   private
 
   def set_payments

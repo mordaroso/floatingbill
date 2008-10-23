@@ -42,4 +42,30 @@ at
       %td
         &nbsp;
 %br
+%a#show_log.log{:onclick=> 'Effect.BlindDown(\'logs\');$(\'show_log\').hide(); return false'}
+  show log
+
+#logs{:style=> 'display:none'}
+  %hr
+  %ul
+    %li.bullet_star
+      %span.time
+        = @bill.created_at.to_s(:short)
+      Bill created by
+      = link_to_user @bill.creator
+
+    -for payment in @bill.payments.closed
+      -unless @bill.creator == payment.payer
+        %li.bullet_green
+          %span.time
+            = payment.accepted_at.to_s(:short)
+          Accepted by
+          = link_to_user payment.payer
+    - unless @bill.closed_at.blank?
+      %li.bullet_go
+        %span.time
+          = @bill.closed_at.to_s(:short)
+        Bill closed
+%br
+%br
 = link_to 'Back', bills_path

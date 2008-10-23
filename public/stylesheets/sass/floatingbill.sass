@@ -126,6 +126,22 @@ hr
   +with_icon
   :background-image url('/images/icons/transfer_add.png')
 
+.log
+  +with_icon
+  :background-image url('/images/icons/report.png')
+
+.bullet_green
+  +with_icon
+  :background-image url('/images/icons/bullet_green.png')
+
+.bullet_star
+  +with_icon
+  :background-image url('/images/icons/bullet_star.png')
+
+.bullet_go
+  +with_icon
+  :background-image url('/images/icons/bullet_go.png')
+
 .total
   :padding-left 10px
   :border-top 1px solid
@@ -275,3 +291,15 @@ ul.payers
     :border 1px solid #888
     :background-color  #FFFF99
   :display inline-block
+
+#show_log
+  :cursor pointer
+
+#logs
+  ul
+    +no_list
+    li
+      .time
+        :font-size= !font_size-2
+        :width 100px
+        :color= !light_color

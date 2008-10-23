@@ -118,6 +118,30 @@ hr {
   background-position: 0 50%;
   background-image: url('/images/icons/transfer_add.png'); }
 
+.log {
+  background-repeat: no-repeat;
+  padding-left: 20px !important;
+  background-position: 0 50%;
+  background-image: url('/images/icons/report.png'); }
+
+.bullet_green {
+  background-repeat: no-repeat;
+  padding-left: 20px !important;
+  background-position: 0 50%;
+  background-image: url('/images/icons/bullet_green.png'); }
+
+.bullet_star {
+  background-repeat: no-repeat;
+  padding-left: 20px !important;
+  background-position: 0 50%;
+  background-image: url('/images/icons/bullet_star.png'); }
+
+.bullet_go {
+  background-repeat: no-repeat;
+  padding-left: 20px !important;
+  background-position: 0 50%;
+  background-image: url('/images/icons/bullet_go.png'); }
+
 .total {
   padding-left: 10px;
   border-top: 1px solid;
@@ -293,3 +317,15 @@ ul.payers {
     margin-bottom: 2px;
     border: 1px solid #888;
     background-color: #FFFF99; }
+
+#show_log {
+  cursor: pointer; }
+
+#logs ul {
+  margin: 0px;
+  padding: 0px;
+  list-style: none; }
+  #logs ul li .time {
+    font-size: 14px;
+    width: 100px;
+    color: #777777; }

@@ -33,6 +33,7 @@ class User < ActiveRecord::Base
   validates_inclusion_of    :default_currency, :in => CurrencySystem::CURRENCIES.keys
 
   before_create :make_activation_code
+  before_create :make_rss_hash
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
@@ -85,11 +86,14 @@ class User < ActiveRecord::Base
     costs
   end
 
+  def make_rss_hash
+    self.rss_hash = self.class.make_token
+  end
+
   protected
 
   def make_activation_code
     self.activation_code = self.class.make_token
   end
-
 
 end

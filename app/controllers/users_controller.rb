@@ -9,7 +9,9 @@ class UsersController < ApplicationController
   end
 
   def dashboard
-
+    respond_to do |format|
+      format.html # dashboard.html.haml
+    end
   end
 
   def show
@@ -17,6 +19,9 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
+      format.rss do # show.rss.builder
+        redirect_back_or_default('/') unless @user.rss_hash == params[:rss_hash]
+      end
     end
   end
 
@@ -111,4 +116,3 @@ class UsersController < ApplicationController
     redirect_to user_path(params[:id]) unless current_user.id.to_s == params[:id]
   end
 end
-
