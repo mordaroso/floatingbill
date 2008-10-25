@@ -6,4 +6,3 @@ class CategoriesController < ApplicationController
     render :inline => "<%= auto_complete_result(@categories, 'name') %>"
   end
 end
-

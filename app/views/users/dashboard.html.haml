@@ -1,6 +1,23 @@
 %h1 Dashboard
 
+#news
 
+  %span.feed
+    =link_to '', rss_url(current_user), :class => 'rss'
+  %div.title
+    News
+    %span#news_up.bullet_arrow_up.link{}
+    %span#news_down.bullet_arrow_down.link{:style=>'display:none'}
+
+  %ul#news_list.news
+    -for news in @news
+      - news_class = 'bullet_green' if news.verb == 'accepted' or news.verb == 'verified'
+      - news_class = 'bullet_star' if news.verb == 'created'
+      - news_class = 'bullet_go' if news.verb == 'closed'
+      %li{:class=>news_class}
+        =link_to "#{news.user.login} #{news.verb} #{news.object.class.name}", generate_url_by_object(news.object)
+        %div.time
+          = news.time.to_s(:short)
 %h3
   Open payments
 -if current_user.payments.open.count > 0

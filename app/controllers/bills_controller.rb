@@ -20,6 +20,7 @@ class BillsController < ApplicationController
   # GET /bills/1.xml
   def show
     @bill = Bill.find(params[:id])
+    @news = News.get_all_by_bill(@bill)
 
     respond_to do |format|
       format.html # show.html.erb

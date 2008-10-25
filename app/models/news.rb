@@ -1,13 +1,13 @@
 class News
 
-  attr_accessor :type, :object, :verb, :time, :user
+  attr_accessor :object, :verb, :time, :user, :text
 
-  def initialize(type, object, verb, time, user)
-    self.type = type
+  def initialize(object, verb, time, user, text)
     self.object = object
     self.verb = verb
     self.time = time
     self.user = user
+    self.text = text
   end
 
 
@@ -16,26 +16,54 @@ class News
 
     #bills and payments
     for bill in Bill.by_user_id(user.id)
-      #created
-      news << News.new('bill', bill, 'created', bill.created_at, bill.creator) unless bill.creator == user
-
-      # accepted
-      for payment in bill.payments.closed
-        news << News.new('bill', bill, 'accepted', payment.accepted_at, payment.payer) unless payment.payer == user
-      end
-
-      # closed
-      news << News.new('bill', bill, 'closed', bill.created_at, bill.creator) unless bill.closed_at.blank? or bill.creator == user
+      news += get_all_by_bill(bill, :user => user)
     end
 
     #transfer
     for transfer in Transfer.find_all_by_user_id(user.id)
-      news << News.new('transfer', transfer, 'created', transfer.created_at, transfer.debitor) unless bill.creator == user
-      news << News.new('transfer', transfer, 'verified', transfer.verified_at, transfer.creditor) unless !transfer.verified? || bill.creator == user
+      news += get_all_by_transfer(transfer, :user => user)
+    end
+
+    news.sort_by {|n| n.time}
+  end
+
+  def self.get_all_by_bill(bill, options = {})
+    news = Array.new
+
+    #created
+    if options[:user].blank? or bill.creator != options[:user]
+      news << News.new(bill, 'created', bill.created_at, bill.creator, bill.description)
+    end
+
+    # accepted
+    for payment in bill.payments.closed
+      if options[:user].blank? or (payment.payer != options[:user] and bill.creator == payment.payer)
+        news << News.new(bill, 'accepted', payment.accepted_at, payment.payer, bill.description)
+      end
+    end
+
+    # closed
+    if bill.closed? and (options[:user].blank? or bill.creator != options[:user])
+      news << News.new(bill, 'closed', bill.closed_at, bill.creator, bill.description)
+    end
+
+    news.sort_by {|n| n.time}
+  end
+
+  def self.get_all_by_transfer(transfer, options = {})
+    news = Array.new
+
+    #created
+    if options[:user].blank? or transfer.debitor != options[:user]
+      news << News.new(transfer, 'created', transfer.created_at, transfer.debitor, '')
+    end
+
+    #verified
+    if transfer.verified? and (options[:user].blank? or transfer.debitor == options[:user])
+      news << News.new(transfer, 'verified', transfer.verified_at, transfer.creditor, '')
     end
 
     news.sort_by {|n| n.time}
   end
 
 end
-

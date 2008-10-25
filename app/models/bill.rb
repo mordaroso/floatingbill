@@ -76,9 +76,8 @@ class Bill < ActiveRecord::Base
 
   def closed_at
     return nil unless self.payments.count == self.payments.closed.count
-    last_payment = Payment.find(:first,
-                   :order      => "accepted_at DESC" )
-    return last_payment.accepted_at
+    last_payments = self.payments.sort_by {|p| p.accepted_at}
+    last_payments.last.accepted_at
   end
 
   private

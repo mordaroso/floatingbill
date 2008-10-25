@@ -77,3 +77,4 @@ class FloatingBillTheme < Scruffy::Themes::Base
     })
   end
 end
+

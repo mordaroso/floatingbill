@@ -13,4 +13,13 @@ module ApplicationHelper
     formatted_feed_user_url(user, :rss, :rss_hash => user.rss_hash)
   end
 
+  def generate_url_by_object(object)
+    case object.class.name
+    when 'Bill'
+      bill_url(object)
+    when 'Transfer'
+      transfer_url(object)
+    end
+  end
+
 end

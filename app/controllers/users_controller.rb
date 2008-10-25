@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   end
 
   def dashboard
+    @news = News.get_all_by_user(current_user)[-5,5]
     respond_to do |format|
       format.html # dashboard.html.haml
     end
@@ -123,4 +124,3 @@ class UsersController < ApplicationController
     redirect_to user_path(params[:id]) unless current_user.id.to_s == params[:id]
   end
 end
-
