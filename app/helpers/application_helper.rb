@@ -22,4 +22,8 @@ module ApplicationHelper
     end
   end
 
+  def user_voice_widget
+    "<script src=\"http://floatingbill.uservoice.com/pages/general/widgets/tab.js?alignment=right&amp;color=ADADAD\" type=\"text/javascript\"></script>"
+  end
+
 end
