@@ -9,7 +9,8 @@ class UsersController < ApplicationController
   end
 
   def dashboard
-    @news = News.get_all_by_user(current_user)[-5,5]
+    @news = News.get_all_by_user(current_user)
+    @news= @news[-5,5] if @news.length > 5
     respond_to do |format|
       format.html # dashboard.html.haml
     end
