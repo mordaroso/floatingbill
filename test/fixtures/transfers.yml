@@ -3,10 +3,19 @@ one:
   debitor_id: 1
   creditor_id: 2
   amount: 543.21
-  verified: false
+  currency: chf
+  verified_at: nil
 
 two:
   debitor_id: 2
   creditor_id: 1
-  amount: 123.45
-  verified: false
+  amount: 1023.45
+  currency: chf
+  verified_at: nil
+
+three:
+  debitor_id: 2
+  creditor_id: 1
+  amount: 79.45
+  currency: chf
+  verified_at: <%= 1.day.ago.to_s :db %>

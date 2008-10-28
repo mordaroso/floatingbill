@@ -26,7 +26,7 @@ class Bill < ActiveRecord::Base
 
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :amount, :name, :category_name, :user_ids, :group_ids, :currency
+  attr_accessible :amount, :name, :category_name, :user_ids, :group_ids, :currency, :description
 
   def validate
     #check amount
@@ -88,7 +88,7 @@ class Bill < ActiveRecord::Base
     users, groups = get_all_payers
     for user in users
       payment = Payment.find_or_initialize_by_user_id_and_bill_id(user.id, id)
-      payment.amount = self.amount / (users.length)
+      payment.amount = ((self.amount / (users.length))*100).floor/100
       if user.id == creator_id
         payment.accepted_at = Time.now
         self.closed = true if users.length == 1

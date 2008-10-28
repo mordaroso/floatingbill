@@ -8,7 +8,7 @@
     %title The Floating Bill
     = stylesheet_link_tag 'floatingbill'
     - if logged_in?
-      = auto_discovery_link_tag(:rss, rss_url (current_user) )
+      = auto_discovery_link_tag(:rss, rss_url(current_user))
   %body
     = javascript_include_tag  :defaults
     #container
