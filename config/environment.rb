@@ -67,6 +67,7 @@ Rails::Initializer.run do |config|
 
 end
 
+if false
 require 'scruffy'
 class FloatingBillTheme < Scruffy::Themes::Base
   def initialize
@@ -77,4 +78,4 @@ class FloatingBillTheme < Scruffy::Themes::Base
     })
   end
 end
-
+end
