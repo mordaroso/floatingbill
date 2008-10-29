@@ -1,21 +1,24 @@
 
 one:
-  debitor_id: 1
-  creditor_id: 2
-  amount: 543.21
-  currency: chf
-  verified_at: nil
+  debitor_id:     1
+  creditor_id:    2
+  amount:         543.21
+  currency:       chf
+  created_at:     <%= 10.day.ago.to_s :db %>
+  verified_at:    nil
 
 two:
-  debitor_id: 2
-  creditor_id: 1
-  amount: 1023.45
-  currency: chf
-  verified_at: nil
+  debitor_id:     2
+  creditor_id:    1
+  amount:         1023.45
+  currency:       chf
+  created_at:     <%= 9.day.ago.to_s :db %>
+  verified_at:    nil
 
 three:
-  debitor_id: 2
-  creditor_id: 1
-  amount: 79.45
-  currency: chf
-  verified_at: <%= 1.day.ago.to_s :db %>
+  debitor_id:     2
+  creditor_id:    1
+  amount:         79.45
+  currency:       chf
+  created_at:     <%= 8.day.ago.to_s :db %>
+  verified_at:    <%= 7.day.ago.to_s :db %>

@@ -29,6 +29,8 @@ class BillsControllerTest < ActionController::TestCase
       assert_equal 4.03, payment.amount
     end
 
+    assert_equal categories(:food), assigns(:bill).category
+
     assert_redirected_to bill_path(assigns(:bill))
   end
 
@@ -40,6 +42,19 @@ class BillsControllerTest < ActionController::TestCase
     assert_equal(2, assigns(:bill).payments.length)
     for payment in assigns(:bill).payments
       assert_equal 6.05, payment.amount
+    end
+
+    assert_redirected_to bill_path(assigns(:bill))
+  end
+
+  def test_should_create_user_group_bill
+    assert_difference('Bill.count') do
+      post :create, :bill => valid_user_group_bill_attributes
+    end
+
+    assert_equal(3, assigns(:bill).payments.length)
+    for payment in assigns(:bill).payments
+      assert_equal 4.03, payment.amount
     end
 
     assert_redirected_to bill_path(assigns(:bill))
@@ -71,24 +86,30 @@ class BillsControllerTest < ActionController::TestCase
   private
   def valid_user_bill_attributes
     {
-      :category_name => "food",
-      :category_id => 1,
-      :amount => 12.10,
-      :name => "valid bill",
-      :description => "this is a valid bill",
-      :currency => "chf",
       :user_ids => [1,2,3]
-    }
+    }.merge no_payer_bill_attributes
   end
 
   def valid_group_bill_attributes
+    {
+      :group_ids => [1]
+    }.merge no_payer_bill_attributes
+  end
+
+  def valid_user_group_bill_attributes
+    {
+      :group_ids => [1],
+      :user_ids => [2]
+    }.merge no_payer_bill_attributes
+  end
+
+  def no_payer_bill_attributes
     {
       :category_name => "food",
       :amount => 12.10,
       :name => "valid bill",
       :description => "this is a valid bill",
       :currency => "chf",
-      :group_ids => [1]
     }
   end
 end

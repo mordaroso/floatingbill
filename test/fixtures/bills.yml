@@ -6,7 +6,29 @@ food:
   category_id:  1
   amount:       99
   name:         food
-  description:  test description for food
-  created_at:   <%= 1.day.ago.to_s :db %>
+  description:  this bill is only created
+  created_at:   <%= 6.days.ago.to_s :db %>
   currency:     chf
   closed:       false
+
+book:
+  id:           2
+  creator_id:   1
+  category_id:  2
+  amount:       54
+  name:         book
+  description:  this bill is accepted by one person
+  created_at:   <%= 5.days.ago.to_s :db %>
+  currency:     chf
+  closed:       false
+
+server:
+  id:           3
+  creator_id:   1
+  category_id:  3
+  amount:       64
+  name:         server
+  description:  this bill is closed
+  created_at:   <%= 4.days.ago.to_s :db %>
+  currency:     chf
+  closed:       true

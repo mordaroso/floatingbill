@@ -38,7 +38,7 @@ class Activities
 
     # accepted
     for payment in bill.payments.closed
-      if options[:user].blank? or (payment.payer != options[:user] and bill.creator == payment.payer)
+      if (options[:user].blank? or payment.payer != options[:user]) and bill.creator != payment.payer
         activities << Activities.new(bill, 'accepted', payment.accepted_at, payment.payer, bill.description)
       end
     end

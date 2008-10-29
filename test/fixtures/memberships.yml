@@ -1,13 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 quentin_wg:
-  id: 1
-  group_id: 1
-  user_id: 1
-  admin: true
+  id:         1
+  group_id:   1
+  user_id:    1
+  admin:      true
 
 sam_wg:
-  id: 2
-  group_id: 1
-  user_id: 3
-  admin: false
+  id:         2
+  group_id:   1
+  user_id:    3
+  admin:      false
