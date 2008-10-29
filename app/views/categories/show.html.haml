@@ -1,0 +1,7 @@
+%h1
+  Category
+  = @category.name
+
+%h2
+  Bills
+= render :partial => '/bills/bill', :collection => @bills

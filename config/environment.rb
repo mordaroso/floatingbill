@@ -67,6 +67,11 @@ Rails::Initializer.run do |config|
 
 end
 
+ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
+  :default => "%d %B %Y %H:%M",
+  :time => '%H:%M:%S'
+)
+
 if true
   require 'scruffy'
   class FloatingBillTheme < Scruffy::Themes::Base

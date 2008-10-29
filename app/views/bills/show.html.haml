@@ -5,8 +5,10 @@
 created by
 = link_to @bill.creator.login, user_path(@bill.creator)
 at
-= @bill.created_at
-
+= @bill.created_at.to_s
+#category
+  Category:
+  = link_to @bill.category.name, @bill.category
 %hr
 
 - unless @bill.description.blank?
