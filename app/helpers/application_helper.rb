@@ -26,4 +26,11 @@ module ApplicationHelper
     "<script src=\"http://floatingbill.uservoice.com/pages/general/widgets/tab.js?alignment=right&amp;color=ADADAD\" type=\"text/javascript\"></script>"
   end
 
+  def toggling_class(class_name)
+    @toggle_class = Hash.new unless defined?(@toggle_class[class_name])
+    @toggle_class[class_name] = true unless defined?(@toggle_class[class_name])
+    @toggle_class[class_name] = !@toggle_class[class_name]
+    class_name if @toggle_class[class_name]
+  end
+
 end

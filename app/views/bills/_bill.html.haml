@@ -1,5 +1,8 @@
-=h bill.name
-= link_to 'Show', bill
--if bill.creator == current_user
-  = link_to 'Destroy', bill, :confirm => 'Are you sure?', :method => :delete
-%br
+%li{:class=>toggling_class("darker")}
+  - if bill.creator == current_user
+    %span.bill_delete
+      = link_to '', bill, :confirm => 'Are you sure?', :method => :delete, :class => 'bullet_delete'
+  %span.bill_name
+    = link_to h(bill.name), bill
+  %span.time.bill_time
+    =bill.created_at.to_s :short

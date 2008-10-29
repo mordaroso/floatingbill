@@ -1,9 +1,10 @@
-=transfer.debitor.login
-sent
-= transfer.amount
-= currency_sign transfer.currency
-to
-=transfer.creditor.login
-|
-= link_to 'Show', transfer
-%br
+%li{:class=>toggling_class("darker")}
+  %span.time.transfer_time
+    =transfer.created_at.to_s :short
+  %a{:href=>transfer_url(transfer)}
+    =transfer.debitor.login
+    sent
+    = transfer.amount
+    = currency_sign transfer.currency
+    to
+    =transfer.creditor.login

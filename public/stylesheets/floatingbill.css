@@ -160,6 +160,18 @@ hr {
   background-position: 0 50%;
   background-image: url('/images/icons/bullet_arrow_down.png'); }
 
+.bullet_delete {
+  background-repeat: no-repeat;
+  padding-left: 20px !important;
+  background-position: 0 50%;
+  background-image: url('/images/icons/bullet_delete.png'); }
+
+.delete {
+  background-repeat: no-repeat;
+  padding-left: 20px !important;
+  background-position: 0 50%;
+  background-image: url('/images/icons/delete.png'); }
+
 .total {
   padding-left: 10px;
   border-top: 1px solid;
@@ -179,17 +191,52 @@ hr {
 
 .time {
   font-size: 12px;
-  width: 100px;
   color: #777777; }
+
+.money {
+  background-repeat: no-repeat;
+  padding-left: 20px !important;
+  background-position: 0 50%;
+  background-image: url('/images/icons/money.png'); }
 
 .link {
   cursor: pointer;
   color: #890000; }
 
+.darker {
+  background-color: #adc27b; }
+
 ul.no_list {
   margin: 0px;
   padding: 0px;
   list-style: none; }
+
+ul.transfers {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  width: 450px; }
+  ul.transfers li {
+    height: 25px; }
+    ul.transfers li .transfer_time {
+      float: right; }
+
+ul.bills {
+  margin: 0px;
+  padding: 0px;
+  list-style: none; }
+  ul.bills li {
+    height: 25px; }
+    ul.bills li .bill_name {
+      width: 600px;
+      float: left;
+      overflow: hidden; }
+    ul.bills li .bill_time {
+      vertical-align: middle;
+      padding-left: 15px;
+      padding-right: 15px; }
+    ul.bills li .bill_delete {
+      float: right; }
 
 ul.payments {
   margin: 0px;
@@ -210,6 +257,9 @@ ul.depts, ul.credits {
     padding-left: 20px !important;
     background-position: 0 50%;
     background-image: url('/images/icons/money.png'); }
+
+table#users {
+  border-spacing: 0px; }
 
 #container {
   margin: 0 auto;
@@ -356,7 +406,7 @@ ul.payers {
   float: right;
   width: 200px; }
   #activities .title {
-    background-color: #adc27b;
+    background-color: #9cb16a;
     padding-left: 5px; }
   #activities .feed {
     float: right; }

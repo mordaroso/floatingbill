@@ -19,9 +19,9 @@ at
 #payers
   %h2
     Payers
-  %table
+  %table#users
     - for payment in @bill.payments
-      %tr
+      %tr{:class=>toggling_class("darker")}
         %td{:class => (payment.accepted? ? "tick" : "no_icon")}
           = link_to payment.payer.login, user_path(payment.payer)
         %td.right

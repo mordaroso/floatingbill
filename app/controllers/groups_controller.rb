@@ -1,4 +1,6 @@
 class GroupsController < ApplicationController
+  #TODO remove users from group
+  #TODO set users as admin
   before_filter :login_required
   before_filter :member_required, :except => [:show, :index, :new, :create]
   before_filter :admin_required, :only => [:edit, :update, :add]
@@ -148,4 +150,3 @@ class GroupsController < ApplicationController
     redirect_to group_path(params[:id]) unless Group.find(params[:id]).members.include? current_user
   end
 end
-

@@ -4,4 +4,5 @@
 
 %h2
   Bills
-= render :partial => '/bills/bill', :collection => @bills
+%ul.bills
+  = render :partial => '/bills/bill', :collection => @bills

@@ -12,10 +12,13 @@
 - comments
 - disaccept
 
+*user
+- list activities between user on user page
+
 *application
 - cache
 - time zones
-- tests (!)
+- more tests
 
 #ideas
 ######

@@ -155,6 +155,13 @@ hr
   +with_icon
   :background-image url('/images/icons/bullet_arrow_down.png')
 
+.bullet_delete
+  +with_icon
+  :background-image url('/images/icons/bullet_delete.png')
+
+.delete
+  +with_icon
+  :background-image url('/images/icons/delete.png')
 
 .total
   :padding-left 10px
@@ -173,15 +180,44 @@ hr
 
 .time
   :font-size= !font_size-4
-  :width 100px
   :color= !light_color
+
+.money
+  +with_icon
+  :background-image url('/images/icons/money.png')
 
 .link
   :cursor pointer
   :color= !link_color
 
+.darker
+  :background-color= !middle_green + #111111
+
 ul.no_list
   +no_list
+
+ul.transfers
+  +no_list
+  :width 450px
+  li
+    :height 25px
+    .transfer_time
+      :float right
+
+ul.bills
+  +no_list
+  li
+    :height 25px
+    .bill_name
+      :width 600px
+      :float left
+      :overflow hidden
+    .bill_time
+      :vertical-align middle
+      :padding-left 15px
+      :padding-right 15px
+    .bill_delete
+      :float right
 
 ul.payments
   +no_list
@@ -194,6 +230,9 @@ ul.depts, ul.credits
   li
     +with_icon
     :background-image url('/images/icons/money.png')
+
+table#users
+  :border-spacing 0px
 
 #container
   :margin 0 auto
@@ -326,7 +365,7 @@ ul.payers
   :width 200px
 
   .title
-    :background-color= !middle_green + #111111
+    :background-color= !middle_green
     :padding-left 5px
   .feed
     :float right

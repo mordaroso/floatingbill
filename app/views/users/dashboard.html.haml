@@ -15,6 +15,8 @@
         - news_class = 'bullet_green' if activity.verb == 'accepted' or activity.verb == 'verified'
         - news_class = 'bullet_star' if activity.verb == 'created'
         - news_class = 'bullet_go' if activity.verb == 'closed'
+        - toggling_class = toggling_class("darker")
+        - news_class << " " + toggling_class unless toggling_class.blank?
         %li{:class=>news_class}
           =link_to "#{activity.user.login} #{activity.verb} #{activity.object.class.name}", generate_url_by_object(activity.object)
           %div.time
