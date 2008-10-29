@@ -49,6 +49,7 @@ class Group < ActiveRecord::Base
     self.find(:all, :conditions => ['groups.name LIKE ? and deleted is null', "#{name}%" ])
   end
 
+  #TODO put small values to others
   def costs_by_category(params = {})
     costs = Hash.new
     options = Hash.new

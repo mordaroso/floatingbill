@@ -27,7 +27,7 @@ class UsersController < ApplicationController
 
   def feed
     @user = User.find(params[:id])
-    @activities = Activities.get_all_by_user(@user) unless @user.rss_hash == params[:rss_hash]
+    @activities = Activities.get_all_by_user(@user) if @user.rss_hash == params[:rss_hash]
     respond_to do |format|
       format.rss do # show.rss.builder
         redirect_back_or_default('/') unless @user.rss_hash == params[:rss_hash]

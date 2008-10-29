@@ -73,6 +73,7 @@ class User < ActiveRecord::Base
     self.find(:all, :conditions => ['users.login LIKE ?', "#{login}%" ])
   end
 
+  #TODO put small values to others
   def costs_by_category(params = {})
     costs = Hash.new
     options = Hash.new
