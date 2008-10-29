@@ -350,22 +350,22 @@ ul.payers {
   padding: 0px;
   list-style: none; }
 
-#news {
+#activities {
   border: 2px solid #9cb16a;
   margin-left: 10px;
   float: right;
   width: 200px; }
-  #news .title {
+  #activities .title {
     background-color: #adc27b;
     padding-left: 5px; }
-  #news .feed {
+  #activities .feed {
     float: right; }
 
-.news {
+.activities {
   font-size: 14px;
   margin: 0px;
   padding: 0px;
   list-style: none; }
-  .news li {
+  .activities li {
     background-position: 0 2px;
     padding-right: 5px; }

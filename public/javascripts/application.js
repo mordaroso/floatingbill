@@ -31,18 +31,18 @@ function remove_payer(element){
 
 
 Event.observe(window, 'load', function() {
-    // NEWS
-    if($("news_up")) {
-        $("news_up").observe('click', function() {
-            Effect.BlindUp("news_list");
-            $("news_down").show();
-            $("news_up").hide();
+    // Activities
+    if($("activities_up")) {
+        $("activities_up").observe('click', function() {
+            Effect.BlindUp("activities_list");
+            $("activities_down").show();
+            $("activities_up").hide();
         });
 
-        $("news_down").observe('click', function() {
-            Effect.BlindDown("news_list");
-            $("news_up").show();
-            $("news_down").hide();
+        $("activities_down").observe('click', function() {
+            Effect.BlindDown("activities_list");
+            $("activities_up").show();
+            $("activities_down").hide();
         });
     }
     if($("show_log")) {

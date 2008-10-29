@@ -47,17 +47,17 @@ at
 
 #logs{:style=> 'display:none'}
   %hr
-  %ul.news
-    -for news in @news
-      - news_class = 'bullet_green' if news.verb == 'accepted' or news.verb == 'verified'
-      - news_class = 'bullet_star' if news.verb == 'created'
-      - news_class = 'bullet_go' if news.verb == 'closed'
-      %li{:class=>news_class}
-        =link_to news.user.login , user_path(news.user)
-        =news.verb
-        =news.object.class.name
+  %ul.activities
+    -for activity in @activities
+      - activity_class = 'bullet_green' if activity.verb == 'accepted' or activity.verb == 'verified'
+      - activity_class = 'bullet_star' if activity.verb == 'created'
+      - activity_class = 'bullet_go' if activity.verb == 'closed'
+      %li{:class=>activity_class}
+        =link_to activity.user.login , user_path(activity.user)
+        =activity.verb
+        =activity.object.class.name
         %div.time
-          = news.time.to_s(:short)
+          = activity.time.to_s(:short)
 %br
 %br
 = link_to 'Back', bills_path

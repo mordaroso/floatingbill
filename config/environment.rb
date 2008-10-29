@@ -67,15 +67,15 @@ Rails::Initializer.run do |config|
 
 end
 
-if false
-require 'scruffy'
-class FloatingBillTheme < Scruffy::Themes::Base
-  def initialize
-    super({
-      :background => ['#649454', '#c2d197'],
-      :marker => '#333333',
-      :colors => %w(#6886B4 #FDD84E #72AE6E #D1695E #8A6EAF #EFAA43 white)
-    })
+if true
+  require 'scruffy'
+  class FloatingBillTheme < Scruffy::Themes::Base
+    def initialize
+      super({
+        :background => ['#649454', '#c2d197'],
+        :marker => '#333333',
+        :colors => %w(#6886B4 #FDD84E #72AE6E #D1695E #8A6EAF #EFAA43 white)
+      })
+    end
   end
-end
 end

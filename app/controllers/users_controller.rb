@@ -9,8 +9,8 @@ class UsersController < ApplicationController
   end
 
   def dashboard
-    @news = News.get_all_by_user(current_user)
-    @news= @news[-5,5] if @news.length > 5
+    @activities = Activities.get_all_by_user(current_user)
+    @activities= @activities[-5,5] if @activities.length > 5
     respond_to do |format|
       format.html # dashboard.html.haml
     end
@@ -27,6 +27,7 @@ class UsersController < ApplicationController
 
   def feed
     @user = User.find(params[:id])
+    @activities = Activities.get_all_by_user(@user) unless @user.rss_hash == params[:rss_hash]
     respond_to do |format|
       format.rss do # show.rss.builder
         redirect_back_or_default('/') unless @user.rss_hash == params[:rss_hash]
