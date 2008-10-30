@@ -225,6 +225,7 @@ ul.bills {
   margin: 0px;
   padding: 0px;
   list-style: none; }
+
   ul.bills li {
     height: 25px; }
     ul.bills li .bill_name {

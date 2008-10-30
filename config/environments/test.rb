@@ -21,4 +21,4 @@ config.action_controller.allow_forgery_protection    = false
 # ActionMailer::Base.deliveries array.
 config.action_mailer.delivery_method = :test
 
-config.active_record.observers = :user_observer, :bill_observer, :transfer_observer
+config.active_record.observers = :user_observer, :payment_observer, :transfer_observer

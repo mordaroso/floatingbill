@@ -21,7 +21,7 @@ config.action_view.cache_template_loading            = true
 # Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
 
-config.active_record.observers = :user_observer, :bill_observer, :transfer_observer
+config.active_record.observers = :user_observer, :payment_observer, :transfer_observer
 
 config.action_mailer.delivery_method = :smtp
 
@@ -33,4 +33,3 @@ config.action_mailer.smtp_settings = {
   :user_name => 'web15p1' ,
   :password  => "sudoasli"
 }
-

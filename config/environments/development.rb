@@ -24,4 +24,4 @@ config.action_mailer.delivery_method = :test
 # Don't care if the mailer can't send
 # config.action_mailer.raise_delivery_errors = false
 
-config.active_record.observers = :user_observer, :bill_observer, :transfer_observer
+config.active_record.observers = :user_observer, :payment_observer, :transfer_observer
