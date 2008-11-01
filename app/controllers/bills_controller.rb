@@ -8,7 +8,7 @@ class BillsController < ApplicationController
   # GET /bills.xml
   def index
     @open_bills = Bill.by_user_id(current_user.id).open
-    @closed_bills = Bill.by_user_id(current_user.id).closed
+    @closed_bills = Bill.by_user_id(current_user.id).closed.reverse
 
     respond_to do |format|
       format.html # index.html.erb
