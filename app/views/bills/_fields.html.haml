@@ -1,46 +1,58 @@
-%p
-  = f.label :category_name, 'Category'
-  %br
-  = f.text_field :category_name
-  #bill_category_name_auto_complete.auto_complete
-  = auto_complete_field :bill_category_name, :url=>{:controller=>'categories', :action=>'autocomplete'}
-%p
-  = f.label :name
-  %br
-  = f.text_field :name
+#bill_form.form
+  %ul
+    %li.category.top_icon
+      = f.label :category_name, 'Category'
+      %br
+      = f.text_field :category_name
+      #bill_category_name_auto_complete.auto_complete
+      = auto_complete_field :bill_category_name, :url=>{:controller=>'categories', :action=>'autocomplete'}
 
-%p
-  = f.label :description
-  %br
-  = f.text_area :description
+    %li.no_icon
+      = f.label :name
+      %br
+      = f.text_field :name
 
-%p
-  = f.label :amount
-  %br
-  = f.text_field :amount
-  = currency_field(f, :currency, current_user.default_currency)
+    %li.money.top_icon
+      = f.label :amount
+      %br
+      = f.text_field :amount
+      = currency_field(f, :currency, current_user.default_currency)
 
-#select_payer
-  = f.label :payers
-  %br
-  = text_field_tag 'payer'
-  #payer_auto_complete.auto_complete
-  = auto_complete_field :payer, :url=>{:action=>'get_payers'}, :after_update_element => 'add_element'
+    %li.user.top_icon
+      = f.label :payers
+      %br
+      = text_field_tag 'payer'
+      #payer_auto_complete.auto_complete
+      = auto_complete_field :payer, :url=>{:action=>'get_payers'}, :after_update_element => 'add_element'
 
-  %br
-  %br
-  %ul#payers.payers
-    - unless @bill.group_ids.blank?
-      - for group_id in @bill.group_ids
-        %li.group
-          %input{ :type=>'hidden', :name=>'bill[group_ids][]', :value=> group_id}
-          = Group.find(group_id).name
-          %a{ :href=>'javascript:void(0)', :onclick=>'remove_payer(this)'}
-            x
-    - unless @bill.user_ids.blank?
-      - for user_id in @bill.user_ids
-        %li.user
-          %input{ :type=>'hidden', :name=>'bill[user_ids][]', :value=> user_id}
-          = User.find(user_id).login
-          %a{ :href=>'javascript:void(0)', :onclick=>'remove_payer(this)'}
-            x
+      %br
+      %br
+      %ul#payers.payers
+        - unless @bill.group_ids.blank?
+          - for group_id in @bill.group_ids
+            %li.group
+              %input{ :type=>'hidden', :name=>'bill[group_ids][]', :value=> group_id}
+              = Group.find(group_id).name
+              %a{ :href=>'javascript:void(0)', :onclick=>'remove_payer(this)'}
+                x
+        - unless @bill.user_ids.blank?
+          - for user_id in @bill.user_ids
+            %li.user
+              %input{ :type=>'hidden', :name=>'bill[user_ids][]', :value=> user_id}
+              = User.find(user_id).login
+              %a{ :href=>'javascript:void(0)', :onclick=>'remove_payer(this)'}
+                x
+
+  #show_additions.add.link.darker
+    show additional fields
+  #additions{:style=> 'display:none'}
+    %ul
+      %li.no_icon
+        = f.label :description
+        %br
+        = f.text_area :description
+
+      %li.attachment.top_icon
+        = f.label :attachment
+        %br
+        = f.file_field :attachment

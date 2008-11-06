@@ -28,6 +28,13 @@
   :padding 0px
   :list-style none
 
+=box
+  :border= 2px solid !middle_green
+
+  .title
+    :background-color= !middle_green
+    :padding-left 5px
+
 body
   :background-color= !body_bg_color
   :background-image url('/images/bg.png')
@@ -78,6 +85,9 @@ hr
 #errorExplanation ul li
   :font-size 12px
   :list-style square
+
+.top_icon
+  :background-position 0 2px !important
 
 .no_icon
   :padding-left 20px
@@ -163,6 +173,14 @@ hr
   +with_icon
   :background-image url('/images/icons/delete.png')
 
+.attachment
+  +with_icon
+  :background-image url('/images/icons/attach.png')
+
+.add
+  +with_icon
+  :background-image url('/images/icons/add.png')
+
 .total
   :padding-left 10px
   :border-top 1px solid
@@ -185,6 +203,10 @@ hr
 .money
   +with_icon
   :background-image url('/images/icons/money.png')
+
+.category
+  +with_icon
+  :background-image url('/images/icons/folder_table.png')
 
 .link
   :cursor pointer
@@ -359,19 +381,27 @@ ul.payers
     +no_list
 
 #activities
-  :border= 2px solid !middle_green
+  +box
   :margin-left 10px
   :float right
   :width 200px
 
-  .title
-    :background-color= !middle_green
-    :padding-left 5px
   .feed
     :float right
 .activities
   :font-size= !font_size-2
   +no_list
   li
-    :background-position 0 2px
     :padding-right 5px
+
+.form
+  ul
+    +no_list
+    li
+      :padding-bottom 10px
+
+#additions
+  ul
+    +no_list
+    li
+      :background-position 0 2px

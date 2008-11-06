@@ -25,9 +25,12 @@ class Bill < ActiveRecord::Base
   before_save :set_payments
   before_destroy :reset_payments
 
+  has_attached_file :attachment
+
+
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :amount, :name, :category_name, :user_ids, :group_ids, :currency, :description
+  attr_accessible :amount, :name, :category_name, :user_ids, :group_ids, :currency, :description, :attachment
 
   def validate
     #check amount

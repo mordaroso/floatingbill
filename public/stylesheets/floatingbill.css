@@ -1,3 +1,7 @@
+.title {
+  background-color: #9cb16a;
+  padding-left: 5px; }
+
 body {
   background-color: #ffffff;
   background-image: url('/images/bg.png');
@@ -48,6 +52,9 @@ hr {
 #errorExplanation ul li {
   font-size: 12px;
   list-style: square; }
+
+.top_icon {
+  background-position: 0 2px !important; }
 
 .no_icon {
   padding-left: 20px; }
@@ -172,6 +179,18 @@ hr {
   background-position: 0 50%;
   background-image: url('/images/icons/delete.png'); }
 
+.attachment {
+  background-repeat: no-repeat;
+  padding-left: 20px !important;
+  background-position: 0 50%;
+  background-image: url('/images/icons/attach.png'); }
+
+.add {
+  background-repeat: no-repeat;
+  padding-left: 20px !important;
+  background-position: 0 50%;
+  background-image: url('/images/icons/add.png'); }
+
 .total {
   padding-left: 10px;
   border-top: 1px solid;
@@ -199,6 +218,12 @@ hr {
   background-position: 0 50%;
   background-image: url('/images/icons/money.png'); }
 
+.category {
+  background-repeat: no-repeat;
+  padding-left: 20px !important;
+  background-position: 0 50%;
+  background-image: url('/images/icons/folder_table.png'); }
+
 .link {
   cursor: pointer;
   color: #890000; }
@@ -225,7 +250,6 @@ ul.bills {
   margin: 0px;
   padding: 0px;
   list-style: none; }
-
   ul.bills li {
     height: 25px; }
     ul.bills li .bill_name {
@@ -406,9 +430,6 @@ ul.payers {
   margin-left: 10px;
   float: right;
   width: 200px; }
-  #activities .title {
-    background-color: #9cb16a;
-    padding-left: 5px; }
   #activities .feed {
     float: right; }
 
@@ -418,5 +439,18 @@ ul.payers {
   padding: 0px;
   list-style: none; }
   .activities li {
-    background-position: 0 2px;
     padding-right: 5px; }
+
+.form ul {
+  margin: 0px;
+  padding: 0px;
+  list-style: none; }
+  .form ul li {
+    padding-bottom: 10px; }
+
+#additions ul {
+  margin: 0px;
+  padding: 0px;
+  list-style: none; }
+  #additions ul li {
+    background-position: 0 2px; }

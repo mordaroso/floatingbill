@@ -51,4 +51,10 @@ Event.observe(window, 'load', function() {
             Effect.BlindDown("logs");
         });
     }
+    if($("show_additions")) {
+        $("show_additions").observe('click', function() {
+            $("show_additions").hide();
+            Effect.BlindDown("additions");
+        });
+    }
 });

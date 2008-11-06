@@ -16,6 +16,11 @@ at
     =simple_format(h @bill.description)
   %hr
 
+- if @bill.attachment.file?
+  %div.attachment
+    = link_to @bill.attachment.original_filename, @bill.attachment.url
+  %hr
+
 #payers
   %h2
     Payers
