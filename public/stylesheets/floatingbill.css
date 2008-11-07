@@ -283,7 +283,7 @@ ul.depts, ul.credits {
     background-position: 0 50%;
     background-image: url('/images/icons/money.png'); }
 
-table#users {
+.no_spacing {
   border-spacing: 0px; }
 
 #container {

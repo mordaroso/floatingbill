@@ -5,8 +5,8 @@ class TransfersController < ApplicationController
   # GET /transfers
   # GET /transfers.xml
   def index
-    @open_transfers = Transfer.find_all_by_user_id(current_user.id).open
-    @closed_transfers = Transfer.find_all_by_user_id(current_user.id).closed.reverse
+    @open_transfers = Transfer.by_user_id(current_user.id).open
+    @closed_transfers = Transfer.by_user_id(current_user.id).closed.reverse
 
     respond_to do |format|
       format.html # index.html.erb

@@ -11,7 +11,6 @@ class Activities
   end
 
   #OPTIMIZE add limit
-  #FIXME something is wrong here.
   def self.get_all_by_user(user)
     activities = Array.new
 
@@ -21,7 +20,7 @@ class Activities
     end
 
     #transfer
-    for transfer in Transfer.find_all_by_user_id(user.id)
+    for transfer in Transfer.by_user_id(user.id)
       activities += get_all_by_transfer(transfer, :user => user)
     end
 

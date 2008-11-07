@@ -11,7 +11,7 @@ class Transfer < ActiveRecord::Base
 
   named_scope :open, :conditions => { :verified_at => nil }
   named_scope :closed, :conditions => [ "transfers.verified_at is not null" ]
-  named_scope :find_all_by_user_id, lambda { |*args| {:conditions => ["creditor_id = :user_id or debitor_id = :user_id" , {:user_id => args.first}] } }
+  named_scope :by_user_id, lambda { |*args| {:conditions => ["creditor_id = :user_id or debitor_id = :user_id" , {:user_id => args.first}] } }
 
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.

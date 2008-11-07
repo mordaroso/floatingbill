@@ -4,13 +4,12 @@
 - if @user.id == current_user.id
   =link_to 'Change Settings', edit_user_path(@user)
 
+- if @user.groups.size > 0
   %hr
+  %h2
+    Memberships
+  = render :partial => '/groups/group', :collection => @user.groups
 
-%h2
-  Memberships
-= render :partial => '/groups/group', :collection => @user.groups
-
-%br
 - if @user.id == current_user.id
   %hr
   %h2
@@ -27,3 +26,39 @@
     Overall
   = image_tag "/users/"+@user.id.to_s+"/statistics"
   %br
+- else
+  - @user.payments_and_transfers_by_user(current_user).each do |currency, list|
+    %hr
+    %h2
+      Interaction between you and
+      = @user.login
+      in
+      = currency_sign currency
+    %table.no_spacing
+      - end_amount = 0
+      - for element in list
+        - if element.class.class_name == "Payment"
+          - name = element.bill.name
+          - sign = element.bill.creator == current_user ? "+" : "-"
+        - else
+          - name = "Transfer"
+          - sign = element.creditor == current_user ? "-" : "+"
+        - if sign == "+"
+          - end_amount += element.amount
+        - else
+          - end_amount -= element.amount
+        %tr{:class=>toggling_class("darker")}
+          %td{:class => (element.class.class_name == "Payment" ? "bill" : "transfer")}
+            = link_to name, generate_url_by_object(element)
+          %td.right
+            = sign
+            = element.amount
+            = currency_sign currency
+      %tr
+        %td
+          %strong
+            total
+        %td.total.right
+          %strong
+            = end_amount
+            = currency_sign currency

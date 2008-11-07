@@ -24,7 +24,7 @@ at
 #payers
   %h2
     Payers
-  %table#users
+  %table.no_spacing
     - for payment in @bill.payments
       %tr{:class=>toggling_class("darker")}
         %td{:class => (payment.accepted? ? "tick" : "no_icon")}

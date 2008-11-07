@@ -14,9 +14,11 @@ module ApplicationHelper
   end
 
   def generate_url_by_object(object)
-    case object.class.name
+    case object.class.class_name
     when 'Bill'
       bill_url(object)
+    when 'Payment'
+      bill_url(object.bill)
     when 'Transfer'
       transfer_url(object)
     end

@@ -87,11 +87,36 @@ class User < ActiveRecord::Base
     costs
   end
 
+  def payments_and_transfers_by_user(user)
+    hash = Hash.new
+
+    #payments
+    payments = Payment.by_user_id(user.id).by_user_id(self.id).closed
+    for payment in payments
+      hash[payment.bill.currency] = Array.new if hash[payment.bill.currency].blank?
+      hash[payment.bill.currency] << payment
+    end
+
+    # transfers
+    transfers = Transfer.by_user_id(user.id).by_user_id(self.id).closed
+    for transfer in transfers
+      hash[transfer.currency] = Array.new if hash[transfer.currency].blank?
+      hash[transfer.currency] << transfer
+    end
+
+    # sort by created_at date
+    hash.each do |key, value|
+      hash[key] = value.sort_by {|i| i.created_at}
+    end
+
+    hash
+  end
+
+  protected
   def make_rss_hash
     self.rss_hash = self.class.make_token
   end
 
-  protected
 
   def make_activation_code
     self.activation_code = self.class.make_token

@@ -5,6 +5,7 @@ class Payment < ActiveRecord::Base
   named_scope :open, :conditions => { :accepted_at => nil }
   named_scope :closed, :conditions => ["payments.accepted_at is not null" ]
   named_scope :between, lambda { |*args| {:conditions => ['payments.created_at between ? and ?', args.first, args.last] } }
+  named_scope :by_user_id, lambda { |*args| {:include => :bill, :conditions => ['payments.user_id = ? or bills.creator_id = ?', args.first, args.first]} }
 
   before_destroy :reset_debt
 
