@@ -1,7 +1,7 @@
 class TransfersController < ApplicationController
   before_filter :login_required
   before_filter :permission_required, :except => [:index, :new, :create]
-
+  protect_from_forgery :except => [:verify]
   # GET /transfers
   # GET /transfers.xml
   def index
@@ -29,6 +29,7 @@ class TransfersController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
+      format.iphone { render :layout => false }
       format.xml  { render :xml => @transfer }
     end
   end
@@ -40,6 +41,7 @@ class TransfersController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
+      format.iphone { render :layout => false }
       format.xml  { render :xml => @transfer }
     end
   end
@@ -54,9 +56,11 @@ class TransfersController < ApplicationController
       if @transfer.save
         flash[:notice] = 'Transfer was successfully created.'
         format.html { redirect_to(@transfer) }
+        format.iphone { redirect_to(@transfer) }
         format.xml  { render :xml => @transfer, :status => :created, :location => @transfer }
       else
         format.html { render :action => "new" }
+        format.iphone { render :action => "new", :layout => false }
         format.xml  { render :xml => @transfer.errors, :status => :unprocessable_entity }
       end
     end

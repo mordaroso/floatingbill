@@ -2,7 +2,7 @@ class BillsController < ApplicationController
   before_filter :login_required
   before_filter :member_required, :only => [:show, :accept]
   before_filter :creator_required, :only => [:destroy]
-  protect_from_forgery :except => [:get_payers]
+  protect_from_forgery :except => [:get_payers, :accept]
 
   # GET /bills
   # GET /bills.xml
@@ -24,6 +24,7 @@ class BillsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
+      format.iphone { render :layout => false }
       format.xml  { render :xml => @bill }
     end
   end
@@ -32,9 +33,11 @@ class BillsController < ApplicationController
   # GET /bills/new.xml
   def new
     @bill = Bill.new
+    @bill.user_ids = [current_user.id]
 
     respond_to do |format|
       format.html # new.html.erb
+      format.iphone { render :layout => false }
       format.xml  { render :xml => @bill }
     end
   end
@@ -57,9 +60,11 @@ class BillsController < ApplicationController
       if @bill.save
         flash[:notice] = 'bill was successfully created.'
         format.html { redirect_to(@bill) }
+        format.iphone { redirect_to(@bill) }
         format.xml  { render :xml => @bill, :status => :created, :location => @bill }
       else
         format.html { render :action => "new" }
+        format.iphone { render :action => "new", :layout => false}
         format.xml  { render :xml => @bill.errors, :status => :unprocessable_entity }
       end
     end
@@ -82,6 +87,8 @@ class BillsController < ApplicationController
       @users = User.find_by_login_like(params[:payer])
       @groups = Group.find_by_name_like(params[:payer])
     end
+    request.format = :html
+    render :layout => false
   end
 
   private

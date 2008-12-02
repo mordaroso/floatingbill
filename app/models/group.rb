@@ -16,7 +16,10 @@ class Group < ActiveRecord::Base
 
   def remove_admin(user)
     membership = Membership.find_by_user_id_and_group_id(user.id, id)
-    membership.admin = false
+    if membership.blank? || (membership.admin && admins.count == 1)
+      return false
+    end
+    membership.admin = nil
     membership.save
   end
 
@@ -27,7 +30,6 @@ class Group < ActiveRecord::Base
     else
       members.delete(user)
       save
-      true
     end
   end
 

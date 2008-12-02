@@ -1,0 +1,20 @@
+%ul{:title=> 'Dashboard', :selected=> 'true'}
+  %li.group Open payments
+  - if current_user.payments.open.count > 0
+    - for payment in current_user.payments.open
+      %li
+        %a{:href => bill_path(payment.bill)}
+          = payment.bill.creator.login
+          requests
+          = payment.amount
+          = currency_sign payment.bill.currency
+
+  %li.group Open transfers
+  - if current_user.transfers_to.open.count > 0
+    - for transfer in current_user.transfers_to.open
+      %li
+        %a{:href => transfer_path(transfer)}
+          = transfer.debitor.login
+          has sent you
+          = transfer.amount
+          = currency_sign transfer.currency

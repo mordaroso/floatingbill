@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     @activities= @activities[-5,5] if @activities.length > 5
     respond_to do |format|
       format.html # dashboard.html.haml
+      format.iphone{render :layout => false} # dashboard.iphone.haml
     end
   end
 

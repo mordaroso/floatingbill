@@ -1,0 +1,19 @@
+%ul{:title=> "Bill #{h @bill.name}", :selected=> 'true'}
+  %li
+    created by
+    = @bill.creator.login
+  %li.group Category
+  %li= @bill.category.name
+  %li.group Payers:
+  - for payment in @bill.payments
+    %li
+      = payment.payer.login
+      = payment.amount
+      = currency_sign payment.bill.currency
+      - if payment.payer == current_user && !payment.accepted?
+        %a{:href => accept_bill_path(@bill), :target => '_post'}
+          accept
+  %li.group Total:
+  %li
+    = @bill.amount
+    = currency_sign @bill.currency

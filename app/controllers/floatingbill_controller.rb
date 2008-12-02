@@ -1,7 +1,10 @@
 class FloatingbillController < ApplicationController
   def index
     if logged_in?
-      redirect_to(dashboard_user_path(current_user))
+      respond_to do |format|
+        format.html {redirect_to(dashboard_user_path(current_user))}
+        format.iphone { render :action => :home }
+      end
     end
   end
 
@@ -19,4 +22,5 @@ class FloatingbillController < ApplicationController
 
   def contact
   end
+
 end

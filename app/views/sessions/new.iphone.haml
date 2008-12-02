@@ -1,0 +1,17 @@
+- form_tag(session_path, :class => 'panel', :selected => 'true') do
+  %h2 Welcome to The Floating Bill
+  %fieldset
+    .row
+      = label_tag 'login'
+      = text_field_tag 'login', @login
+    .row
+      = label_tag 'password'
+      = password_field_tag 'password', nil
+  %a.whiteButton{:href=>'#', :type=>'submit', :target=>'_self'}
+    Log in
+  %h2
+    This is the iPhone version and has some limitations.
+    %br
+    Visit the
+    = link_to 'normal page', 'http://floatingbill.com', :target => 'self'
+    if you want to use all features.

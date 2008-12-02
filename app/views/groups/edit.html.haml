@@ -1,6 +1,7 @@
 %h1
   Editing group
 
+%h2 General
 - form_for(@group) do |f|
   = f.error_messages
 
@@ -12,11 +13,32 @@
   %p
     = f.submit "Update"
 
+%hr
+%h2 Users
+%ul.no_list
+  - for member in @group.members
+    %li.user
+      = link_to member.login, user_path(member)
+      |
+      - if is_admin :user => member
+        = link_to 'remove admin', unset_admin_group_url(@group, :user_id => member.id), :method => :post
+      - else
+        = link_to 'set as admin', set_admin_group_url(@group, :user_id => member.id), :method => :post
+      - unless member == current_user
+        |
+        = link_to 'kick', remove_group_url(@group, :user_id => member.id), :confirm => 'Are you sure?', :method => :post
 %br
+#add_user.user_add
+  - form_for :user, :url => { :action => :add } do |form|
+    = form.text_field :login
+    #user_login_auto_complete.auto_complete
+    = auto_complete_field :user_login, :url=>{:controller=>'users', :action=>'autocomplete'}
+    = form.submit "Add user"
 
+%hr
 =link_to 'Delete this group', @group, :confirm => 'Are you sure?', :method => :delete
-%br
-%br
+
+%hr
 = link_to 'Show', @group
 |
 = link_to 'Back', groups_path

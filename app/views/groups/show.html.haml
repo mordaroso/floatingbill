@@ -9,14 +9,6 @@
       = link_to member.login, user_path(member)
       - if is_admin :user => member
         (A)
-- if is_admin
-  %br
-  #add_user.user_add
-    - form_for :user, :url => { :action => :add } do |form|
-      = form.text_field :login
-      #user_login_auto_complete.auto_complete
-      = auto_complete_field :user_login, :url=>{:controller=>'users', :action=>'autocomplete'}
-      = form.submit "Add user"
 %br
 
 - if is_member

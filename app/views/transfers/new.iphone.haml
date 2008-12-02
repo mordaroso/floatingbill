@@ -1,0 +1,19 @@
+- form_for(@transfer, :class => 'panel', :selected => 'true', :title=> 'New transfer') do |f|
+  = f.error_messages
+  %fieldset
+    .row
+      = f.label :creditor_name, 'Send to:'
+      = f.text_field :creditor_name
+      #transfer_creditor_name_auto_complete.auto_complete
+      = auto_complete_field :transfer_creditor_name, :url=>{:controller=>'users', :action=>'autocomplete'}
+
+    .row
+      = f.label :amount
+      = f.text_field :amount
+
+    .row
+      = f.label :currency
+      = currency_field(f, :currency, current_user.default_currency)
+
+  %a.whiteButton{:href=>'#', :type=>'submit'}
+    Create

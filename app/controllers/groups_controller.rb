@@ -1,5 +1,4 @@
 class GroupsController < ApplicationController
-  #TODO remove users from group
   #TODO set users as admin
   before_filter :login_required
   before_filter :member_required, :except => [:show, :index, :new, :create]
@@ -83,7 +82,48 @@ class GroupsController < ApplicationController
     else
       flash[:error] = "User '#{params[:user][:login]}' not found or is already in group!"
     end
-    redirect_to(@group)
+    redirect_to edit_group_path(@group)
+  end
+
+  # POST /groups/1/remove
+  def remove
+    @group = Group.find(params[:id])
+    user = User.find(params[:user_id])
+    unless user.blank? or !@group.members.include? user
+      @group.remove_member user
+      @group.save!
+      flash[:notice] = user.login + ' got kicked out of the group.'
+    else
+      flash[:error] = "User not found or is not a member of this group!"
+    end
+    redirect_to edit_group_path(@group)
+  end
+
+  #POST
+  def set_admin
+    @group = Group.find(params[:id])
+    user = User.find(params[:user_id])
+    unless user.blank? or !@group.members.include? user
+      @group.add_admin(user)
+      @group.save!
+    end
+    redirect_to edit_group_path(@group)
+  end
+
+  # POST
+  def unset_admin
+    @group = Group.find(params[:id])
+    user = User.find(params[:user_id])
+    unless user.blank? or !@group.members.include? user
+      if @group.remove_admin(user)
+        flash[:notice] = "#{user.login} is not an admin anymore."
+      else
+        flash[:error] = 'You are the last admin!'
+      end
+    else
+      flash[:error] = "User not found or is not a member of this group!"
+    end
+    redirect_to edit_group_path(@group)
   end
 
   # PUT /groups/1

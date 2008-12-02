@@ -1,0 +1,20 @@
+%ul{:title=> "Transfer ##{@transfer.id}", :selected=> 'true'}
+  %li
+    = @transfer.debitor.login
+    has sent
+    = @transfer.amount
+    = currency_sign @transfer.currency
+    to
+    = @transfer.creditor.login
+
+  %li
+    - if @transfer.verified?
+      Verified on
+      = @transfer.verified_at.to_s
+    - else
+      not verified
+
+  - if @transfer.creditor == current_user && !@transfer.verified?
+    %li
+      %a{:href => verify_transfer_path(@transfer), :target => '_post'}
+        verify

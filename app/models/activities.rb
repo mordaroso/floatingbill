@@ -2,6 +2,8 @@ class Activities
 
   attr_accessor :object, :verb, :time, :user, :text
 
+  NO_DESCRIPTION = "Visit http://floatingbill.com for more information"
+
   def initialize(object, verb, time, user, text)
     self.object = object
     self.verb = verb
@@ -32,19 +34,19 @@ class Activities
 
     #created
     if options[:user].blank? or bill.creator != options[:user]
-      activities << Activities.new(bill, 'created', bill.created_at, bill.creator, bill.description)
+      activities << Activities.new(bill, 'created', bill.created_at, bill.creator, bill.description || NO_DESCRIPTION)
     end
 
     # accepted
     for payment in bill.payments.closed
       if (options[:user].blank? or payment.payer != options[:user]) and bill.creator != payment.payer
-        activities << Activities.new(bill, 'accepted', payment.accepted_at, payment.payer, bill.description)
+        activities << Activities.new(bill, 'accepted', payment.accepted_at, payment.payer, bill.description || NO_DESCRIPTION)
       end
     end
 
     # closed
     if bill.closed? and (options[:user].blank? or bill.creator != options[:user])
-      activities << Activities.new(bill, 'closed', bill.closed_at, bill.creator, bill.description)
+      activities << Activities.new(bill, 'closed', bill.closed_at, bill.creator, bill.description || NO_DESCRIPTION)
     end
 
     activities.sort_by {|n| n.time}
@@ -55,12 +57,13 @@ class Activities
 
     #created
     if options[:user].blank? or transfer.debitor != options[:user]
-      activities << Activities.new(transfer, 'created', transfer.created_at, transfer.debitor, '')
+
+      activities << Activities.new(transfer, 'created', transfer.created_at, transfer.debitor, NO_DESCRIPTION)
     end
 
     #verified
     if transfer.verified? and (options[:user].blank? or transfer.debitor == options[:user])
-      activities << Activities.new(transfer, 'verified', transfer.verified_at, transfer.creditor, '')
+      activities << Activities.new(transfer, 'verified', transfer.verified_at, transfer.creditor, NO_DESCRIPTION)
     end
 
     activities.sort_by {|n| n.time}

@@ -6,7 +6,7 @@
     %meta{:name => 'description', :content => meta_description}
     %meta{:name => 'keywords', :content => meta_keywords}
     %title The Floating Bill
-    = stylesheet_link_tag 'floatingbill'
+    = stylesheet_link_tag 'overall', 'normal'
     - if logged_in?
       = auto_discovery_link_tag(:rss, rss_url(current_user))
   %body
@@ -22,4 +22,4 @@
           = flash[:notice]
       #content= yield
       #footer= render 'layouts/_footer'
-      =# user_voice_widget
+      = user_voice_widget

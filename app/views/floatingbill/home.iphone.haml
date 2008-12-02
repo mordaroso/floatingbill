@@ -1,0 +1,9 @@
+%ul{:title=> 'Home', :selected=> 'true'}
+  %li
+    = link_to 'Dashboard', dashboard_user_path(current_user)
+  %li
+    = link_to 'New Bill', new_bill_path
+  %li
+    = link_to 'New Transfer', new_transfer_path
+  %li
+    = link_to 'Logout', logout_path, :method => :delete, :target => '_self'
