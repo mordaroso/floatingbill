@@ -26,10 +26,10 @@ config.active_record.observers = :user_observer, :payment_observer, :transfer_ob
 config.action_mailer.delivery_method = :smtp
 
 config.action_mailer.smtp_settings = {
-  :address => "mail.mordaroso.net" ,
+  :address => "127.0.0.1" ,
   :port       => 25,
-  :domain => "mail.mordaroso.net" ,
+  :domain => "mail.fabiokuhn.com" ,
   :authentication => :login,
-  :user_name => 'web15p1' ,
-  :password  => "sudoasli"
+  :user_name => 'info@floatingbill.com' ,
+  :password  => "sudomail1337"
 }
