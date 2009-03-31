@@ -32,12 +32,12 @@ Capistrano::Configuration.instance(:must_exist).load do
 
     desc "start BackgrounDRb"
     task :start, :role => :app do
-      run "#{current_path}/script/backgroundrb start"
+      run "/opt/ruby-enterprise/bin/ruby #{current_path}/script/backgroundrb start -e production"
     end
 
     desc "stop BackgrounDRb"
     task :stop, :role => :app do
-      run "#{current_path}/script/backgroundrb stop"
+      run "#{current_path}/script/backgroundrb stop -e production"
     end
   end
 

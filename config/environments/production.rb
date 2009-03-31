@@ -26,9 +26,9 @@ config.active_record.observers = :user_observer, :payment_observer, :transfer_ob
 config.action_mailer.delivery_method = :smtp
 
 config.action_mailer.smtp_settings = {
-  :address => "127.0.0.1" ,
+  :address => "mail.floatingbill.com" ,
   :port       => 25,
-  :domain => "mail.fabiokuhn.com" ,
+  :domain => "mail.floatingbill.com" ,
   :authentication => :login,
   :user_name => 'info@floatingbill.com' ,
   :password  => "sudomail1337"
