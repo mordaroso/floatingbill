@@ -23,12 +23,12 @@ config.action_view.cache_template_loading            = true
 
 config.active_record.observers = :user_observer, :payment_observer, :transfer_observer
 
-config.action_mailer.delivery_method = :smtp
+config.action_mailer.delivery_method = :sendmail
 
 config.action_mailer.smtp_settings = {
-  :address => "mail.floatingbill.com" ,
+  :address => "mail.floatingbill.com",
   :port       => 25,
-  :domain => "mail.floatingbill.com" ,
+  :domain => "floatingbill.com",
   :authentication => :login,
   :user_name => 'info@floatingbill.com' ,
   :password  => "sudomail1337"
