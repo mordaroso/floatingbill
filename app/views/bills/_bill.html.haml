@@ -4,5 +4,8 @@
       = link_to '', bill, :confirm => 'Are you sure?', :method => :delete, :class => 'bullet_delete'
   %span.bill_name
     = link_to h(bill.name), bill
+  %span.bill_amount
+    = bill.payments.first.amount
+    = currency_sign bill.currency
   %span.time.bill_time
     =bill.created_at.to_s :short

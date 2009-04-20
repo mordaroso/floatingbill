@@ -91,15 +91,24 @@ ul.bills {
   ul.bills li {
     height: 25px; }
     ul.bills li .bill_name {
-      width: 600px;
+      width: 450px;
       float: left;
       overflow: hidden; }
+    ul.bills li .bill_amount {
+      width: 150px;
+      float: left;
+      overflow: hidden;
+      text-align: right;
+      padding-left: 3px; }
     ul.bills li .bill_time {
       vertical-align: middle;
       padding-left: 15px;
       padding-right: 15px; }
     ul.bills li .bill_delete {
       float: right; }
+
+td {
+  padding: 5px; }
 
 ul.payments {
   margin: 0px;

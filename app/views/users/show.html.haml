@@ -34,7 +34,7 @@
       = @user.login
       in
       = currency_sign currency
-    %table.no_spacing
+    %table#interaction.no_spacing
       - end_amount = 0
       - for element in list
         - if element.class.class_name == "Payment"
@@ -54,6 +54,8 @@
             = sign
             = element.amount
             = currency_sign currency
+          %td.time
+            = element.created_at.to_s :short
       %tr
         %td
           %strong
@@ -62,3 +64,4 @@
           %strong
             = end_amount
             = currency_sign currency
+        %td== &nbsp;
