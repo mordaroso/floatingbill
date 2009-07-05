@@ -83,6 +83,8 @@ ul.transfers {
     height: 25px; }
     ul.transfers li .transfer_time {
       float: right; }
+    ul.transfers li .transfer_delete {
+      float: right; }
 
 ul.bills {
   margin: 0px;

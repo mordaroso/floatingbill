@@ -13,6 +13,8 @@ class Transfer < ActiveRecord::Base
   named_scope :closed, :conditions => [ "transfers.verified_at is not null" ]
   named_scope :by_user_id, lambda { |*args| {:conditions => ["creditor_id = :user_id or debitor_id = :user_id" , {:user_id => args.first}] } }
 
+  before_destroy :reset_debt
+
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
   attr_accessible :amount, :creditor_name, :currency
@@ -41,5 +43,11 @@ class Transfer < ActiveRecord::Base
 
   def creditor_name=(name)
     self.creditor = User.find_by_login(name)
+  end
+
+  def reset_debt
+    if self.verified?
+      Debt.save_with_params(:debitor => debitor, :creditor => creditor, :currency => currency, :amount => amount)
+    end
   end
 end

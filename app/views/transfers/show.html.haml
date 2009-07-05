@@ -19,5 +19,9 @@ to
     - if @transfer.creditor == current_user
       %span.verify
       = link_to 'verify this transfer', verify_transfer_path(@transfer), :method => 'post'
+
 %br
+- if @transfer.debitor == current_user
+  %div.bill_delete
+    = link_to 'delete this transfer', @transfer, :confirm => 'Are you sure?', :method => :delete, :class => 'delete'
 = link_to 'Back', transfers_path

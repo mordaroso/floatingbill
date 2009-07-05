@@ -1,4 +1,7 @@
 %li{:class=>toggling_class("darker")}
+  - if transfer.debitor == current_user
+    %span.transfer_delete
+      = link_to '', transfer, :confirm => 'Are you sure?', :method => :delete, :class => 'bullet_delete'
   %span.time.transfer_time
     =transfer.created_at.to_s :short
   %a{:href=>transfer_url(transfer)}
