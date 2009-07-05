@@ -67,4 +67,7 @@ at
           = activity.time.to_s(:short)
 %br
 %br
+- if @bill.creator == current_user
+  %div.bill_delete
+    = link_to 'delete this bill', @bill, :confirm => 'Are you sure?', :method => :delete, :class => 'delete'
 = link_to 'Back', bills_path

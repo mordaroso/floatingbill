@@ -71,6 +71,8 @@ Rails::Initializer.run do |config|
 
 end
 
+PICKLOCK='boat2.0float'
+
 ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
   :default => "%d %B %Y %H:%M",
   :time => '%H:%M:%S'

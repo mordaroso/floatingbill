@@ -91,15 +91,6 @@ ActiveRecord::Schema.define(:version => 20081106112400) do
     t.datetime "accepted_at"
   end
 
-  create_table "schedulers", :force => true do |t|
-    t.integer  "bill_id",    :limit => 11
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.string   "every"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "transfers", :force => true do |t|
     t.integer  "debitor_id",  :limit => 11
     t.integer  "creditor_id", :limit => 11
