@@ -26,20 +26,33 @@
         Nothing going on recently
 %h3
   Open payments
--if current_user.payments.open.count > 0
+-if @open_bills.count > 0
   %ul.payments
-    - for payment in current_user.payments.open
-      %li
-        = link_to payment.bill.creator.login, user_path(payment.bill.creator)
-        requests
-        = payment.amount
-        = currency_sign payment.bill.currency
-        for
-        = payment.bill.name
-        |
-        = link_to 'accept', accept_bill_path(payment.bill), :method => 'post'
-        |
-        = link_to 'show bill', bill_path(payment.bill)
+    - for bill in @open_bills
+      - unless bill.creator == current_user
+        %li
+          = link_to bill.creator.login, user_path(bill.creator)
+          requests
+          = bill.payments.first.amount
+          = currency_sign bill.currency
+          for
+          = bill.name
+          |
+          = link_to 'accept', accept_bill_path(payment.bill), :method => 'post'
+          |
+          = link_to 'show bill', bill_path(payment.bill)
+      -else
+        %li
+          - for payment in bill.payments.open
+            You request
+            = payment.amount
+            = currency_sign bill.currency
+            for
+            = bill.name
+            from
+            = link_to payment.payer.login, user_path(payment.payer)
+            |
+            = link_to 'show bill', bill_path(payment.bill)
 - else
   #no_payments
     No open payments
