@@ -6,10 +6,10 @@
     =link_to '', rss_url(current_user), :class => 'rss'
   %div.title
     recent activities
-    %span#activities_up.bullet_arrow_up.link{}
-    %span#activities_down.bullet_arrow_down.link{:style=>'display:none'}
+    %span#activities_up.bullet_arrow_up.link{:style=>'display:none'}
+    %span#activities_down.bullet_arrow_down.link
 
-  %ul#activities_list.activities
+  %ul#activities_list.activities{:style=>'display:none'}
     -unless @activities.blank?
       -for activity in @activities
         - news_class = 'bullet_green' if activity.verb == 'accepted' or activity.verb == 'verified'
