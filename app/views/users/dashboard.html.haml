@@ -65,7 +65,7 @@
   %ul.payments
     - for transfer in current_user.transfers_to.open
       %li
-        = link_to transfer.debitor.login, user_path(transfer.debitor.login)
+        = link_to transfer.debitor.login, user_path(transfer.debitor)
         has sent you
         = transfer.amount
         = currency_sign transfer.currency
