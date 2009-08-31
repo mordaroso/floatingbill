@@ -38,9 +38,9 @@
           for
           = bill.name
           |
-          = link_to 'accept', accept_bill_path(payment.bill), :method => 'post'
+          = link_to 'accept', accept_bill_path(bill), :method => 'post'
           |
-          = link_to 'show bill', bill_path(payment.bill)
+          = link_to 'show bill', bill_path(bill)
       -else
         %li
           - for payment in bill.payments.open

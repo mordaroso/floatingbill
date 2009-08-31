@@ -32,17 +32,17 @@ Capistrano::Configuration.instance(:must_exist).load do
 
     desc "start BackgrounDRb"
     task :start, :role => :app do
-      run "/opt/ruby-enterprise/bin/ruby #{current_path}/script/backgroundrb start -e production"
+      run "#{current_path}/script/backgroundrb start -e production"
     end
 
     desc "stop BackgrounDRb"
     task :stop, :role => :app do
-      run "/opt/ruby-enterprise/bin/ruby #{current_path}/script/backgroundrb stop -e production"
+      run "#{current_path}/script/backgroundrb stop -e production"
     end
   end
 
 after 'deploy:symlink', 'deploy:link_database'
-before 'deploy:restart', 'brb:stop'
+#before 'deploy:restart', 'brb:stop'
 after 'deploy:restart', 'brb:start'
 
 end
