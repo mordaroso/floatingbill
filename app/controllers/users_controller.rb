@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def dashboard
     @activities = Activities.get_all_by_user(current_user)
     @activities= @activities[-5,5] if @activities.length > 5
-    @open_bills = Bill.by_user_id(current_user.id).open
+    @open_bills = Bill.by_user_id(current_user.id).open.select(){|b| b.payments.by_user_id(current_user.id).open.count > 0}
     respond_to do |format|
       format.html # dashboard.html.haml
       format.iphone{render :layout => false} # dashboard.iphone.haml
