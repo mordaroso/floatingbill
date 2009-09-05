@@ -26,7 +26,7 @@
         Nothing going on recently
 %h3
   Open payments
--if @open_bills.count > 0
+-if @open_bills.size > 0
   %ul.payments
     - for bill in @open_bills
       - unless bill.creator == current_user
