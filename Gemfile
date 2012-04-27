@@ -7,7 +7,7 @@ gem "sass"
 gem "builder"
 gem "packet"
 gem "scruffy"
-gem "rmagick", '2.12.2',:require => 'rmagick'
+gem "rmagick", '2.12.2',:require => 'RMagick'
 
 group :development do
   # bundler requires these gems in development
