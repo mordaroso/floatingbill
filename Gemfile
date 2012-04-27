@@ -7,11 +7,12 @@ gem "sass"
 gem "builder"
 gem "packet"
 gem "scruffy"
-gem "rmagick", :require => 'rmagick'
+gem "rmagick", '2.12.2',:require => 'rmagick'
 
 group :development do
   # bundler requires these gems in development
   # gem "rails-footnotes"
+  gem 'capistrano'
 end
 
 group :test do

@@ -43,6 +43,6 @@ Capistrano::Configuration.instance(:must_exist).load do
 
 after 'deploy:symlink', 'deploy:link_database'
 #before 'deploy:restart', 'brb:stop'
-after 'deploy:restart', 'brb:start'
+#after 'deploy:restart', 'brb:start'
 
 end

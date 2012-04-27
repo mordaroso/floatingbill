@@ -1,4 +1,5 @@
 require 'lib/cap_recipies'
+require "bundler/capistrano"
 
 set :application, "floatingbill"
 set :deploy_to, "/srv/web/#{application}"
@@ -13,6 +14,6 @@ ssh_options[:forward_agent] = true
 #############################################################
 
 set :scm, :git
-set :repository, "git@github.com:mino/floatingbill.git"
+set :repository, "git@github.com:mordaroso/floatingbill.git"
 set :branch, "master"
 set :deploy_via, :remote_cache
