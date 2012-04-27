@@ -169,14 +169,14 @@ class GroupsController < ApplicationController
       title = 'Overall'
     end
     respond_to do |format|
-      format.html {
+      format.png {
         graph = Scruffy::Graph.new(:theme => FloatingBillTheme.new)
         graph.title = "Statistics for " + @group.name + " - " + title
         graph.renderer = Scruffy::Renderers::Pie.new
 
         graph.add :pie, '', @group.costs_by_category(options)
 
-        send_data  (graph.render :width => 300, :height => 200, :as => 'png')
+        send_data  (graph.render :width => 500, :height => 300, :as => 'png')
       }
     end
   end

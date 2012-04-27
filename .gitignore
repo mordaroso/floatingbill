@@ -4,3 +4,7 @@ log/*
 index/*
 config/database.yml
 nbproject
+.rvmrc
+.bundle
+bin
+tmp

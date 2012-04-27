@@ -1,13 +1,75 @@
-.auto_complete {
-  text-align: left; }
+/*
+Syntax error: Invalid CSS after "  left:": expected expression (e.g. 1px, bold), was ": 6px;"
+        on line 10 of /Users/mordaroso/Development/private/floatingbill/public/stylesheets/sass/iphone.scss
 
-ul.payers {
-  display: block; }
+5: ul.payers{
+6:   display: block;
+7: }
+8: 
+9: #homeButton{
+10:   left:: 6px;
+11:   right: auto;
+12:   padding: 0;
+13:   max-width: 55px;
+14:   border-width: 0 8px 0 14px;
+15:   -webkit-border-image: url(/images/iui/backButton.png) 0 8 0 14;
 
-#homeButton {
-  left: 6px;
-  right: auto;
-  padding: 0;
-  max-widt: 55px;
-  border-width: 0 8px 0 14px;
-  -webkit-border-image: url(/images/iui/backButton.png) 0 8 0 14; }
+Backtrace:
+/Users/mordaroso/Development/private/floatingbill/public/stylesheets/sass/iphone.scss:10
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/lib/sass/../sass/scss/parser.rb:1014:in `expected'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/lib/sass/../sass/script/lexer.rb:191:in `expected!'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/lib/sass/../sass/script/parser.rb:450:in `assert_expr'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/lib/sass/../sass/script/parser.rb:49:in `parse'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/lib/sass/../sass/scss/parser.rb:904:in `send'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/lib/sass/../sass/scss/parser.rb:904:in `sass_script'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/lib/sass/../sass/scss/parser.rb:772:in `value!'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/lib/sass/../sass/scss/parser.rb:749:in `declaration'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/lib/sass/../sass/scss/parser.rb:509:in `declaration_or_ruleset'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/lib/sass/../sass/scss/parser.rb:998:in `call'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/lib/sass/../sass/scss/parser.rb:998:in `rethrow'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/lib/sass/../sass/scss/parser.rb:519:in `declaration_or_ruleset'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/lib/sass/../sass/scss/parser.rb:481:in `block_child'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/lib/sass/../sass/scss/parser.rb:470:in `block_contents'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/lib/sass/../sass/scss/parser.rb:462:in `block'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/lib/sass/../sass/scss/parser.rb:456:in `ruleset'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/lib/sass/../sass/scss/parser.rb:480:in `block_child'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/lib/sass/../sass/scss/parser.rb:473:in `block_contents'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/lib/sass/../sass/scss/parser.rb:58:in `stylesheet'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/lib/sass/../sass/scss/parser.rb:27:in `parse'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/lib/sass/../sass/engine.rb:326:in `_to_tree'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/lib/sass/../sass/engine.rb:299:in `_render'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/lib/sass/../sass/engine.rb:247:in `render'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/lib/sass/../sass/util.rb:311:in `silence_sass_warnings'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/lib/sass/../sass/engine.rb:247:in `render'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/rails/../lib/sass/plugin/compiler.rb:332:in `update_stylesheet'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/rails/../lib/sass/plugin/compiler.rb:203:in `update_stylesheets'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/rails/../lib/sass/plugin/compiler.rb:201:in `each'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/rails/../lib/sass/plugin/compiler.rb:201:in `update_stylesheets'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/rails/../lib/sass/plugin.rb:81:in `update_stylesheets'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/rails/../lib/sass/plugin.rb:54:in `check_for_updates'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/sass-3.1.16/rails/../lib/sass/plugin/rack.rb:51:in `call'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/actionpack-2.3.14/lib/action_controller/string_coercion.rb:25:in `call'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/rack-1.1.3/lib/rack/head.rb:9:in `call'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/rack-1.1.3/lib/rack/methodoverride.rb:24:in `call'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/actionpack-2.3.14/lib/action_controller/params_parser.rb:15:in `call'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/actionpack-2.3.14/lib/action_controller/session/cookie_store.rb:99:in `call'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/actionpack-2.3.14/lib/action_controller/failsafe.rb:26:in `call'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/rack-1.1.3/lib/rack/lock.rb:11:in `call'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/rack-1.1.3/lib/rack/lock.rb:11:in `synchronize'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/rack-1.1.3/lib/rack/lock.rb:11:in `call'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/actionpack-2.3.14/lib/action_controller/dispatcher.rb:114:in `call'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/actionpack-2.3.14/lib/action_controller/reloader.rb:34:in `run'
+/Users/mordaroso/.rvm/gems/ree-1.8.7-2012.02@floatingbill/gems/actionpack-2.3.14/lib/action_controller/dispatcher.rb:108:in `call'
+/Users/mordaroso/Library/Application Support/Pow/Versions/0.3.2/node_modules/nack/lib/nack/server.rb:146:in `handle'
+/Users/mordaroso/Library/Application Support/Pow/Versions/0.3.2/node_modules/nack/lib/nack/server.rb:99:in `start'
+/Users/mordaroso/Library/Application Support/Pow/Versions/0.3.2/node_modules/nack/lib/nack/server.rb:86:in `each'
+/Users/mordaroso/Library/Application Support/Pow/Versions/0.3.2/node_modules/nack/lib/nack/server.rb:86:in `start'
+/Users/mordaroso/Library/Application Support/Pow/Versions/0.3.2/node_modules/nack/lib/nack/server.rb:66:in `loop'
+/Users/mordaroso/Library/Application Support/Pow/Versions/0.3.2/node_modules/nack/lib/nack/server.rb:66:in `start'
+/Users/mordaroso/Library/Application Support/Pow/Versions/0.3.2/node_modules/nack/lib/nack/server.rb:13:in `run'
+/Users/mordaroso/Library/Application Support/Pow/Versions/0.3.2/node_modules/nack/bin/nack_worker:4
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Invalid CSS after \"  left:\": expected expression (e.g. 1px, bold), was \": 6px;\"\A         on line 10 of /Users/mordaroso/Development/private/floatingbill/public/stylesheets/sass/iphone.scss\A \A 5: ul.payers{\A 6:   display: block;\A 7: }\A 8: \A 9: #homeButton{\A 10:   left:: 6px;\A 11:   right: auto;\A 12:   padding: 0;\A 13:   max-width: 55px;\A 14:   border-width: 0 8px 0 14px;\A 15:   -webkit-border-image: url(/images/iui/backButton.png) 0 8 0 14;"; }

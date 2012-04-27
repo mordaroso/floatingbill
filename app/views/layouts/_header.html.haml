@@ -1,7 +1,7 @@
 #title
-  = link_to(image_tag("/images/logo_bg.png"), :controller => 'floatingbill')
+  = link_to('Floating Bill', :controller => 'floatingbill')
 #user
-  = render "users/_user_bar"
+  = render "users/user_bar"
 
 -if logged_in?
   #menu

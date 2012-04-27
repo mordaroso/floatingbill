@@ -1,11 +1,6 @@
-.title {
-  background-color: #9cb16a;
-  padding-left: 5px; }
-
 body {
-  background-color: #ffffff;
-  background-image: url('/images/bg.png');
-  color: #222222;
+  background-color: #eaeaea;
+  color: #333333;
   font-family: verdana;
   font-size: 16px; }
 
@@ -20,12 +15,13 @@ img {
   border: 0px; }
 
 hr {
-  color: #222222; }
+  color: #333333; }
 
 .fieldWithErrors {
   padding: 2px;
-  background-color: #d02020;
-  display: table; }
+  color: #d02020; }
+  .fieldWithErrors input {
+    border: 1px solid #d02020; }
 
 #errorExplanation {
   width: 400px;
@@ -33,7 +29,7 @@ hr {
   padding: 7px;
   padding-bottom: 12px;
   margin-bottom: 20px;
-  background-color: #c0b686; }
+  background-color: #cd6364; }
 
 #errorExplanation h2 {
   text-align: left;
@@ -41,7 +37,6 @@ hr {
   padding: 5px 5px 5px 15px;
   font-size: 12px;
   margin: -7px;
-  background-color: #c09186;
   color: #fff; }
 
 #errorExplanation p {
@@ -63,11 +58,11 @@ hr {
   color: #890000; }
 
 .darker {
-  background-color: #adc27b; }
+  background-color: #eeeeee; }
 
 .time {
   font-size: 12px;
-  color: #777777; }
+  color: #888888; }
 
 ul.no_list {
   margin: 0px;
@@ -120,31 +115,30 @@ ul.payments {
     background-repeat: no-repeat;
     padding-left: 20px !important;
     background-position: 0 50%;
-    background-image: url('/images/icons/coins.png'); }
+    background-image: url("/images/icons/coins.png"); }
 
 ul.depts, ul.credits {
   margin: 0px;
   padding: 0px;
   list-style: none; }
-  ul.depts li,   ul.credits li {
+  ul.depts li, ul.credits li {
     background-repeat: no-repeat;
     padding-left: 20px !important;
     background-position: 0 50%;
-    background-image: url('/images/icons/money.png'); }
+    background-image: url("/images/icons/money.png"); }
 
 .no_spacing {
   border-spacing: 0px; }
 
 #container {
+  border: 1px solid #aaa;
+  border-radius: 8px;
   margin: 0 auto;
   width: 800px;
-  padding: 20px; }
+  background-color: #f3f3f3; }
 
 #content {
-  padding: 10px 10px 30px;
-  background-color: #c2d197;
-  border-left: 2px solid #9cb16a;
-  border-right: 2px solid #9cb16a; }
+  padding: 10px 10px 30px; }
   #content h1 {
     font-size: 26px;
     font-weight: bold;
@@ -158,13 +152,13 @@ ul.depts, ul.credits {
     font-weight: bold;
     margin-bottom: 5px; }
   #content hr {
-    border: 1px solid #9cb16a; }
+    border: 1px solid #dddddd; }
 
 #error {
   background-repeat: no-repeat;
   padding-left: 20px !important;
   background-position: 0 50%;
-  background-image: url('/images/icons/exclamation.png');
+  background-image: url("/images/icons/exclamation.png");
   background-color: #c0b686;
   font-weight: bold;
   background-position: 10px;
@@ -176,27 +170,31 @@ ul.depts, ul.credits {
   background-repeat: no-repeat;
   padding-left: 20px !important;
   background-position: 0 50%;
-  background-image: url('/images/icons/information.png');
-  background-color: #b1c086;
+  background-image: url("/images/icons/information.png");
+  background-color: #e2e2e2;
   font-weight: bold;
   background-position: 10px;
-  padding-left: 40px !important;
-  border-left: 2px solid #9cb16a;
-  border-right: 2px solid #9cb16a; }
+  padding: 5px 40px !important;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd; }
 
 #header {
   padding: 10px;
-  background-color: #9cb16a;
   -moz-border-radius-topright: 30px; }
   #header #user {
     height: 88px; }
   #header #title {
     float: left;
     position: relative;
-    top: -33px;
-    left: -31px;
     height: 87px;
-    width: 629px; }
+    width: 629px;
+    font-size: 60px;
+    line-height: 87px; }
+    #header #title a {
+      color: #649454; }
+      #header #title a:hover {
+        color: #4e7342;
+        text-decoration: none; }
   #header #menu {
     height: 21px; }
     #header #menu ul {
@@ -216,9 +214,8 @@ ul.depts, ul.credits {
 #footer {
   padding: 5px;
   height: 90px;
-  color: #777777;
+  color: #888888;
   padding-left: 10px;
-  background-color: #9cb16a;
   font-size: 12px;
   -moz-border-radius-bottomright: 30px;
   -moz-border-radius-bottomleft: 30px; }
@@ -230,9 +227,9 @@ ul.depts, ul.credits {
     width: 33%; }
     #footer ul li.title {
       font-weight: bold;
-      color: #666666; }
+      color: #777777; }
   #footer a {
-    color: #777777; }
+    color: #888888; }
 
 #logs ul {
   margin: 0px;
@@ -240,10 +237,13 @@ ul.depts, ul.credits {
   list-style: none; }
 
 #activities {
-  border: 2px solid #9cb16a;
+  border: 2px solid #dddddd;
   margin-left: 10px;
   float: right;
   width: 200px; }
+  #activities .title {
+    background-color: #dddddd;
+    padding-left: 5px; }
   #activities .feed {
     float: right; }
 
