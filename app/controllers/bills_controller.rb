@@ -12,7 +12,8 @@ class BillsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @bills }
+      format.json  { render :json => @open_bills }
+      format.xml   { render :xml  => @open_bills }
     end
   end
 
@@ -26,6 +27,7 @@ class BillsController < ApplicationController
       format.html # show.html.erb
       format.iphone { render :layout => false }
       format.xml  { render :xml => @bill }
+      format.json  { render :json => @bill }
     end
   end
 
@@ -38,7 +40,6 @@ class BillsController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.iphone { render :layout => false }
-      format.xml  { render :xml => @bill }
     end
   end
 
@@ -48,7 +49,12 @@ class BillsController < ApplicationController
     payment = Payment.find_by_user_id_and_bill_id(current_user.id, bill.id)
     payment.accept
     flash[:notice] = 'bill successfully accepted.'
-    redirect_to(bill)
+
+    respond_to do |format|
+      format.html  { redirect_to(bill) }
+      format.xml   { head :ok }
+      format.json  { head :ok }
+    end
   end
 
   # POST /bills
@@ -59,13 +65,15 @@ class BillsController < ApplicationController
     respond_to do |format|
       if @bill.save
         flash[:notice] = 'bill was successfully created.'
-        format.html { redirect_to(@bill) }
+        format.html   { redirect_to(@bill) }
         format.iphone { redirect_to(@bill) }
-        format.xml  { render :xml => @bill, :status => :created, :location => @bill }
+        format.xml    { render :xml => @bill, :status => :created, :location => @bill }
+        format.json   { render :json => @bill, :status => :created, :location => @bill }
       else
         format.html { render :action => "new" }
         format.iphone { render :action => "new", :layout => false}
         format.xml  { render :xml => @bill.errors, :status => :unprocessable_entity }
+        format.json  { render :json => @bill.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -77,8 +85,9 @@ class BillsController < ApplicationController
     @bill.destroy
 
     respond_to do |format|
-      format.html { redirect_to(bills_url) }
-      format.xml  { head :ok }
+      format.html  { redirect_to(bills_url) }
+      format.xml   { head :ok }
+      format.json  { head :ok }
     end
   end
 
