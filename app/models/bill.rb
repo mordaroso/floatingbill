@@ -84,6 +84,22 @@ class Bill < ActiveRecord::Base
     last_payments.last.accepted_at
   end
 
+  def attachment_url
+    attachment.url if attachment.file?
+  end
+
+  def to_json(options = {})
+    super (
+      :include => {
+        :payers => { :only => [:id, :login] },
+        :creator => { :only => [:id, :login] },
+        :category => { :only => [:id, :name] }
+      },
+      :only => [:id, :name, :description, :created_at, :amount, :currency],
+      :methods => [:attachment_url]
+    )
+  end
+
   private
 
   def set_payments
