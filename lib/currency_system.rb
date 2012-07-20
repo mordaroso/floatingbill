@@ -1,9 +1,9 @@
 module CurrencySystem
   CURRENCIES = {
-    'chf'    => 'CHF',
-    'eur'    => '€',
-    'usd'    => '$',
-    'gbp'    => '£'
+    'CHF'    => 'CHF',
+    'EUR'    => '€',
+    'USD'    => '$',
+    'GBP'    => '£'
   }
 
   def currency_field(form, field, selected = nil)

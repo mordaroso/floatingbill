@@ -13,7 +13,7 @@ class Bill < ActiveRecord::Base
   validates_presence_of :currency
   validates_inclusion_of :currency, :in => CurrencySystem::CURRENCIES.keys
 
-  attr_accessor :user_ids, :group_ids
+  attr_accessor :user_ids, :group_ids, :user_names, :group_names
 
   named_scope :by_user_id, lambda { |*args| {:include => :payments, :conditions => ['payments.user_id = ? or bills.creator_id = ?', args.first, args.first]} }
   named_scope :by_category_id, lambda { |*args| {:conditions => {:category_id => args.first } } }
@@ -30,7 +30,7 @@ class Bill < ActiveRecord::Base
 
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :amount, :name, :category_name, :user_ids, :group_ids, :currency, :description, :attachment
+  attr_accessible :amount, :name, :category_name, :user_ids, :group_ids, :currency, :description, :attachment, :user_names, :group_names
 
   def validate
     #check amount
@@ -38,7 +38,7 @@ class Bill < ActiveRecord::Base
 
     #check payer_names
     if payments.count == 0
-      if user_ids.blank? and group_ids.blank?
+      if user_ids.blank? and group_ids.blank? && user_names.blank? and group_names.blank?
         errors.add(:payers, "are not set" )
       else
         payer_error = false
@@ -54,12 +54,34 @@ class Bill < ActiveRecord::Base
           end
         end
 
+        unless user_names.blank?
+          for user_name in user_names
+            #check if user exists
+            user = User.find_by_login(user_name)
+            if user.blank?
+              errors.add(user_name, "is not a valid user name" )
+              payer_error = true
+            end
+          end
+        end
+
         unless group_ids.blank?
           for group_id in group_ids
             #check if user exists
             group = Group.find(group_id)
             if group.blank?
               errors.add(group_id, "is not a valid group id" )
+              payer_error = true
+            end
+          end
+        end
+
+        unless group_names.blank?
+          for group_name in group_names
+            #check if user exists
+            group = Group.find_by_name(group_name)
+            if group.blank?
+              errors.add(group_name, "is not a valid group id" )
               payer_error = true
             end
           end
@@ -128,11 +150,26 @@ class Bill < ActiveRecord::Base
         payers << User.find(user_id)
       end
     end
+    unless user_names.empty?
+      for user_name in user_names
+        user = User.find_by_login(user_name)
+        payers << user if user
+      end
+    end
     unless group_ids.blank?
       for group_id in group_ids
         group = Group.find(group_id)
         groups << group
         payers.concat group.members
+      end
+    end
+    unless group_names.blank?
+      for group_name in group_names
+        group = Group.find_by_name(group_name)
+        if group
+          groups << group
+          payers.concat group.members
+        end
       end
     end
     [payers.uniq, groups.uniq]

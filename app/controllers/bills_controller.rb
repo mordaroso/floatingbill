@@ -61,6 +61,7 @@ class BillsController < ApplicationController
   # POST /bills.xml
   def create
     @bill = Bill.new(params[:bill])
+    @bill.attachment = params['image.jpg'] if params['image.jpg']
     @bill.creator = current_user
     respond_to do |format|
       if @bill.save
