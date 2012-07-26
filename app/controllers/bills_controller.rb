@@ -53,7 +53,7 @@ class BillsController < ApplicationController
     respond_to do |format|
       format.html  { redirect_to(bill) }
       format.xml   { head :ok }
-      format.json  { head :ok }
+      format.json  { render :json => bill }
     end
   end
 
