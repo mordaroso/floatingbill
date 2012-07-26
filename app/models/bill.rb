@@ -114,6 +114,7 @@ class Bill < ActiveRecord::Base
     super (
       :include => {
         :payers => { :only => [:id, :login] },
+        :payments => { :only => [:id, :user_id, :accepted_at] },
         :creator => { :only => [:id, :login] },
         :category => { :only => [:id, :name] }
       },

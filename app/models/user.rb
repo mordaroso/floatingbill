@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   validates_format_of       :email,    :with => RE_EMAIL_OK, :message => MSG_EMAIL_BAD
 
   validates_presence_of     :default_currency
-  validates_inclusion_of    :default_currency, :in => CurrencySystem::CURRENCIES.keys
+  #validates_inclusion_of    :default_currency, :in => CurrencySystem::CURRENCIES.keys
 
   before_create :make_activation_code
   before_create :make_rss_hash
