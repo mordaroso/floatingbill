@@ -7,8 +7,8 @@ class BillsController < ApplicationController
   # GET /bills
   # GET /bills.xml
   def index
-    @open_bills = Bill.by_user_id(current_user.id).open.scoped(:include => [:payments, :payers, :creator, :category])
-    @closed_bills = Bill.by_user_id(current_user.id).closed.scoped(:include => [:payments, :payers, :creator, :category]).reverse
+    @open_bills = Bill.by_user_id(current_user.id).open.scoped(:include => [:payments, :payers, :creator, :category]).uniq
+    @closed_bills = Bill.by_user_id(current_user.id).closed.scoped(:include => [:payments, :payers, :creator, :category]).reverse.uniq
 
     respond_to do |format|
       format.html # index.html.erb
