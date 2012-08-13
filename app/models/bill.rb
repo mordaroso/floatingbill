@@ -126,8 +126,8 @@ class Bill < ActiveRecord::Base
   private
 
   def set_payments
-    user_ids = Array.new if user_ids.blank?
-    group_ids = Array.new if group_ids.blank?
+    user_ids = [] if user_ids.blank?
+    group_ids = [] if group_ids.blank?
     users, groups = get_all_payers
     for user in users
       payment = Payment.find_or_initialize_by_user_id_and_bill_id(user.id, id)
@@ -144,14 +144,14 @@ class Bill < ActiveRecord::Base
   end
 
   def get_all_payers
-    payers = Array.new
-    groups = Array.new
+    payers = []
+    groups = []
     unless user_ids.blank?
       for user_id in user_ids
         payers << User.find(user_id)
       end
     end
-    unless user_names.empty?
+    unless user_names.blank?
       for user_name in user_names
         user = User.find_by_login(user_name)
         payers << user if user
