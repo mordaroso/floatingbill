@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
   include CurrencySystem
+  include ExceptionNotification::Notifiable
 
   before_filter :adjust_format_for_iphone
   before_filter :iphone_login_required

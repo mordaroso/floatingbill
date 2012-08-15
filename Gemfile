@@ -8,6 +8,7 @@ gem "builder"
 gem "packet"
 gem "scruffy"
 gem "rmagick", '2.12.2',:require => 'RMagick'
+gem 'exception_notification', "~> 2.3.0"
 
 group :development do
   # bundler requires these gems in development

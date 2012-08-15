@@ -74,6 +74,8 @@ ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
   :time => '%H:%M:%S'
 )
 
+ExceptionNotification::Notifier.exception_recipients = %w(mordaroso@gmail.com)
+
 if true
   require 'scruffy'
   class FloatingBillTheme < Scruffy::Themes::Base
