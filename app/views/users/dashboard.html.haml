@@ -53,6 +53,7 @@
             = link_to payment.payer.login, user_path(payment.payer)
             |
             = link_to 'show bill', bill_path(payment.bill)
+            %br
 - else
   #no_payments
     No open payments
