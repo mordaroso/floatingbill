@@ -11,7 +11,7 @@ class Bill < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :creator
   validates_presence_of :currency
-  validates_inclusion_of :currency, :in => CurrencySystem::CURRENCIES.keys
+  validates_inclusion_of :currency, :in => CurrencySystem::CURRENCY_NAMES
 
   attr_accessor :user_ids, :group_ids, :user_names, :group_names
 
