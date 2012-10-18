@@ -7,7 +7,7 @@ class Transfer < ActiveRecord::Base
   validates_presence_of :debitor
   validates_presence_of :creditor
   validates_presence_of :currency
-  validates_inclusion_of :currency, :in => CurrencySystem::CURRENCY_NAMES
+  validates_inclusion_of :currency, :in => CurrencySystem::CURRENCIES.keys
 
   named_scope :open, :conditions => { :verified_at => nil }
   named_scope :closed, :conditions => [ "transfers.verified_at is not null" ]

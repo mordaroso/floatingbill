@@ -6,8 +6,6 @@ module CurrencySystem
     'GBP'    => '£'
   }
 
-  CURRENCY_NAMES = CURRENCIES.keys + CURRENCIES.keys.map(&:downcase)
-
   def currency_field(form, field, selected = nil)
     unless selected.blank?
       form.select(field, CURRENCIES.invert, :selected => selected)

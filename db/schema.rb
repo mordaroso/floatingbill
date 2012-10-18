@@ -9,17 +9,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081106112400) do
+ActiveRecord::Schema.define(:version => 20121018122056) do
 
   create_table "bdrb_job_queues", :force => true do |t|
     t.binary   "args"
     t.string   "worker_name"
     t.string   "worker_method"
     t.string   "job_key"
-    t.integer  "taken",          :limit => 11
-    t.integer  "finished",       :limit => 11
-    t.integer  "timeout",        :limit => 11
-    t.integer  "priority",       :limit => 11
+    t.integer  "taken"
+    t.integer  "finished"
+    t.integer  "timeout"
+    t.integer  "priority"
     t.datetime "submitted_at"
     t.datetime "started_at"
     t.datetime "finished_at"
@@ -32,24 +32,24 @@ ActiveRecord::Schema.define(:version => 20081106112400) do
   end
 
   create_table "bills", :force => true do |t|
-    t.integer  "category_id",             :limit => 11
-    t.decimal  "amount",                                :precision => 10, :scale => 2
+    t.integer  "category_id"
+    t.decimal  "amount",                               :precision => 10, :scale => 2
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
-    t.integer  "creator_id",              :limit => 11
+    t.integer  "creator_id"
     t.string   "currency",                :limit => 3
-    t.boolean  "closed",                                                               :default => false
+    t.boolean  "closed",                                                              :default => false
     t.string   "attachment_file_name"
     t.string   "attachment_content_type"
-    t.integer  "attachment_file_size",    :limit => 11
+    t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
   end
 
   create_table "bills_groups", :id => false, :force => true do |t|
-    t.integer "bill_id",  :limit => 11
-    t.integer "group_id", :limit => 11
+    t.integer "bill_id"
+    t.integer "group_id"
   end
 
   create_table "categories", :force => true do |t|
@@ -59,9 +59,9 @@ ActiveRecord::Schema.define(:version => 20081106112400) do
   end
 
   create_table "debts", :force => true do |t|
-    t.integer  "creditor_id", :limit => 11
-    t.integer  "debitor_id",  :limit => 11
-    t.decimal  "amount",                    :precision => 10, :scale => 2
+    t.integer  "creditor_id"
+    t.integer  "debitor_id"
+    t.decimal  "amount",                   :precision => 10, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "currency",    :limit => 3
@@ -76,25 +76,25 @@ ActiveRecord::Schema.define(:version => 20081106112400) do
   end
 
   create_table "memberships", :force => true do |t|
-    t.integer  "group_id",   :limit => 11
-    t.integer  "user_id",    :limit => 11
+    t.integer  "group_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.boolean  "admin"
   end
 
   create_table "payments", :force => true do |t|
-    t.integer  "bill_id",     :limit => 11
-    t.integer  "user_id",     :limit => 11
-    t.decimal  "amount",                    :precision => 10, :scale => 2
+    t.integer  "bill_id"
+    t.integer  "user_id"
+    t.decimal  "amount",      :precision => 10, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "accepted_at"
   end
 
   create_table "transfers", :force => true do |t|
-    t.integer  "debitor_id",  :limit => 11
-    t.integer  "creditor_id", :limit => 11
-    t.decimal  "amount",                    :precision => 10, :scale => 2
+    t.integer  "debitor_id"
+    t.integer  "creditor_id"
+    t.decimal  "amount",                   :precision => 10, :scale => 2
     t.string   "currency",    :limit => 3
     t.datetime "created_at"
     t.datetime "updated_at"
